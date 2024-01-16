@@ -61,3 +61,27 @@ int check_chars(t_list *s)
 		return(1);
 	return(0);
 }
+int parshing_map(t_list *s)
+{
+	int i =0;
+	while(s->map3d[i])
+	{
+		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
+			s->NO =ft_strdup(s->map3d[i]+3);
+		if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
+			s->SO =ft_strdup(s->map3d[i]+3);
+		if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
+			s->WE =ft_strdup(s->map3d[i]+3);
+		if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
+			s->EA =ft_strdup(s->map3d[i]+3);
+		if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
+			s->floor =ft_strdup(s->map3d[i]);
+		if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
+			s->celling =ft_strdup(s->map3d[i]);
+		//printf("s->map3d[%i]%s\n",i,s->map3d[i]);
+		i++;
+	}
+	if(s->NO == NULL || s->SO == NULL || s->WE == NULL || s->EA == NULL || s->floor == NULL || s->celling == NULL)
+		return(1);
+	return(0);
+}
