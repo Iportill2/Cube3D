@@ -111,3 +111,24 @@ char **ft_split(char *s,char c)
 		i++;
 	}
 } */
+int split_floor_cell(t_list *s)
+{
+	char **split_cell;
+	//char **split_floor;
+	int i = 0;
+	int e = 0;
+	split_cell=ft_split(s->celling + 2, ',');
+	while(split_cell)
+	{
+		printf("split_cell[%i]=%s\n",i,split_cell[i]);
+		i++;
+	}
+	s->cell_size = i - 1;
+	s->celling_int_arr=ft_calloc(sizeof(int),(s->cell_size));
+	while (e < s->cell_size)
+	{
+		s->celling_int_arr[e] = 
+	}
+	
+	return(0);
+}

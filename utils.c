@@ -11,6 +11,31 @@ size_t ft_strlen(const char *s)
 		i++;
 	return(i);
 }
+int	ft_atoi(const char *str)//
+{
+	int	i;
+	int	sign;
+	int	num;
+
+	i = 0;
+	sign = 1;
+	num = 0;
+	while (((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i] == '-')
+			sign = -1;
+		i++;
+	}
+	while (str[i] && (str[i] >= 48 && str[i] <= 57))
+	{
+		num = (str[i] - 48) + (num * 10);
+		i++;
+	}
+	return (num * sign);
+}
+
 void* ft_calloc(size_t num, size_t size) 
 {
     void* structure;

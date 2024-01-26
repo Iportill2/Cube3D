@@ -19,11 +19,15 @@ typedef struct s_list
 	int e;
 	int w;
 
+	int lines;
+	char **array;
+
 	char *floor;
 	int  *floor_int_ar;
 
 	char *celling;
 	int  *celling_int_arr;
+	int  cell_size;
 
 	char *NO;
 	char *SO;
@@ -43,6 +47,7 @@ void	*ft_calloc(size_t num, size_t size);
 char	*ft_strjoin(const char* s1, const char* s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s);
+int		ft_atoi(const char *str);
 
 /*SPLIT*/
 int 	ft_wordlen(char *s,char c);
@@ -51,9 +56,13 @@ char 	*word_dupe(char *s,char c);
 int 	fill_words(char **array,char *s,char c);
 char 	**ft_split(char *s,char c);
 
+int 	split_floor_cell(t_list *s);
+
 /*PARSHING*/
 int 	check_chars(t_list *s);
 void 	check_chars_utils(t_list *s,int i);
 int 	check_chars_utils_bis(t_list *s);
 int 	parshing_map(t_list *s);
+int 	count_lines(t_list *s);
+char 	**create_array(t_list *s);
 #endif

@@ -61,9 +61,42 @@ int check_chars(t_list *s)
 		return(1);
 	return(0);
 }
+int count_lines(t_list *s)
+{
+	int i = 0;
+	int e = 0;
+	while(s->map3d[i])
+	{
+		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
+			printf("1");
+		if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
+			printf("2");
+		if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
+			printf("3");
+		if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
+			printf("4");
+		if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
+			printf("5");
+		if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
+			printf("6");
+		else
+			e++;
+		i++;
+	}
+	return(e);
+}
+char **create_array(t_list *s)
+{
+	s->array = ft_calloc(sizeof(char *),(s->lines + 1));
+	if(s->array == NULL)
+		return(NULL);
+	return(s->array);//
+}
+
 int parshing_map(t_list *s)
 {
-	int i =0;
+	int i = 0;
+	//int e = 0;
 	while(s->map3d[i])
 	{
 		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
@@ -78,9 +111,16 @@ int parshing_map(t_list *s)
 			s->floor =ft_strdup(s->map3d[i]);
 		if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
 			s->celling =ft_strdup(s->map3d[i]);
-		//printf("s->map3d[%i]%s\n",i,s->map3d[i]);
+		/* else
+		{
+			printf("HH\n");
+			s->array[e] = ft_strdup(s->map3d[i]);//
+			e++;
+		} */
+		//printf("s->array[%i]%s\n",e,s->array[e]);
 		i++;
 	}
+	//s->array[e] = NULL;
 	if(s->NO == NULL || s->SO == NULL || s->WE == NULL || s->EA == NULL || s->floor == NULL || s->celling == NULL)
 		return(1);
 	return(0);

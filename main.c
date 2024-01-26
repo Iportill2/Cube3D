@@ -18,6 +18,13 @@ void toito(t_list *s)
 	printf("s->EA =%s\n",s->EA);
 	printf("s->floor =%s\n",s->floor);
 	printf("s->celling =%s\n",s->celling);
+
+	/* int i = 0;
+	while(s->array)
+	{
+		printf("s->array[%i] =%s\n",i,s->array[i]);
+		i++;
+	} */
 }
 
 int read_map(char **argv,t_list *s)
@@ -53,14 +60,21 @@ int main(int argc,char **argv)
 	if (argc ==2)
 	{
 		len = ft_strlen(argv[1]);
-		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u') && (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.') )
+		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u') && (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.'))
 			return(printf("Wrong file extension\n"), 1);
 		s=ft_calloc(sizeof(t_list),(1));
 		if(read_map(argv,s) == 1)
 			return(1);
-		s->map3d=ft_split(s->map2d,'\n');
+		s->map3d = ft_split(s->map2d,'\n');
+
+
+		s->lines = count_lines(s);//
+		printf(" s->lines=%d\n",s->lines);
+	
 		if(parshing_map(s) == 1)
 			return(1);
+		
+		if(split_floor_cell(s))
 		//free(s->map3d);
 		/* if(check_chars(s) == 1)
 			return(1); */
