@@ -19,6 +19,8 @@ typedef struct s_list
 	int e;
 	int w;
 
+	char **map_date;
+
 	int lines;
 	char **array;
 
@@ -60,9 +62,15 @@ char 	**ft_split(char *s,char c);
 int 	split_cell(t_list *s);
 int 	split_floor(t_list *s);
 
+int ft_dual_wordlen(char *s,char c,char d);
+int ft_dual_count_words(char *s,char c,char d);
+char *dual_word_dupe(char *s,char c,char d);
+int dual_fill_words(char **array,char *s,char c,char d);
+char **ft_dual_split(char *s,char c,char d);
+
 /*PARSHING*/
 int 	check_chars(t_list *s);
-void 	check_chars_utils(t_list *s,int i);
+int 	check_chars_utils(t_list *s,int i);
 int 	check_chars_utils_bis(t_list *s);
 int 	parshing_map(t_list *s);
 int 	count_lines(t_list *s);

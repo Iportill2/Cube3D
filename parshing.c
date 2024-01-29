@@ -1,6 +1,6 @@
 #include "cub3d.h"
 
-void check_chars_utils(t_list *s,int i)
+int check_chars_utils(t_list *s,int i)
 {
 	int q = 0;
 	while(s->array[i])
@@ -9,32 +9,32 @@ void check_chars_utils(t_list *s,int i)
 			q++;
 		if(s->array[i][q] == 'N')
 		{
-			s->pj_init_nsew = s->array[i][q];
+			s->array[i][q] = s->pj_init_nsew;
 			s->n++;
 			q++;
 		}
 		else if(s->array[i][q] == 'S')
 		{
-			s->pj_init_nsew = s->array[i][q];
+			s->array[i][q] = s->pj_init_nsew ;
 			s->s++;
 			q++;
 		}
 		else if(s->array[i][q] == 'E')
 		{
-			s->pj_init_nsew = s->array[i][q];
+			s->array[i][q] = s->pj_init_nsew ;
 			s->e++;
 			q++;
 		}
 		else if(s->array[i][q] == 'W')
 		{
-			s->pj_init_nsew = s->array[i][q];
+			s->array[i][q] = s->pj_init_nsew ;
 			s->w++;
 			q++;
 		}
 		else
-			return;
+			return(printf("Invalid character in map\n"),free(s),1);
 	}
-	return ;
+	return(0);
 }
 
 int check_chars_utils_bis(t_list *s)
@@ -66,7 +66,8 @@ int check_chars(t_list *s)
 		return(free(s),1);
 	while(s->array[i])
 	{
-		check_chars_utils(s,i);
+		if(check_chars_utils(s,i) == 1)
+			return(1);
 		i++;
 	}
 	if(check_chars_utils_bis(s) == 1)
@@ -76,21 +77,25 @@ int check_chars(t_list *s)
 int count_lines(t_list *s)
 {
 	int i = 0;
+	int u = 0;
+
 	int e = 0;
 	while(s->map3d[i])
 	{
+		while(s->map3d[i][u] == ' ')
+			u++;
 		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
-			printf("1");
-		else if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
-			printf("2");
-		else if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
-			printf("3");
-		else if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
-			printf("4");
-		else if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
-			printf("5");
-		else if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
-			printf("6");
+			printf("");
+		else if(s->map3d[i][u] == 'S' && s->map3d[i][u+1] == 'O')
+			printf("");
+		else if(s->map3d[i][u] == 'W' && s->map3d[i][u+1] == 'E')
+			printf("");
+		else if(s->map3d[i][u] == 'E' && s->map3d[i][u+1] == 'A')
+			printf("");
+		else if(s->map3d[i][u] == 'F' && s->map3d[i][u+1] == ' ')
+			printf("");
+		else if(s->map3d[i][u] == 'C' && s->map3d[i][u+1] == ' ')
+			printf("");
 		else
 			e++;
 		i++;
@@ -105,23 +110,29 @@ char **create_array(t_list *s)
 	return(s->array);//
 }
 
-int parshing_map(t_list *s)
+int parshing_map(t_list *s)//
 {
 	int i = 0;
+	int u = 0;
+
 	int e = 0;
 	while(s->map3d[i])
 	{
-		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
-			s->NO =ft_strdup(s->map3d[i]+3);
-		else if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
-			s->SO =ft_strdup(s->map3d[i]+3);
-		else if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
-			s->WE =ft_strdup(s->map3d[i]+3);
-		else if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
-			s->EA =ft_strdup(s->map3d[i]+3);
-		else if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
-			s->floor =ft_strdup(s->map3d[i]);
-		else if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
+		printf("I=%s\n",s->map3d[i]);
+		u = 0;
+		while(s->map3d[i][u] == ' ')
+			u++;
+		if(s->map3d[i][u] == 'N' && s->map3d[i][u+1] == 'O')
+			s->NO =ft_strdup(s->map3d[i]+u);
+		else if(s->map3d[i][u] == 'S' && s->map3d[i][u+1] == 'O')
+			s->SO =ft_strdup(s->map3d[i]+u);
+		else if(s->map3d[i][u] == 'W' && s->map3d[i][u+1] == 'E')
+			s->WE =ft_strdup(s->map3d[i]+u);
+		else if(s->map3d[i][u] == 'E' && s->map3d[i][u+1] == 'A')
+			s->EA =ft_strdup(s->map3d[i]+u);
+		else if(s->map3d[i][u] == 'F' && s->map3d[i][u+1] == ' ')
+			s->floor =ft_strdup(s->map3d[i]+u);
+		else if(s->map3d[i][u] == 'C' && s->map3d[i][u+1] == ' ')
 			s->celling =ft_strdup(s->map3d[i]);
 		else
 		{
@@ -130,9 +141,13 @@ int parshing_map(t_list *s)
 		}
 		i++;
 	}
+
 	s->array[e] = NULL;
 	if(s->NO == NULL || s->SO == NULL || s->WE == NULL || s->EA == NULL || s->floor == NULL || s->celling == NULL)
 		return(1);
 	return(0);
 }
+
+/////////////////////////////////////////////
+
 
