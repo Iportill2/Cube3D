@@ -5,31 +5,53 @@ int run_program()
 }
 void toito(t_list *s)
 {
+	(void)s;
+	int i =0;
 	printf("---TOITO-----\n");
-	
-	if(s->n == 1)
-		printf("s->n =%d\n",s->n);
-	if(s->s == 1)
-		printf("s->s =%d\n",s->s);
-	if(s->e == 1)
-		printf("s->e =%d\n",s->e);
-	if(s->w == 1)
-		printf("s->w =%d\n",s->w);
-	//printf("%s\n",s->map2d);
-	int i = 0;
-	printf("s->NO =%s\n",s->NO);
-	printf("s->SO =%s\n",s->SO);
-	printf("s->WE =%s\n",s->WE);
-	printf("s->EA =%s\n",s->EA);
-	printf("s->floor =%s\n",s->floor);
-	printf("s->celling =%s\n",s->celling);
-	//printf("s->lines=%d\n",s->lines);
-	while(s->array[i])
+	i =0;
+	printf("******NO*******\n");
+	while(s->NO &&   s->NO[i])
 	{
-		printf("s->array[%i] =%s\n",i,s->array[i]);
+		printf("s->NO[%i] = %s\n",i,s->NO[i]);
 		i++;
 	}
-	printf("s->pj_init_nsew = %c\n",s->pj_init_nsew);
+	i =0;
+	printf("******SO*******\n");
+	while(s->SO &&  s->SO[i])
+	{
+		printf("s->SO[%i] = %s\n",i,s->SO[i]);
+		i++;
+	}
+	i =0;
+	printf("******WE*******\n");
+	while(s->WE &&  s->WE[i])
+	{
+		printf("s->WE[%i] = %s\n",i,s->WE[i]);
+		i++;
+	}
+	i =0;
+	printf("******EA*******\n");
+	while(s->EA && s->EA[i])
+	{
+		printf("s->EA[%i] = %s\n",i,s->EA[i]);
+		i++;
+	}
+	i =0;
+	printf("******floor*******\n");
+	while(s-> floor && s->floor[i])
+	{
+		printf("s->floor[%i] = %s\n",i,s->floor[i]);
+		i++;
+	}
+	i =0;
+	printf("******celling******\n");
+	while( s->celling && s->celling[i])
+	{
+		printf("s->celling[%i] = %s\n",i,s->celling[i]);
+		i++;
+	}
+
+
 	printf("---TOITO-----\n");
 
 	/* int i = 0;
@@ -61,7 +83,7 @@ int read_map(char **argv,t_list *s)
 		if(read_bytes == 0)
 			break;
 	}
-	
+	close(fd);
 	return(0);
 }
 int main(int argc,char **argv)
@@ -79,19 +101,20 @@ int main(int argc,char **argv)
 			if(read_map(argv,s) == 1)
 				return(1);
 		s->map3d = ft_split(s->map2d,'\n');
-		int i =0;
-		int e = 0;
-		while(s->map3d[i])
-		{
-			s->map_date=ft_dual_split(s->map3d[i],' ',',');
-			e =0;
-			while(s->map_date[e])
-			{
-				printf("s->map_date[%i]=%s\n",e,s->map_date[e]);
-				e++;
-			}
-			i++;
-		}
+		parshing_map_args(s);
+		if(check_map_args(s) == 1)
+			return(1);
+		if(check_textures_fd_and_termination(s) == 1)
+			return(1);
+		if(cell_floor_atoi_array(s) == 1)
+			return(1);
+/* 		if(cell_floor_atoi_array(s) == 1)
+			return(1); */
+		
+		toito(s);
+	}
+
+
 /* 		s->lines = count_lines(s);//
 		s->array = create_array(s); */
 		
@@ -105,9 +128,10 @@ int main(int argc,char **argv)
 			return(printf("Error split_cell\n"),1); */
 /* 		if(check_chars(s) == 1)
 			return(printf("Error check_chars\n"),1); */
-		//toito(s);
-	}
+
+
 	else
 		printf("Invalid num of arguments\n");
 return(0);
-}
+
+	}

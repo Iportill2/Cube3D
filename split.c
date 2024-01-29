@@ -111,44 +111,7 @@ char **ft_split(char *s,char c)
 		i++;
 	}
 } */
-int split_floor(t_list *s)
-{
-	char **split_floor;
-	int i = 0;
-	int e = 0;
-	split_floor=ft_split(s->floor + 2, ',');
-	while(split_floor[i] != NULL)
-		i++;
-	s->floor_size = i - 1;
-	s->floor_int_arr=ft_calloc(sizeof(int),(s->floor_size));
-	if(s->floor_int_arr == NULL)
-		return(1);
-	while (e <= s->cell_size)
-	{
-		s->floor_int_arr[e] = ft_atoi(split_floor[e]);
-		e++;
-	}
-	return(0);
-}
-int split_cell(t_list *s)
-{
-	char **split_cell;
-	int i = 0;
-	int e = 0;
-	split_cell=ft_split(s->celling + 2, ',');
-	while(split_cell[i] != NULL)
-		i++;
-	s->cell_size = i - 1;
-	s->celling_int_arr=ft_calloc(sizeof(int),(s->cell_size));
-	if(s->celling_int_arr == NULL)
-		return(1);
-	while (e <= s->cell_size)
-	{
-		s->celling_int_arr[e] = ft_atoi(split_cell[e]);
-		e++;
-	}
-	return(0);
-}
+
 
 /////////////////////////////////
 int ft_dual_wordlen(char *s,char c,char d)
@@ -252,3 +215,7 @@ char **ft_dual_split(char *s,char c,char d)
 	array[num_words] = NULL;
 	return(array);
 }
+/* int check_parameters(t_list *s)
+{
+	if()
+} */

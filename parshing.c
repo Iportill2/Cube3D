@@ -110,44 +110,69 @@ char **create_array(t_list *s)
 	return(s->array);//
 }
 
-int parshing_map(t_list *s)//
-{
-	int i = 0;
-	int u = 0;
 
-	int e = 0;
-	while(s->map3d[i])
-	{
-		printf("I=%s\n",s->map3d[i]);
-		u = 0;
-		while(s->map3d[i][u] == ' ')
-			u++;
-		if(s->map3d[i][u] == 'N' && s->map3d[i][u+1] == 'O')
-			s->NO =ft_strdup(s->map3d[i]+u);
-		else if(s->map3d[i][u] == 'S' && s->map3d[i][u+1] == 'O')
-			s->SO =ft_strdup(s->map3d[i]+u);
-		else if(s->map3d[i][u] == 'W' && s->map3d[i][u+1] == 'E')
-			s->WE =ft_strdup(s->map3d[i]+u);
-		else if(s->map3d[i][u] == 'E' && s->map3d[i][u+1] == 'A')
-			s->EA =ft_strdup(s->map3d[i]+u);
-		else if(s->map3d[i][u] == 'F' && s->map3d[i][u+1] == ' ')
-			s->floor =ft_strdup(s->map3d[i]+u);
-		else if(s->map3d[i][u] == 'C' && s->map3d[i][u+1] == ' ')
-			s->celling =ft_strdup(s->map3d[i]);
-		else
-		{
-			s->array[e] = ft_strdup(s->map3d[i]);//
-			e++;
-		}
-		i++;
-	}
-
-	s->array[e] = NULL;
-	if(s->NO == NULL || s->SO == NULL || s->WE == NULL || s->EA == NULL || s->floor == NULL || s->celling == NULL)
-		return(1);
-	return(0);
-}
 
 /////////////////////////////////////////////
 
 
+int parshing_map_args(t_list *s)
+{
+	int i =0;
+		while(s->map3d[i] &&  i < 6)
+		{
+			s->map_date=ft_dual_split(s->map3d[i],' ',',');
+
+			if(ft_strcmp(s->map_date[0], "NO") == 0)
+				s->NO = s->map_date;
+			else if(ft_strcmp(s->map_date[0], "SO") == 0)
+				s->SO = s->map_date;
+			else if(ft_strcmp(s->map_date[0], "WE") == 0)
+				s->WE = s->map_date;
+			else if(ft_strcmp(s->map_date[0], "EA") == 0)
+				s->EA = s->map_date;
+			else if(ft_strcmp(s->map_date[0], "F") == 0)
+				s->floor = s->map_date;
+			else if(ft_strcmp(s->map_date[0], "C") == 0)
+				s->celling = s->map_date;
+			i++;
+		}
+	return(0);
+}
+
+int check_map_args(t_list *s)
+{
+	if(ft_arraylen(s->NO)!= 2 || ft_arraylen(s->SO)!= 2 ||\
+	 ft_arraylen(s->WE)!= 2 || ft_arraylen(s->EA)!= 2 ||\
+	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
+		return(printf("Invalid map settings\n"),1);
+	return(0);
+}
+int check_textures_fd_and_termination(t_list *s)
+{
+	int fd;
+
+	fd = open(s->NO[1],O_RDONLY);
+	if(fd == -1)
+		return(printf("File didnt exit\n"),close(fd), 1);
+	if(ft_strcmp(s->NO[1]+(ft_strlen(s->NO[1])-4),".xpm")!= 0)
+		return(printf("Invalid file extension\n"),close(fd), 1);
+	close(fd);
+	return(0);
+}
+int cell_floor_atoi_array(t_list *s)
+{
+
+	int i =1;
+	while(s->floor[i])
+		i++;
+	
+	while (s->floor[i])
+	{
+		//s->floor_int_arr[s->floor_size] = ft_atoi(s->floor[i]);
+		s->floor_size++;
+		i++;
+	}
+	printf("HH=%i\n",s->floor_size);
+	printf("II=%i\n",i);
+	return(0);
+}

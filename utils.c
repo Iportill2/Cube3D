@@ -11,6 +11,16 @@ size_t ft_strlen(const char *s)
 		i++;
 	return(i);
 }
+size_t ft_arraylen(char **arr)
+{
+	size_t i;
+	i =0;
+	if(arr == NULL)
+		return(0);
+	while(arr[i])
+		i++;
+	return(i);
+}	
 int	ft_atoi(const char *str)//
 {
 	int	i;
@@ -115,4 +125,13 @@ char	*ft_strdup(const char *s)
 	} 
 	dup[i] = '\0';
 	return(dup);
+}
+int ft_strcmp(char *s1,char *s2)
+{
+	int i =0;
+	if (s1 == NULL || s2 == NULL)
+		return(1);
+	while (s1[i] && s1[i] == s2[i])
+		i++;
+	return((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
