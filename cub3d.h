@@ -23,7 +23,8 @@ typedef struct s_list
 	char **array;
 
 	char *floor;
-	int  *floor_int_ar;
+	int  *floor_int_arr;
+	int floor_size;
 
 	char *celling;
 	int  *celling_int_arr;
@@ -56,7 +57,8 @@ char 	*word_dupe(char *s,char c);
 int 	fill_words(char **array,char *s,char c);
 char 	**ft_split(char *s,char c);
 
-int 	split_floor_cell(t_list *s);
+int 	split_cell(t_list *s);
+int 	split_floor(t_list *s);
 
 /*PARSHING*/
 int 	check_chars(t_list *s);

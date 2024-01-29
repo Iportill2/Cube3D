@@ -2,25 +2,37 @@
 
 void check_chars_utils(t_list *s,int i)
 {
-	if(s->map2d[i] == 'N')
+	int q = 0;
+	while(s->array[i])
 	{
-		s->pj_init_nsew = s->map2d[i];
-		s->n++;
-	}
-	else if(s->map2d[i] == 'S')
-	{
-		s->pj_init_nsew = s->map2d[i];
-		s->s++;
-	}
-	else if(s->map2d[i] == 'E')
-	{
-		s->pj_init_nsew = s->map2d[i];
-		s->e++;
-	}
-	else if(s->map2d[i] == 'O')
-	{
-		s->pj_init_nsew = s->map2d[i];
-		s->w++;
+		while((s->array[i][q] == ' ' || s->array[i][q] == '1' || s->array[i][q] == '0') )
+			q++;
+		if(s->array[i][q] == 'N')
+		{
+			s->pj_init_nsew = s->array[i][q];
+			s->n++;
+			q++;
+		}
+		else if(s->array[i][q] == 'S')
+		{
+			s->pj_init_nsew = s->array[i][q];
+			s->s++;
+			q++;
+		}
+		else if(s->array[i][q] == 'E')
+		{
+			s->pj_init_nsew = s->array[i][q];
+			s->e++;
+			q++;
+		}
+		else if(s->array[i][q] == 'W')
+		{
+			s->pj_init_nsew = s->array[i][q];
+			s->w++;
+			q++;
+		}
+		else
+			return;
 	}
 	return ;
 }
@@ -47,19 +59,19 @@ int check_chars_utils_bis(t_list *s)
 }
 int check_chars(t_list *s)
 {
-	int i;
+	int i ;
 
-	i=0;
-	if(s->map2d == NULL)
-		return (free (s), 1);
-	while(s->map2d[i])
+	i = 0;
+	if(s->array == NULL)
+		return(free(s),1);
+	while(s->array[i])
 	{
 		check_chars_utils(s,i);
 		i++;
 	}
 	if(check_chars_utils_bis(s) == 1)
 		return(1);
-	return(0);
+	return(0); 
 }
 int count_lines(t_list *s)
 {
@@ -69,15 +81,15 @@ int count_lines(t_list *s)
 	{
 		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
 			printf("1");
-		if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
+		else if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
 			printf("2");
-		if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
+		else if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
 			printf("3");
-		if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
+		else if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
 			printf("4");
-		if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
+		else if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
 			printf("5");
-		if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
+		else if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
 			printf("6");
 		else
 			e++;
@@ -96,32 +108,31 @@ char **create_array(t_list *s)
 int parshing_map(t_list *s)
 {
 	int i = 0;
-	//int e = 0;
+	int e = 0;
 	while(s->map3d[i])
 	{
 		if(s->map3d[i][0] == 'N' && s->map3d[i][1] == 'O')
 			s->NO =ft_strdup(s->map3d[i]+3);
-		if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
+		else if(s->map3d[i][0] == 'S' && s->map3d[i][1] == 'O')
 			s->SO =ft_strdup(s->map3d[i]+3);
-		if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
+		else if(s->map3d[i][0] == 'W' && s->map3d[i][1] == 'E')
 			s->WE =ft_strdup(s->map3d[i]+3);
-		if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
+		else if(s->map3d[i][0] == 'E' && s->map3d[i][1] == 'A')
 			s->EA =ft_strdup(s->map3d[i]+3);
-		if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
+		else if(s->map3d[i][0] == 'F' && s->map3d[i][1] == ' ')
 			s->floor =ft_strdup(s->map3d[i]);
-		if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
+		else if(s->map3d[i][0] == 'C' && s->map3d[i][1] == ' ')
 			s->celling =ft_strdup(s->map3d[i]);
-		/* else
+		else
 		{
-			printf("HH\n");
 			s->array[e] = ft_strdup(s->map3d[i]);//
 			e++;
-		} */
-		//printf("s->array[%i]%s\n",e,s->array[e]);
+		}
 		i++;
 	}
-	//s->array[e] = NULL;
+	s->array[e] = NULL;
 	if(s->NO == NULL || s->SO == NULL || s->WE == NULL || s->EA == NULL || s->floor == NULL || s->celling == NULL)
 		return(1);
 	return(0);
 }
+
