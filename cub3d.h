@@ -24,9 +24,11 @@ typedef struct s_list
 	void	*mlx;
 	void	*window;
 
+	char **playable_map;
 	int stop;
 	char *map2d;
 	char **map3d;
+	char **map5d;
 	char pj_init_nsew;
 	int n;
 	int s;
@@ -60,7 +62,8 @@ int 	read_map(char **argv,t_list *s);
 int 	run_program();
 /*UTILS*/
 size_t 	ft_strlen(const char *s);
-size_t ft_arraylen(char **arr);
+size_t 	ft_arraylen(char **arr);
+int 	ft_count_array_len(char **arr);
 void	*ft_calloc(size_t num, size_t size);
 char	*ft_strjoin(const char* s1, const char* s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -87,11 +90,15 @@ char **ft_dual_split(char *s,char c,char d);
 int check_parameters(t_list *s);
 
 /*PARSHING*/
+int 	map(t_list *s);
 int 	check_chars(t_list *s);
 int 	check_chars_utils(t_list *s,int i);
 int 	check_chars_utils_bis(t_list *s);
 int 	count_lines(t_list *s);
 char 	**create_array(t_list *s);
+
+int 	chekeo(t_list *s);
+int 	checkeo_bis(t_list *s);
 
 int parshing_map_args(t_list *s);
 int check_map_args(t_list *s);

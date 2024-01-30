@@ -14,13 +14,34 @@ size_t ft_strlen(const char *s)
 size_t ft_arraylen(char **arr)
 {
 	size_t i;
-	i =0;
+	i = 0;
 	if(arr == NULL)
 		return(0);
 	while(arr[i])
 		i++;
 	return(i);
-}	
+}
+int ft_count_array_len(char **arr)
+{
+	int len = 0;
+
+	int i = 0;
+	int e = 0;
+	if(arr == NULL)
+		return(0);
+	while(arr[i])
+	{
+		e=0;
+		while(arr[i][e])
+		{
+			e++;
+			len++;
+		}
+		i++;
+		len++;
+	}
+	return(len);
+}
 int	ft_atoi(const char *str)//
 {
 	int	i;

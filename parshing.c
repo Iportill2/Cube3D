@@ -114,7 +114,75 @@ char **create_array(t_list *s)
 
 /////////////////////////////////////////////
 
-
+int chekeo(t_list *s)
+{
+	int i = 0;
+	printf("XX=%s\n",s->map3d[6]);
+	while(s->map3d[6][i])
+	{
+		if(s->map3d[6][i] != '1' && s->map3d[6][i] != ' ')
+			return(1);
+		i++;
+	}
+	return(0);
+}
+int checkeo_bis(t_list *s)
+{
+	int i =6;
+	int e=0;
+	while(s->map3d[i])
+	{
+		i++;
+		e++;
+	}
+	printf("G=%d\n",e);
+	s->playable_map=ft_calloc(sizeof(char *),(e+1));
+	i =6;
+	e =0;
+	while(s->map3d[i])
+	{
+		s->playable_map[e]=s->map3d[i];
+		e++;
+		i++;
+	}
+	s->playable_map[e]=NULL;
+	return(0);
+}
+int map(t_list *s)
+{
+	int i;
+	i=0;
+	int a;
+	a=0;
+	while(s->map2d[a] != '\0' && strcmp("1111",s->map2d))
+	{
+		a++;
+	}
+	printf("HH=%d\n",a);
+	//split de \n y strlen de array[i]
+	/* s->map5d = ft_split(s->map2d,'\n');
+	int e=0;
+	while(s->map5d[e])
+	{
+		a += ft_strlen(s->map5d[e]);
+		printf("I=%d\n",a);
+		e++;
+	} */
+	printf("I=%d\n",i);
+	i += ft_count_array_len(s->NO);
+	printf("I=%d\n",i);
+	i += ft_count_array_len(s->SO);
+	printf("I=%d\n",i);
+	i += ft_count_array_len(s->WE);
+	printf("I=%d\n",i);
+	i += ft_count_array_len(s->EA);
+	printf("I=%d\n",i);
+	i += ft_count_array_len(s->floor);
+	printf("I=%d\n",i);
+	i += ft_count_array_len(s->celling);
+	printf("I=%d\n",i);
+	return(i);
+}
 
 int parshing_map_args(t_list *s)
 {

@@ -64,6 +64,13 @@ void toito(t_list *s)
 		printf("s->celling_int_arr[%i] = %d\n",i,s->celling_int_arr[i]);
 		i++;
 	}
+	i =0;
+	printf("******s->playable_map******\n");
+	while(s->playable_map[i])
+	{
+		printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
+		i++;
+	}
 
 
 	printf("---TOITO-----\n");
@@ -86,7 +93,7 @@ int read_map(char **argv,t_list *s)
 	fd= open(argv[1],O_RDONLY);
 	if(fd == -1)
 		return(printf("mal\n"),free((void *)s), 1);
-	printf("bien\n");
+	//printf("bien\n");
 	while (1)
 	{
 		temp=ft_calloc(sizeof(char),2);
@@ -124,8 +131,15 @@ int main(int argc,char **argv)
 			return(1);
 		if(cell_atoi_array(s) == 1)
 			return(1);
-/* 		if(cell_floor_atoi_array(s) == 1)
+
+		/* if(map(s) == 1)
 			return(1); */
+		if(chekeo(s)== 1)
+		{
+			printf("fallo en chekeo\n");
+			return(1);
+		}
+		checkeo_bis(s);
 		
 		toito(s);
 
