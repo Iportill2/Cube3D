@@ -1,13 +1,15 @@
 #include "cub3d.h"
 
-void ft_free(char **ar)
+
+void    ft_free_array(char ***s)//mandar con &
 {
-	int i;
-	i = 0;
-	while(ar[i])
-	{
-		free(ar[i]);
-	}
-	free(ar);
-	return;
+    int i;
+    i = 0;
+    if (*s)
+    {
+        while ((*s)[i])
+            free((*s)[i++]);
+        free (*s);
+    }
+    *s = NULL;
 }

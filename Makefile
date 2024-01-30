@@ -4,13 +4,15 @@ SRC =	main.c \
 		error.c \
 		parshing.c \
 		split.c \
-		utils.c
+		utils.c \
+		game.c
 
 INCLUDES = -I./libft
 LIBS =  -L./libft -lft -Lmlx -lmlx -framework OpenGL -framework AppKit
 #LIBS = -L./libft -lft -Lmlx_linux -lmlx_Linux -L/usr/lib -Imlx_linux -lXext -lX11 -lm -lz
 OBJ = $(SRC:%.c=%.o)
 CFLAGS = -Wall -Wextra -Werror #-fsanitize=address -g3
+.SILENT:
 all: $(NAME)
 %.o: %.c
 	@$(CC) $(CFLAGS) -I/usr/include -Imlx_linux -O3 -c $< -o $@

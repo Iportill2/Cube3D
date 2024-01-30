@@ -50,6 +50,20 @@ void toito(t_list *s)
 		printf("s->celling[%i] = %s\n",i,s->celling[i]);
 		i++;
 	}
+	i =0;
+	printf("******s->floor_int_arr******\n");
+	while(i < s->floor_size)
+	{
+		printf("s->floor_int_arr[%i] = %d\n",i,s->floor_int_arr[i]);
+		i++;
+	}
+	i =0;
+	printf("******s->cell_int_arr******\n");
+	while(i < s->cell_size)
+	{
+		printf("s->celling_int_arr[%i] = %d\n",i,s->celling_int_arr[i]);
+		i++;
+	}
 
 
 	printf("---TOITO-----\n");
@@ -106,13 +120,14 @@ int main(int argc,char **argv)
 			return(1);
 		if(check_textures_fd_and_termination(s) == 1)
 			return(1);
-		if(cell_floor_atoi_array(s) == 1)
+		if(floor_atoi_array(s) == 1)
+			return(1);
+		if(cell_atoi_array(s) == 1)
 			return(1);
 /* 		if(cell_floor_atoi_array(s) == 1)
 			return(1); */
 		
 		toito(s);
-	}
 
 
 /* 		s->lines = count_lines(s);//
@@ -130,6 +145,8 @@ int main(int argc,char **argv)
 			return(printf("Error check_chars\n"),1); */
 
 
+		//ft_star_game(s);
+	}
 	else
 		printf("Invalid num of arguments\n");
 return(0);

@@ -1,5 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
+
+# include "Libft/libft.h"
+# include "mlx/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -8,8 +11,19 @@
 //librerias de mates man man 3 math
 # include <math.h>
 
+
+# define Q 12
+# define W 13
+# define A 0
+# define S 1
+# define D 2
+# define ESC 0x35
+
 typedef struct s_list
 {
+	void	*mlx;
+	void	*window;
+
 	int stop;
 	char *map2d;
 	char **map3d;
@@ -82,7 +96,15 @@ char 	**create_array(t_list *s);
 int parshing_map_args(t_list *s);
 int check_map_args(t_list *s);
 int check_textures_fd_and_termination(t_list *s);
-int cell_floor_atoi_array(t_list *s);
+int floor_atoi_array(t_list *s);
+int cell_atoi_array(t_list *s);
 /*ERROR*/
-void ft_free(char **ar);
+void    ft_free_array(char ***s);
+/*GAME*/
+//void	ft_error(t_list *s, char *text, int error);
+void	ft_destroy(t_list *s);
+int		close_window(t_list *s);
+int		key_press(int keycode, t_list *s);
+void	ft_hook(t_list *s);
+void	ft_star_game(t_list *s);
 #endif

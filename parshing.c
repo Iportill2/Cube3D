@@ -115,6 +115,7 @@ char **create_array(t_list *s)
 /////////////////////////////////////////////
 
 
+
 int parshing_map_args(t_list *s)
 {
 	int i =0;
@@ -159,20 +160,43 @@ int check_textures_fd_and_termination(t_list *s)
 	close(fd);
 	return(0);
 }
-int cell_floor_atoi_array(t_list *s)
+int floor_atoi_array(t_list *s)
 {
 
-	int i =1;
+	int i = 1;
+	int e = 0;
 	while(s->floor[i])
 		i++;
-	
+	s->floor_size = i -1;
+	i = 0;
+	s->floor_int_arr = ft_calloc(sizeof(int *),(s->floor_size));
+	if(s->floor_int_arr == NULL)
+		return(1);
 	while (s->floor[i])
 	{
-		//s->floor_int_arr[s->floor_size] = ft_atoi(s->floor[i]);
-		s->floor_size++;
+		s->floor_int_arr[e] = ft_atoi(s->floor[i]);
+		e++;
 		i++;
 	}
-	printf("HH=%i\n",s->floor_size);
-	printf("II=%i\n",i);
+	return(0);
+}
+int cell_atoi_array(t_list *s)
+{
+
+	int i = 1;
+	int e = 0;
+	while(s->floor[i])
+		i++;
+	s->cell_size = i -1;
+	i = 0;
+	s->celling_int_arr = ft_calloc(sizeof(int *),(s->cell_size));
+	if(s->celling_int_arr == NULL)
+		return(1);
+	while (s->floor[i])
+	{
+		s->celling_int_arr[e] = ft_atoi(s->celling[i]);
+		e++;
+		i++;
+	}
 	return(0);
 }
