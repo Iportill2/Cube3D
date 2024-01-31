@@ -150,8 +150,6 @@ int main(int argc,char **argv)
 			return(1);
 		if(check_jumplines_in_playable_map(s) == 1)
 			return(1);
-		if(check_map_double_jump_line(s) == 1)
-			return(1);
 		if(clean_floor(s) == 1)
 		{
 			printf("error en clean_floor\n");
@@ -162,7 +160,14 @@ int main(int argc,char **argv)
 			printf("error en clean_celling\n");
 			return(1);
 		}
-		toito(s);
+		if(check_map_double_jump_line(s) == 1)
+		{
+			printf("error en check_map_double_jump_line\n");
+			return(1);
+		}
+		else
+			printf("OK\n");
+		//toito(s);
 /* 		s->lines = count_lines(s);//
 		s->array = create_array(s); */
 		

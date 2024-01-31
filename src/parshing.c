@@ -138,16 +138,73 @@ int clean_celling(t_list *s)
 /////////////////////////////////////////////
 int check_map_double_jump_line(t_list *s)
 {
-	//int i =0;
+	int i = 0;
+	int n = 0;
+	int s1 = 0;
+	int w = 0;
+	int e = 0;
+	int f = 0;
+	int c = 0;
+	int stop = 0;
+	int count =0;
 	//printf("s->map2d =\n%s\n",s->map2d);
 	if(s->map2d == NULL)
 		return(1);
-	/* while(s->map2d[i])
+	while(s->map2d[i])
 	{
-		if(s->map2d[i]=='1' && s->map2d[i+1]!='\0')
-			if()
+		if(s->map2d[i]=='N')
+		{
+			n++;
+			printf("[entra n \n");
+		}
+		else if(s->map2d[i]=='S')
+		{
+
+			s1++;
+			printf("[entra n \n");
+		}
+		else if(s->map2d[i]=='E')
+		{
+
+			e++;
+			printf("[entra n \n");
+		}
+		else if(s->map2d[i]=='W')
+		{
+			w++;
+			printf("[entra n \n");
+		}
+		else if(s->map2d[i]=='F')
+		{
+			f++;
+			printf("[entra n \n");
+		}
+		else if(s->map2d[i]=='C')
+		{
+
+			printf("[entra n \n");	
+			c++;
+		}
+		if((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && (w == 2 || w == 3) && f == 1 && c == 1) 
+			stop = 1;
+		else if((stop == 1) && s->map2d[i] == '\n')
+			stop = 2;
+		else if((stop == 2) && (s->map2d[i] == '1' || s->map2d[i] == ' '))
+			stop =3;
+		else if((stop == 3 ) && s->map2d[i] == '\n')
+			stop = 4;
+		else if((stop == 4) && s->map2d[i] == '\n')
+			return(1);
+		count++;
+		printf("[count=%d] [stop =%d]\n",count,stop);
 		i++;
-	} */
+	}
+/* 	printf("n=%i\n",n);
+	printf("s=%i\n",s1);
+	printf("e=%i\n",e);
+	printf("w=%i\n",w);
+	printf("f=%i\n",f);
+	printf("c=%i\n",c); */
 	return(0);
 
 }
