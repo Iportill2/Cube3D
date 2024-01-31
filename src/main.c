@@ -77,7 +77,7 @@ void toito(t_list *s)
 	printf("s->s=%i\n",s->s);
 	printf("s->e=%i\n",s->e);
 	printf("s->w=%i\n",s->w);
-	printf("s->pj_init_nsew=%i\n",s->pj_init_nsew);
+	printf("s->pj_init_nsew=%c\n",s->pj_init_nsew);
 
 	printf("---TOITO-----\n");
 
