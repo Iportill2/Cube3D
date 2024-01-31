@@ -30,6 +30,7 @@ typedef struct s_list
 	char **map3d;
 	char **map5d;
 	char pj_init_nsew;
+	int invalid_char;
 	int n;
 	int s;
 	int e;
@@ -92,7 +93,7 @@ int check_parameters(t_list *s);
 /*PARSHING*/
 int 	map(t_list *s);
 
-int 	check_chars_utils_bis(t_list *s);
+int 	check_chars_in_playable_map(t_list *s);
 
 char 	**create_array(t_list *s);
 
@@ -104,7 +105,7 @@ int check_map_args(t_list *s);
 int check_textures_fd_and_termination(t_list *s);
 int floor_atoi_array(t_list *s);
 int cell_atoi_array(t_list *s);
-
+int check_jumplines_in_playable_map(t_list *s);
 int get_pj_init_position(t_list *s);
 /*ERROR*/
 void    ft_free_array(char ***s);

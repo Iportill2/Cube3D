@@ -1,6 +1,12 @@
 #include "../include/cub3d.h"
 
-int check_chars_utils_bis(t_list *s)
+int check_jumplines_in_playable_map(t_list *s)/////
+{
+	if(s == NULL)
+		return(1);
+	return(0);
+}
+int check_chars_in_playable_map(t_list *s)
 {
 	if(s->n == 1 && (s->s > 0 || s->e > 0 || s->w > 0))
 		return(printf("Initial position set multiple times\n"), free((void *)s), 1);
@@ -18,13 +24,15 @@ int check_chars_utils_bis(t_list *s)
 		return(printf("E set more than one time\n"), free((void *)s), 1);
 	if(s->w != 0 && s->w != 1)
 		return(printf("W set more than one time\n"), free((void *)s), 1);
+	if(s->invalid_char != 0)
+		return(printf("Invalid character in map\n"), free((void *)s), 1);
 	return(0);
 }
 int get_pj_init_position(t_list *s)///
 {
 	int i =0;
 	int e =0;
-	if(s->playable_map)
+	if(s->playable_map == NULL)
 		return(1);
 	while(s->playable_map[i])
 	{
@@ -33,24 +41,26 @@ int get_pj_init_position(t_list *s)///
 		{
 			if(s->playable_map[i][e] == 'N')
 			{
-			s->playable_map[i][e] = s->pj_init_nsew;
+			s->pj_init_nsew = s->playable_map[i][e] ;
 			s->n++;
 			}
 			else if(s->playable_map[i][e] == 'S')
 			{
-			s->playable_map[i][e] = s->pj_init_nsew;
+			s->pj_init_nsew = s->playable_map[i][e] ;
 			s->s++;
 			}
 			else if(s->playable_map[i][e] == 'E')
 			{
-			s->playable_map[i][e] = s->pj_init_nsew;
+			s->pj_init_nsew = s->playable_map[i][e] ;
 			s->e++;
 			}
 			else if(s->playable_map[i][e] == 'W')
 			{
-			s->playable_map[i][e] = s->pj_init_nsew;
+			s->pj_init_nsew = s->playable_map[i][e] ;
 			s->w++;
 			}
+			else if(s->playable_map[i][e] != 'N' && s->playable_map[i][e] != 'S' &&s->playable_map[i][e] != 'E' &&s->playable_map[i][e] != 'W' &&s->playable_map[i][e] != '0' && s->playable_map[i][e] != '1' &&s->playable_map[i][e] != ' ' && s->playable_map[i][e] != '\n')
+				s->invalid_char++;
 			e++;
 		}
 		i++;

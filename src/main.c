@@ -144,12 +144,14 @@ int main(int argc,char **argv)
 			return(1);
 		}
 		get_playable_map(s);
-
-		/* if(get_pj_init_position(s) == 1)///
-			return(1); */
-		
+		printf("s->pj_init_nsew=%i\n",s->pj_init_nsew);
+		if(get_pj_init_position(s) == 1)/////////
+			return(1);
+		if(check_chars_in_playable_map(s) == 1)
+			return(1);
 		toito(s);
-
+		if(check_jumplines_in_playable_map(s) == 1)
+			return(1);
 
 /* 		s->lines = count_lines(s);//
 		s->array = create_array(s); */
