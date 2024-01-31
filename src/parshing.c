@@ -78,8 +78,79 @@ char **create_array(t_list *s)
 }
 
 
+int clean_floor(t_list *s)
+{
+	int i =0;
+	while(s->floor[1][i])
+	{
+		if(s->floor[1][i] >= '0' && s->floor[1][i] <= '9')
+			i++;
+		else
+			return(1);
+	}
+	i =0;
+	while(s->floor[2][i])
+	{
+		if(s->floor[2][i] >= '0' && s->floor[2][i] <= '9')
+			i++;
+		else
+			return(1);
+	}
+	i =0;
+	while(s->floor[3][i])
+	{
+		if(s->floor[3][i] >= '0' && s->floor[3][i] <= '9')
+			i++;
+		else
+			return(1);
+	}
+	return(0);
+}
+int clean_celling(t_list *s)
+{
+	int i =0;
+	while(s->celling[1][i])
+	{
+		if(s->celling[1][i] >= '0' && s->celling[1][i] <= '9')
+			i++;
+		else
+			return(1);
+	}
+	i =0;
+	while(s->celling[2][i])
+	{
+		if(s->celling[2][i] >= '0' && s->celling[2][i] <= '9')
+			i++;
+		else
+			return(1);
+	}
+	i =0;
+	while(s->celling[3][i])
+	{
+		if(s->celling[3][i] >= '0' && s->celling[3][i] <= '9')
+			i++;
+		else
+			return(1);
+	}
+	return(0);
+}
 
 /////////////////////////////////////////////
+int check_map_double_jump_line(t_list *s)
+{
+	//int i =0;
+	//printf("s->map2d =\n%s\n",s->map2d);
+	if(s->map2d == NULL)
+		return(1);
+	/* while(s->map2d[i])
+	{
+		if(s->map2d[i]=='1' && s->map2d[i+1]!='\0')
+			if()
+		i++;
+	} */
+	return(0);
+
+}
 
 int invalid_char_in_array(t_list *s)
 {

@@ -138,21 +138,31 @@ int main(int argc,char **argv)
 			return(1);
 
 
-		if(invalid_char_in_array(s)== 1)
+		if(invalid_char_in_array(s) == 1)
 		{
 			printf("Fail in funtion invalid_char_in_array\n");
 			return(1);
 		}
 		get_playable_map(s);
-		printf("s->pj_init_nsew=%i\n",s->pj_init_nsew);
 		if(get_pj_init_position(s) == 1)/////////
 			return(1);
 		if(check_chars_in_playable_map(s) == 1)
 			return(1);
-		toito(s);
 		if(check_jumplines_in_playable_map(s) == 1)
 			return(1);
-
+		if(check_map_double_jump_line(s) == 1)
+			return(1);
+		if(clean_floor(s) == 1)
+		{
+			printf("error en clean_floor\n");
+			return(1);
+		}
+		if(clean_celling(s) == 1)
+		{
+			printf("error en clean_celling\n");
+			return(1);
+		}
+		toito(s);
 /* 		s->lines = count_lines(s);//
 		s->array = create_array(s); */
 		

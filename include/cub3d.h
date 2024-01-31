@@ -107,6 +107,9 @@ int floor_atoi_array(t_list *s);
 int cell_atoi_array(t_list *s);
 int check_jumplines_in_playable_map(t_list *s);
 int get_pj_init_position(t_list *s);
+int check_map_double_jump_line(t_list *s);
+int clean_floor(t_list *s);
+int clean_celling(t_list *s);
 /*ERROR*/
 void    ft_free_array(char ***s);
 /*GAME*/
