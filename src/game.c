@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../include/cub3d.h"
 
 /* void	ft_error(t_list *s, char *text, int error)
 {

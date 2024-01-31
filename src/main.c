@@ -1,4 +1,4 @@
-#include "cub3d.h"
+#include "../include/cub3d.h"
 int run_program()
 {
 	return(0);
@@ -71,7 +71,13 @@ void toito(t_list *s)
 		printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
 		i++;
 	}
+	printf("----------------\n");
 
+	printf("s->n=%i\n",s->n);
+	printf("s->s=%i\n",s->s);
+	printf("s->e=%i\n",s->e);
+	printf("s->w=%i\n",s->w);
+	printf("s->pj_init_nsew=%i\n",s->pj_init_nsew);
 
 	printf("---TOITO-----\n");
 
@@ -93,7 +99,6 @@ int read_map(char **argv,t_list *s)
 	fd= open(argv[1],O_RDONLY);
 	if(fd == -1)
 		return(printf("mal\n"),free((void *)s), 1);
-	//printf("bien\n");
 	while (1)
 	{
 		temp=ft_calloc(sizeof(char),2);
@@ -132,14 +137,16 @@ int main(int argc,char **argv)
 		if(cell_atoi_array(s) == 1)
 			return(1);
 
-		/* if(map(s) == 1)
-			return(1); */
-		if(chekeo(s)== 1)
+
+		if(invalid_char_in_array(s)== 1)
 		{
-			printf("fallo en chekeo\n");
+			printf("Fail in funtion invalid_char_in_array\n");
 			return(1);
 		}
-		checkeo_bis(s);
+		get_playable_map(s);
+
+		/* if(get_pj_init_position(s) == 1)///
+			return(1); */
 		
 		toito(s);
 
@@ -165,4 +172,4 @@ int main(int argc,char **argv)
 		printf("Invalid num of arguments\n");
 return(0);
 
-	}
+}

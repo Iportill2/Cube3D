@@ -1,8 +1,8 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "Libft/libft.h"
-# include "mlx/mlx.h"
+# include "../Libft/libft.h"
+# include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
 # include <stdio.h>
@@ -91,20 +91,21 @@ int check_parameters(t_list *s);
 
 /*PARSHING*/
 int 	map(t_list *s);
-int 	check_chars(t_list *s);
-int 	check_chars_utils(t_list *s,int i);
+
 int 	check_chars_utils_bis(t_list *s);
-int 	count_lines(t_list *s);
+
 char 	**create_array(t_list *s);
 
-int 	chekeo(t_list *s);
-int 	checkeo_bis(t_list *s);
+int		invalid_char_in_array(t_list *s);
+int 	get_playable_map(t_list *s);
 
 int parshing_map_args(t_list *s);
 int check_map_args(t_list *s);
 int check_textures_fd_and_termination(t_list *s);
 int floor_atoi_array(t_list *s);
 int cell_atoi_array(t_list *s);
+
+int get_pj_init_position(t_list *s);
 /*ERROR*/
 void    ft_free_array(char ***s);
 /*GAME*/
