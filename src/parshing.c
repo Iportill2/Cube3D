@@ -155,48 +155,63 @@ int check_map_double_jump_line(t_list *s)
 		if(s->map2d[i]=='N')
 		{
 			n++;
-			printf("[entra n \n");
+			printf("[entra n [n =%i]\n",n);
 		}
 		else if(s->map2d[i]=='S')
 		{
 
 			s1++;
-			printf("[entra n \n");
+			printf("[entra s [s1 =%i]\n",s1);
 		}
 		else if(s->map2d[i]=='E')
 		{
 
 			e++;
-			printf("[entra n \n");
+			printf("[entra e [w =%i]\n",e);
 		}
 		else if(s->map2d[i]=='W')
 		{
 			w++;
-			printf("[entra n \n");
+			printf("[entra w [w =%i]\n",w);
 		}
 		else if(s->map2d[i]=='F')
 		{
 			f++;
-			printf("[entra n \n");
+			printf("[entra f [f =%i]\n",f);
 		}
 		else if(s->map2d[i]=='C')
 		{
 
-			printf("[entra n \n");	
+			printf("[entra c [c =%i]\n",c);
 			c++;
 		}
-		if((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && (w == 2 || w == 3) && f == 1 && c == 1) 
+		if((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && (w == 2 || w == 3) && f == 1 && c == 1 && (stop ==  0)) 
+		{
 			stop = 1;
+			printf("ENTRA/");
+		}
 		else if((stop == 1) && s->map2d[i] == '\n')
+		{
 			stop = 2;
+			printf("PEPE/");
+		}
 		else if((stop == 2) && (s->map2d[i] == '1' || s->map2d[i] == ' '))
+		{
+			printf("PACO/");
 			stop =3;
+		}
 		else if((stop == 3 ) && s->map2d[i] == '\n')
+		{
+			printf("JAJA/");
 			stop = 4;
+		}
 		else if((stop == 4) && s->map2d[i] == '\n')
+		{
+			printf("ADIOS/n");
 			return(1);
+		}
 		count++;
-		printf("[count=%d] [stop =%d]\n",count,stop);
+		printf("[%c] [stop =%d]\n",s->map2d[i],stop);
 		i++;
 	}
 /* 	printf("n=%i\n",n);
