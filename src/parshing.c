@@ -188,35 +188,38 @@ int check_map_double_jump_line(t_list *s)
 		if((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && \
 		(w == 2 || w == 3) && f == 1 && c == 1 && (stop ==  0) && s->map2d[i] == '\n') 
 		{
-			printf("ENTRA/");
+			printf("AA||");
 			stop = 1;
 		}
 		else if((stop == 1) && s->map2d[i] == '\n')
 		{
-			printf("PEPE/");
+			printf("BB||");
 			stop = 1;
 		}
 
 		else if( stop != 0 &&  (s->map2d[i] == '1' || s->map2d[i] == ' '))
 		{
-			printf("PACO/");
+			if(s->map2d[i] == '1')
 			stop = 2;
+			while(s->map2d[i] == ' ')
+				i++;
+			printf("CC||");
 		}
 		else if((stop == 2 ) && s->map2d[i] == '\n')
 		{
-			printf("JAJA/");
+			printf("DD||");
 			stop = 3;
 		}
 		else if((stop == 3) && s->map2d[i] == '\n')
 		{
-			printf("ADIOS/n");
+			printf("ADIOS||n");
 			return(1);
 		}
 		count++;
 		printf("[%c] [stop =%d]\n",s->map2d[i],stop);
 		i++;
 	}
-	printf("TERMINA\n");
+	printf("TERMINA el programa\n");
 /* 	printf("n=%i\n",n);
 	printf("s=%i\n",s1);
 	printf("e=%i\n",e);
