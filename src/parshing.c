@@ -298,6 +298,52 @@ int map(t_list *s)
 	return(i);
 }
 
+int array_check(char *s)
+{
+	int i =0;
+	while(s[i])
+	{
+		if(s[i] != ' ' && s[i] != '\t')
+			return(1);
+		i++;
+	}
+	return(0);
+}
+int clean_map3d_split(t_list *s)
+{
+	//char **temp = NULL;
+	int i = 0;
+	int e = 0;
+	int count = 0;
+	while(s->map3d[i])
+	{
+		count = count + array_check(s->map3d[i]);
+		i++;
+	}
+	printf("COUNT=%i\n",count);
+	s->map_settings = ft_calloc(sizeof(char*),count+1);
+	if(s->map_settings == NULL)
+		return(1);
+	i=0;
+	while(s->map3d[i])
+	{
+		if(array_check(s->map3d[i]) == 1)
+		{
+			s->map_settings[e]=ft_strdup(s->map3d[i]);
+			e++;
+			i++;
+		}
+		else
+			i++;
+	}
+	i=0;
+	while(s->map_settings[i])
+	{
+	printf("s->map_settings[%i]=%s\n",i,s->map_settings[i]);
+	i++;
+	}
+	return(0);
+}
 int parshing_map_args(t_list *s)
 {
 	int i =0;
@@ -325,7 +371,7 @@ int parshing_map_args(t_list *s)
 
 int check_map_args(t_list *s)
 {
-	int i =0;
+	/* int i =0;
 	while(s->NO[i])
 	{
 		printf("[%i]s->NO=%s\n",i,s->NO[i]);
@@ -354,10 +400,10 @@ int check_map_args(t_list *s)
 	{
 		printf("[%i]s->floor=%s\n",i,s->floor[i]);
 		i++;
-	}
+	} */
 
 	
-	i =0;
+	//i =0;
 	//printf("[%i]s->celling=%s\n",0,s->celling[0]);
 /* 	i=0;
 	while(s->celling[i])
@@ -365,12 +411,12 @@ int check_map_args(t_list *s)
 		printf("[%i]s->celling=%s\n",i,s->celling[i]);
 		i++;
 	} */
-	printf("s->NO=%zu\n",ft_arraylen(s->NO));
+	/* printf("s->NO=%zu\n",ft_arraylen(s->NO));
 	printf("s->SO=%zu\n",ft_arraylen(s->SO));
 	printf("s->WE=%zu\n",ft_arraylen(s->WE));
 	printf("s->EA=%zu\n",ft_arraylen(s->EA));
 	printf("s->floor=%zu\n",ft_arraylen(s->floor));
-	printf("s->celling=%zu\n",ft_arraylen(s->celling));
+	printf("s->celling=%zu\n",ft_arraylen(s->celling)); */
 	if(ft_arraylen(s->NO)!= 2 || ft_arraylen(s->SO)!= 2 ||\
 	 ft_arraylen(s->WE)!= 2 || ft_arraylen(s->EA)!= 2 ||\
 	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)

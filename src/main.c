@@ -126,14 +126,17 @@ int main(int argc,char **argv)
 		s=ft_calloc(sizeof(t_list),(1));
 			if(read_map(argv,s) == 1)
 				return(1);
-		printf("[]%s[]\n",s->map2d);
+		//printf("[]%s[]\n",s->map2d);
 		s->map3d = ft_split(s->map2d,'\n');
-		int i =0;
+		clean_map3d_split(s);
+/* 		int i =0;
 		while(s->map3d[i])
 		{
 			printf("||%s\n",s->map3d[i]);
 			i++;
-		}
+		} */
+
+
 		parshing_map_args(s);
 		if(check_map_args(s) == 1)
 			return(1);

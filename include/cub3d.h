@@ -25,6 +25,7 @@ typedef struct s_list
 	void	*window;
 
 	char **playable_map;
+	char **map_settings;
 	int stop;
 	char *map2d;
 	char **map3d;
@@ -110,6 +111,8 @@ int get_pj_init_position(t_list *s);
 int check_map_double_jump_line(t_list *s);
 int clean_floor(t_list *s);
 int clean_celling(t_list *s);
+int clean_map3d_split(t_list *s);
+int array_check(char *s);
 /*ERROR*/
 void    ft_free_array(char ***s);
 /*GAME*/
