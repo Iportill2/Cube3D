@@ -148,11 +148,11 @@ int main(int argc,char **argv)
 			return(1);
 
 
-		if(invalid_char_in_array(s) == 1)
+		/* if(invalid_char_in_array(s) == 1)
 		{
 			printf("Fail in funtion invalid_char_in_array\n");
 			return(1);
-		}
+		} */
 		get_playable_map(s);
 		if(get_pj_init_position(s) == 1)/////////
 			return(1);

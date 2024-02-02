@@ -65,6 +65,14 @@ int get_pj_init_position(t_list *s)///
 		}
 		i++;
 	}
+	i =0;
+	e=0;
+	while(s->playable_map[i])
+	{
+			printf("s->playable_map[%i]=%s\n",i,s->playable_map[i]);
+			e++;
+		i++;
+	}
 	return(0);
 }
 
@@ -233,6 +241,7 @@ int check_map_double_jump_line(t_list *s)
 int invalid_char_in_array(t_list *s)
 {
 	int i = 0;
+
 	while(s->map3d[6][i])
 	{
 		if(s->map3d[6][i] != '1' && s->map3d[6][i] != ' ')
@@ -311,7 +320,6 @@ int array_check(char *s)
 }
 int clean_map3d_split(t_list *s)
 {
-	//char **temp = NULL;
 	int i = 0;
 	int e = 0;
 	int count = 0;
@@ -347,10 +355,10 @@ int clean_map3d_split(t_list *s)
 int parshing_map_args(t_list *s)
 {
 	int i =0;
-		while(s->map3d[i] &&  i < 6)
+		while(s->map_settings[i] &&  i < 6)
 		{
 
-			s->map_date=ft_dual_split(s->map3d[i],' ',',');
+			s->map_date=ft_dual_split(s->map_settings[i],' ',',');
 
 			if(ft_strcmp(s->map_date[0], "NO") == 0)
 				s->NO = s->map_date;
@@ -371,7 +379,7 @@ int parshing_map_args(t_list *s)
 
 int check_map_args(t_list *s)
 {
-	/* int i =0;
+	int i =0;
 	while(s->NO[i])
 	{
 		printf("[%i]s->NO=%s\n",i,s->NO[i]);
@@ -389,34 +397,35 @@ int check_map_args(t_list *s)
 		printf("[%i]s->WE=%s\n",i,s->WE[i]);
 		i++;
 	}
+	
 	i=0;
 	while(s->EA[i])
 	{
 		printf("[%i]s->EA=%s\n",i,s->EA[i]);
 		i++;
 	}
+
 	i=0;
 	while(s->floor[i])
 	{
 		printf("[%i]s->floor=%s\n",i,s->floor[i]);
 		i++;
-	} */
+	} 
 
-	
-	//i =0;
-	//printf("[%i]s->celling=%s\n",0,s->celling[0]);
-/* 	i=0;
+
+	i=0;
 	while(s->celling[i])
 	{
 		printf("[%i]s->celling=%s\n",i,s->celling[i]);
 		i++;
-	} */
-	/* printf("s->NO=%zu\n",ft_arraylen(s->NO));
+	}
+
+	printf("s->NO=%zu\n",ft_arraylen(s->NO));
 	printf("s->SO=%zu\n",ft_arraylen(s->SO));
 	printf("s->WE=%zu\n",ft_arraylen(s->WE));
 	printf("s->EA=%zu\n",ft_arraylen(s->EA));
 	printf("s->floor=%zu\n",ft_arraylen(s->floor));
-	printf("s->celling=%zu\n",ft_arraylen(s->celling)); */
+	printf("s->celling=%zu\n",ft_arraylen(s->celling));
 	if(ft_arraylen(s->NO)!= 2 || ft_arraylen(s->SO)!= 2 ||\
 	 ft_arraylen(s->WE)!= 2 || ft_arraylen(s->EA)!= 2 ||\
 	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
