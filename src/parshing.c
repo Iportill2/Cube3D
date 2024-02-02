@@ -303,6 +303,7 @@ int parshing_map_args(t_list *s)
 	int i =0;
 		while(s->map3d[i] &&  i < 6)
 		{
+
 			s->map_date=ft_dual_split(s->map3d[i],' ',',');
 
 			if(ft_strcmp(s->map_date[0], "NO") == 0)
@@ -324,6 +325,52 @@ int parshing_map_args(t_list *s)
 
 int check_map_args(t_list *s)
 {
+	int i =0;
+	while(s->NO[i])
+	{
+		printf("[%i]s->NO=%s\n",i,s->NO[i]);
+		i++;
+	}
+	i=0;
+	while(s->SO[i])
+	{
+		printf("[%i]s->SO=%s\n",i,s->SO[i]);
+		i++;
+	}
+	i=0;
+	while(s->WE[i])
+	{
+		printf("[%i]s->WE=%s\n",i,s->WE[i]);
+		i++;
+	}
+	i=0;
+	while(s->EA[i])
+	{
+		printf("[%i]s->EA=%s\n",i,s->EA[i]);
+		i++;
+	}
+	i=0;
+	while(s->floor[i])
+	{
+		printf("[%i]s->floor=%s\n",i,s->floor[i]);
+		i++;
+	}
+
+	
+	i =0;
+	//printf("[%i]s->celling=%s\n",0,s->celling[0]);
+/* 	i=0;
+	while(s->celling[i])
+	{
+		printf("[%i]s->celling=%s\n",i,s->celling[i]);
+		i++;
+	} */
+	printf("s->NO=%zu\n",ft_arraylen(s->NO));
+	printf("s->SO=%zu\n",ft_arraylen(s->SO));
+	printf("s->WE=%zu\n",ft_arraylen(s->WE));
+	printf("s->EA=%zu\n",ft_arraylen(s->EA));
+	printf("s->floor=%zu\n",ft_arraylen(s->floor));
+	printf("s->celling=%zu\n",ft_arraylen(s->celling));
 	if(ft_arraylen(s->NO)!= 2 || ft_arraylen(s->SO)!= 2 ||\
 	 ft_arraylen(s->WE)!= 2 || ft_arraylen(s->EA)!= 2 ||\
 	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
