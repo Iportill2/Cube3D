@@ -197,12 +197,9 @@ int check_map_double_jump_line(t_list *s)
 			stop = 1;
 		}
 
-		else if( stop != 0 &&  (s->map2d[i] == '1' || s->map2d[i] == ' '))
+		else if( stop != 0 &&  (s->map2d[i] == '1' ))
 		{
-			if(s->map2d[i] == '1')
 			stop = 2;
-			while(s->map2d[i] == ' ')
-				i++;
 			printf("CC||");
 		}
 		else if((stop == 2 ) && s->map2d[i] == '\n')
