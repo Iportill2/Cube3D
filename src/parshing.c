@@ -60,19 +60,21 @@ int get_pj_init_position(t_list *s)///
 			s->w++;
 			}
 			else if(s->playable_map[i][e] != 'N' && s->playable_map[i][e] != 'S' &&s->playable_map[i][e] != 'E' &&s->playable_map[i][e] != 'W' &&s->playable_map[i][e] != '0' && s->playable_map[i][e] != '1' &&s->playable_map[i][e] != ' ' && s->playable_map[i][e] != '\n')
+			{
 				s->invalid_char++;
+				printf("INVALID=%c\n",s->playable_map[i][e]);
+			}	
 			e++;
 		}
 		i++;
 	}
-	i =0;
-	e=0;
+	/* i =0;
 	while(s->playable_map[i])
 	{
 			printf("s->playable_map[%i]=%s\n",i,s->playable_map[i]);
 			e++;
 		i++;
-	}
+	} */
 	return(0);
 }
 
@@ -163,56 +165,56 @@ int check_map_double_jump_line(t_list *s)
 		if(s->map2d[i]=='N')
 		{
 			n++;
-			printf("[entra n [n =%i]\n",n);
+			//printf("[entra n [n =%i]\n",n);
 		}
 		else if(s->map2d[i]=='S')
 		{
 
 			s1++;
-			printf("[entra s [s1 =%i]\n",s1);
+			//printf("[entra s [s1 =%i]\n",s1);
 		}
 		else if(s->map2d[i]=='E')
 		{
 
 			e++;
-			printf("[entra e [w =%i]\n",e);
+			//printf("[entra e [w =%i]\n",e);
 		}
 		else if(s->map2d[i]=='W')
 		{
 			w++;
-			printf("[entra w [w =%i]\n",w);
+			//printf("[entra w [w =%i]\n",w);
 		}
 		else if(s->map2d[i]=='F')
 		{
 			f++;
-			printf("[entra f [f =%i]\n",f);
+			//printf("[entra f [f =%i]\n",f);
 		}
 		else if(s->map2d[i]=='C')
 		{
 
-			printf("[entra c [c =%i]\n",c);
+			//printf("[entra c [c =%i]\n",c);
 			c++;
 		}
 		if((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && \
 		(w == 2 || w == 3) && f == 1 && c == 1 && (stop ==  0) && s->map2d[i] == '\n') 
 		{
-			printf("AA||");
+			//printf("AA||");
 			stop = 1;
 		}
 		else if((stop == 1) && s->map2d[i] == '\n')
 		{
-			printf("BB||");
+			//printf("BB||");
 			stop = 1;
 		}
 
 		else if( stop != 0 &&  (s->map2d[i] == '1' ))
 		{
 			stop = 2;
-			printf("CC||");
+			//printf("CC||");
 		}
 		else if((stop == 2 ) && s->map2d[i] == '\n')
 		{
-			printf("DD||");
+			//printf("DD||");
 			stop = 3;
 		}
 		else if((stop == 3) && s->map2d[i] == '\n')
@@ -221,10 +223,10 @@ int check_map_double_jump_line(t_list *s)
 			return(1);
 		}
 		count++;
-		printf("[%c] [stop =%d]\n",s->map2d[i],stop);
+		//printf("[%c] [stop =%d]\n",s->map2d[i],stop);
 		i++;
 	}
-	printf("TERMINA el programa\n");
+	printf("TERMINA check_map_double_jump_line\n");
 /* 	printf("n=%i\n",n);
 	printf("s=%i\n",s1);
 	printf("e=%i\n",e);
@@ -252,23 +254,35 @@ int invalid_char_in_array(t_list *s)
 }
 int get_playable_map(t_list *s)
 {
-	int i =6;
-	int e=0;
+	int i=0;
+	int e =0;
+	int u =0;
 	while(s->map3d[i])
 	{
+		e=0;
+		while(s->map3d[i][e] == ' ' || s->map3d[i][e] == '\t')
+		{
+			e++;
+		}
+		if(s->map3d[i][e] == '0' || s->map3d[i][e] == '1')
+			break;
 		i++;
-		e++;
 	}
-	s->playable_map=ft_calloc(sizeof(char *),(e+1));
-	i =6;
-	e =0;
+	u =i;
+	while(s->map3d[u])
+	{
+		u++;
+	}
+	s->playable_map=ft_calloc(sizeof(char *),u+1);
+	if(s->playable_map == NULL)
+		return(1);
+	u =0;
 	while(s->map3d[i])
 	{
-		s->playable_map[e]=s->map3d[i];
-		e++;
+		s->playable_map[u] = s->map3d[i];
+		u++;
 		i++;
 	}
-	s->playable_map[e]=NULL;
 	return(0);
 }
 int map(t_list *s)
@@ -307,12 +321,13 @@ int map(t_list *s)
 	return(i);
 }
 
+
 int array_check(char *s)
 {
 	int i =0;
 	while(s[i])
 	{
-		if(s[i] != ' ' && s[i] != '\t')
+		if(s[i] == 'C' || s[i] == 'F' || (s[i] == 'N' && s[i+1] == 'O' )|| (s[i] == 'S' && s[i+1] == 'O' )||(s[i] == 'W' && s[i+1] == 'E' )|| (s[i] == 'E' && s[i+1] == 'A' ))
 			return(1);
 		i++;
 	}
@@ -335,6 +350,7 @@ int clean_map3d_split(t_list *s)
 	i=0;
 	while(s->map3d[i])
 	{
+
 		if(array_check(s->map3d[i]) == 1)
 		{
 			s->map_settings[e]=ft_strdup(s->map3d[i]);
@@ -343,12 +359,6 @@ int clean_map3d_split(t_list *s)
 		}
 		else
 			i++;
-	}
-	i=0;
-	while(s->map_settings[i])
-	{
-	printf("s->map_settings[%i]=%s\n",i,s->map_settings[i]);
-	i++;
 	}
 	return(0);
 }

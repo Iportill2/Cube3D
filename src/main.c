@@ -64,6 +64,23 @@ void toito(t_list *s)
 		printf("s->celling_int_arr[%i] = %d\n",i,s->celling_int_arr[i]);
 		i++;
 	}
+
+	i =0;
+	printf("******s->map3d******\n");
+	while(s->map3d[i])
+	{
+		printf("s->map3d[%i] = %s\n",i,s->map3d[i]);
+		i++;
+	}
+	printf("----------------\n");
+	i =0;
+	printf("******map_settings******\n");
+	while(s->map_settings[i])
+	{
+		printf("map_settings[%i] = %s\n",i,s->map_settings[i]);
+		i++;
+	}
+	printf("----------------\n");
 	i =0;
 	printf("******s->playable_map******\n");
 	while(s->playable_map[i])
@@ -156,7 +173,7 @@ int main(int argc,char **argv)
 		get_playable_map(s);
 		if(get_pj_init_position(s) == 1)/////////
 			return(1);
-		if(check_chars_in_playable_map(s) == 1)
+		if(check_chars_in_playable_map(s) == 1)///
 			return(1);
 		if(check_jumplines_in_playable_map(s) == 1)
 			return(1);
@@ -177,7 +194,7 @@ int main(int argc,char **argv)
 		}
 		else
 			printf("OK\n");
-		//toito(s);
+		toito(s);
 /* 		s->lines = count_lines(s);//
 		s->array = create_array(s); */
 		
