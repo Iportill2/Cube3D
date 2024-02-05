@@ -9,45 +9,38 @@ void toito(t_list *s)
 	int i =0;
 	printf("---TOITO-----\n");
 	i =0;
-	printf("******NO*******\n");
-	while(s->NO &&   s->NO[i])
+	printf("******NO_arr*******\n");
+	while(s->NO_arr &&   s->NO_arr[i])
 	{
-		printf("s->NO[%i] = %s\n",i,s->NO[i]);
+		printf("s->NO_arr[%i] = %s\n",i,s->NO_arr[i]);
 		i++;
 	}
 	i =0;
-	printf("******SO*******\n");
-	while(s->SO &&  s->SO[i])
+	printf("******SO_arr*******\n");
+	while(s->SO_arr &&  s->SO_arr[i])
 	{
-		printf("s->SO[%i] = %s\n",i,s->SO[i]);
+		printf("s->SO_arr[%i] = %s\n",i,s->SO_arr[i]);
 		i++;
 	}
 	i =0;
-	printf("******WE*******\n");
-	while(s->WE &&  s->WE[i])
+	printf("******WE_arr*******\n");
+	while(s->WE_arr &&  s->WE_arr[i])
 	{
-		printf("s->WE[%i] = %s\n",i,s->WE[i]);
+		printf("s->WE[%i] = %s\n",i,s->WE_arr[i]);
 		i++;
 	}
 	i =0;
-	printf("******EA*******\n");
-	while(s->EA && s->EA[i])
+	printf("******EA_arr*******\n");
+	while(s->EA_arr && s->EA_arr[i])
 	{
-		printf("s->EA[%i] = %s\n",i,s->EA[i]);
+		printf("s->EA[%i] = %s\n",i,s->EA_arr[i]);
 		i++;
 	}
 	i =0;
-	printf("******floor*******\n");
-	while(s-> floor && s->floor[i])
+	printf("******s->floor******\n");
+	while(i <= s->floor_size)
 	{
 		printf("s->floor[%i] = %s\n",i,s->floor[i]);
-		i++;
-	}
-	i =0;
-	printf("******celling******\n");
-	while( s->celling && s->celling[i])
-	{
-		printf("s->celling[%i] = %s\n",i,s->celling[i]);
 		i++;
 	}
 	i =0;
@@ -55,6 +48,13 @@ void toito(t_list *s)
 	while(i < s->floor_size)
 	{
 		printf("s->floor_int_arr[%i] = %d\n",i,s->floor_int_arr[i]);
+		i++;
+	}
+	i =0;
+	printf("******s->cell******\n");
+	while(i <= s->cell_size)
+	{
+		printf("s->celling[%i] = %s\n",i,s->celling[i]);
 		i++;
 	}
 	i =0;
@@ -85,7 +85,8 @@ void toito(t_list *s)
 	printf("******s->playable_map******\n");
 	while(s->playable_map[i])
 	{
-		printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
+		printf("%s\n",s->playable_map[i]);
+		//printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
 		i++;
 	}
 	printf("----------------\n");
@@ -98,12 +99,6 @@ void toito(t_list *s)
 
 	printf("---TOITO-----\n");
 
-	/* int i = 0;
-	while(s->array)
-	{
-		printf("s->array[%i] =%s\n",i,s->array[i]);
-		i++;
-	} */
 }
 
 int read_map(char **argv,t_list *s)
@@ -132,10 +127,12 @@ int read_map(char **argv,t_list *s)
 int main(int argc,char **argv)
 {
 	t_list *s;
+	(void)argc;
+	(void)argv;
 	int len;
 
 	len = 0;
-	if (argc ==2)
+	 if (argc ==2)
 	{
 		len = ft_strlen(argv[1]);
 		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u') && (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.'))
@@ -143,21 +140,11 @@ int main(int argc,char **argv)
 		s=ft_calloc(sizeof(t_list),(1));
 			if(read_map(argv,s) == 1)
 				return(1);
-		//printf("[]%s[]\n",s->map2d);
 		s->map3d = ft_split(s->map2d,'\n');
 		clean_map3d_split(s);
-/* 		int i =0;
-		while(s->map3d[i])
-		{
-			printf("||%s\n",s->map3d[i]);
-			i++;
-		} */
-
 
 		parshing_map_args(s);
 		if(check_map_args(s) == 1)
-			return(1);
-		if(check_textures_fd_and_termination(s) == 1)
 			return(1);
 		if(floor_atoi_array(s) == 1)
 			return(1);
@@ -165,11 +152,11 @@ int main(int argc,char **argv)
 			return(1);
 
 
-		/* if(invalid_char_in_array(s) == 1)
+		if(invalid_char_in_array(s) == 1)
 		{
 			printf("Fail in funtion invalid_char_in_array\n");
 			return(1);
-		} */
+		}
 		get_playable_map(s);
 		if(get_pj_init_position(s) == 1)/////////
 			return(1);
@@ -192,23 +179,13 @@ int main(int argc,char **argv)
 			printf("error en check_map_double_jump_line\n");
 			return(1);
 		}
-		else
-			printf("OK\n");
-		toito(s);
-/* 		s->lines = count_lines(s);//
-		s->array = create_array(s); */
+		get_playable_map_strlen_arraylen(s);
+		create_new_playable_map(s);
+		if(check_new_playable_map_its_playable(s)==1)
+			return(1);
+		//toito(s);//
+		//s->array = create_array(s);///
 		
-	
-/* 		if(parshing_map(s) == 1)
-			return(printf("Error parshing map\n"),1); */
-		
-/* 		if(split_floor(s) == 1)
-			return(printf("Error split_floor\n"),1);
-		if(split_cell(s) == 1)
-			return(printf("Error split_cell\n"),1); */
-/* 		if(check_chars(s) == 1)
-			return(printf("Error check_chars\n"),1); */
-
 
 		//ft_star_game(s);
 	}

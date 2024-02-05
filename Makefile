@@ -18,6 +18,7 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)parshing.c \
 			$(SRC_DIR)split.c \
 			$(SRC_DIR)utils.c \
+			$(SRC_DIR)parshing_bis.c \
 			$(SRC_DIR)game.c 
 			
 SRC_DIR	=			src/

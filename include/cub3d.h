@@ -24,7 +24,11 @@ typedef struct s_list
 	void	*mlx;
 	void	*window;
 
+	int playable_str_len;
+	int playable_array_len;
+
 	char **playable_map;
+	char **new_playable_map;
 	char **map_settings;
 	int stop;
 	char *map2d;
@@ -50,10 +54,10 @@ typedef struct s_list
 	int  *celling_int_arr;
 	int  cell_size;
 
-	char **NO;
-	char **SO;
-	char **WE;
-	char **EA;
+	char **NO_arr;
+	char **SO_arr;
+	char **WE_arr;
+	char **EA_arr;
 
 }	t_list;
 
@@ -103,7 +107,6 @@ int 	get_playable_map(t_list *s);
 
 int parshing_map_args(t_list *s);
 int check_map_args(t_list *s);
-int check_textures_fd_and_termination(t_list *s);
 int floor_atoi_array(t_list *s);
 int cell_atoi_array(t_list *s);
 int check_jumplines_in_playable_map(t_list *s);
@@ -113,6 +116,11 @@ int clean_floor(t_list *s);
 int clean_celling(t_list *s);
 int clean_map3d_split(t_list *s);
 int array_check(char *s);
+/*PARSHING_BIS*/
+int get_playable_map_strlen_arraylen(t_list *s);
+int calloc_for_new_playable_map(t_list *s);
+int create_new_playable_map(t_list *s);
+int check_new_playable_map_its_playable(t_list *s);
 /*ERROR*/
 void    ft_free_array(char ***s);
 /*GAME*/
