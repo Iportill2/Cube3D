@@ -278,16 +278,14 @@ int clean_map3d_split(t_list *s)
 	}
 	return(0);
 }
-int parshing_map_args(t_list *s)
+void parshing_map_args(t_list *s)
 {
 	int i;
 
 	i = 0;
 		while(s->map_settings[i] &&  i < 6)
 		{
-
 			s->map_date=ft_dual_split(s->map_settings[i],' ',',');
-
 			if(ft_strcmp(s->map_date[0], "NO") == 0)
 				s->NO_arr = s->map_date;
 			else if(ft_strcmp(s->map_date[0], "SO") == 0)
@@ -302,7 +300,7 @@ int parshing_map_args(t_list *s)
 				s->celling = s->map_date;
 			i++;
 		}
-	return(0);
+	return;
 }
 
 int check_map_args(t_list *s)
@@ -310,7 +308,7 @@ int check_map_args(t_list *s)
 	if(ft_arraylen(s->NO_arr)!= 2 || ft_arraylen(s->SO_arr)!= 2 ||\
 	 ft_arraylen(s->WE_arr)!= 2 || ft_arraylen(s->EA_arr)!= 2 ||\
 	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
-		return(printf("Invalid map settings\n"),1);
+		return(printf("Error in check_map_args\n"),1);
 	return(0);
 }
 int floor_atoi_array(t_list *s)

@@ -51,7 +51,7 @@ void toito(t_list *s)
 		i++;
 	}
 	i =0;
-	printf("******s->cell******\n");
+	printf("******s->celling******\n");
 	while(i <= s->cell_size)
 	{
 		printf("s->celling[%i] = %s\n",i,s->celling[i]);
@@ -154,18 +154,30 @@ int main(int argc,char **argv)
 		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u') && (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.'))
 			return(printf("Wrong file extension\n"), 1);
 		s=ft_calloc(sizeof(t_list),(1));
-			if(read_map(argv,s) == 1)
-				return(1);
+		if(read_map(argv,s) == 1)
+			return(1);
 		s->map3d = ft_split(s->map2d,'\n');
-		clean_map3d_split(s);
-
+		if(s->map3d == NULL)
+			return(printf("Error in ft_split: s->map3d == NULL\n"),1);
+		if(clean_map3d_split(s) == 1)
+			return(printf("Error clean_map3d_split"),1);
 		parshing_map_args(s);
 		if(check_map_args(s) == 1)
 			return(1);
+		if(clean_floor(s) == 1)
+		{
+			printf("error en clean_floor\n");
+			return(1);
+		}
+		if(clean_celling(s) == 1)
+		{
+			printf("error en clean_celling\n");
+			return(1);
+		}
 		if(floor_atoi_array(s) == 1)
-			return(1);
+			return(printf("error reserving memory for s->floor_int_arr\n"),1);
 		if(cell_atoi_array(s) == 1)
-			return(1);
+			return(printf("error reserving memory for s->cell_int_arr\n"),1);
 
 
 		if(invalid_char_in_array(s) == 1)
@@ -178,21 +190,8 @@ int main(int argc,char **argv)
 			return(1);
 		if(check_jumplines_in_playable_map(s) == 1)
 			return(1);
-		if(clean_floor(s) == 1)
-		{
-			printf("error en clean_floor\n");
-			return(1);
-		}
-		if(clean_celling(s) == 1)
-		{
-			printf("error en clean_celling\n");
-			return(1);
-		}
 		if(check_map_double_jump_line(s) == 1)
-		{
-			printf("error en check_map_double_jump_line\n");
-			return(1);
-		}
+			return(printf("error en check_map_double_jump_line\n"),1);
 		get_playable_map_strlen_arraylen(s);
 		create_new_playable_map(s);
 		if(get_pj_init_position(s) == 1)/////////

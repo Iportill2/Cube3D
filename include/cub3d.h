@@ -100,7 +100,7 @@ int 	check_chars_in_playable_map(t_list *s);
 int		invalid_char_in_array(t_list *s);
 int 	get_playable_map(t_list *s);
 
-int parshing_map_args(t_list *s);
+void parshing_map_args(t_list *s);
 int check_map_args(t_list *s);
 int floor_atoi_array(t_list *s);
 int cell_atoi_array(t_list *s);
