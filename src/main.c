@@ -89,7 +89,16 @@ void toito(t_list *s)
 		//printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
 		i++;
 	}
+	i =0;
+	printf("******s->new_playable_map******\n");
+	while(s->new_playable_map[i])
+	{
+		printf("%s\n",s->new_playable_map[i]);
+		//printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
+		i++;
+	}
 	printf("----------------\n");
+
 
 	printf("s->n=%i\n",s->n);
 	printf("s->s=%i\n",s->s);
@@ -110,7 +119,7 @@ int read_map(char **argv,t_list *s)
 	fd = 0;
 	fd= open(argv[1],O_RDONLY);
 	if(fd == -1)
-		return(printf("mal\n"),free((void *)s), 1);
+		return(printf("fd=%i\n",fd),printf("mal\n"),free((void *)s), 1);
 	while (1)
 	{
 		temp=ft_calloc(sizeof(char),2);
@@ -158,8 +167,6 @@ int main(int argc,char **argv)
 			return(1);
 		}
 		get_playable_map(s);
-		if(get_pj_init_position(s) == 1)/////////
-			return(1);
 		if(check_chars_in_playable_map(s) == 1)///
 			return(1);
 		if(check_jumplines_in_playable_map(s) == 1)
@@ -183,6 +190,8 @@ int main(int argc,char **argv)
 		create_new_playable_map(s);
 		if(check_new_playable_map_its_playable(s)==1)
 			return(printf("Error in check_new_playable_map_its_playable\n"),1);
+		if(get_pj_init_position(s) == 1)/////////
+			return(1);
 		toito(s);//
 		//s->array = create_array(s);///
 		

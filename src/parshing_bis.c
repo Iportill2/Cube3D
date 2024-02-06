@@ -57,7 +57,6 @@ int create_new_playable_map(t_list *s)
 			s->new_playable_map[i][e] = '-';
 			e++;
 		}
-		printf("s->new_playable_map[]=%s\n",s->new_playable_map[i]);
 		i++;
 	}
 	return(0);

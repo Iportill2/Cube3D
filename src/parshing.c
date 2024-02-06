@@ -32,39 +32,39 @@ int get_pj_init_position(t_list *s)///
 {
 	int i =0;
 	int e =0;
-	if(s->playable_map == NULL)
+	if(s->new_playable_map == NULL)
 		return(1);
-	while(s->playable_map[i])
+	while(s->new_playable_map[i])
 	{
 		e =0;
-		while(s->playable_map[i][e])
+		while(s->new_playable_map[i][e])
 		{
-			if(s->playable_map[i][e] == 'N')
+			if(s->new_playable_map[i][e] == 'N')
 			{
-			s->pj_init_nsew = s->playable_map[i][e] ;
+			s->pj_init_nsew = s->new_playable_map[i][e] ;
 			s->n++;
 			}
-			else if(s->playable_map[i][e] == 'S')
+			else if(s->new_playable_map[i][e] == 'S')
 			{
-			s->pj_init_nsew = s->playable_map[i][e] ;
+			s->pj_init_nsew = s->new_playable_map[i][e] ;
 			s->s++;
 			}
-			else if(s->playable_map[i][e] == 'E')
+			else if(s->new_playable_map[i][e] == 'E')
 			{
-			s->pj_init_nsew = s->playable_map[i][e] ;
+			s->pj_init_nsew = s->new_playable_map[i][e] ;
 			s->e++;
 			}
-			else if(s->playable_map[i][e] == 'W')
+			else if(s->new_playable_map[i][e] == 'W')
 			{
-			s->pj_init_nsew = s->playable_map[i][e] ;
+			s->pj_init_nsew = s->new_playable_map[i][e] ;
 			s->w++;
 			}
 			else if(s->new_playable_map[i][e] == '-')
 				;
-			else if(s->playable_map[i][e] != 'N' && s->playable_map[i][e] != 'S' &&s->playable_map[i][e] != 'E' &&s->playable_map[i][e] != 'W' &&s->playable_map[i][e] != '0' && s->playable_map[i][e] != '1' &&s->playable_map[i][e] != ' ' && s->playable_map[i][e] != '\n')
+			else if(s->new_playable_map[i][e] != 'N' && s->new_playable_map[i][e] != 'S' && s->new_playable_map[i][e] != 'E' && s->new_playable_map[i][e] != 'W' && s->new_playable_map[i][e] != '0' && s->new_playable_map[i][e] != '1' && s->new_playable_map[i][e] != ' ' && s->new_playable_map[i][e] != '\n')
 			{
 				s->invalid_char++;
-				printf("INVALID=%c\n",s->playable_map[i][e]);
+				printf("INVALID=%c\n",s->new_playable_map[i][e]);
 			}	
 			e++;
 		}
