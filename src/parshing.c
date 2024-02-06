@@ -30,8 +30,11 @@ int check_chars_in_playable_map(t_list *s)
 }
 int get_pj_init_position(t_list *s)///
 {
-	int i =0;
-	int e =0;
+	int i ;
+	int e; 
+	
+	i = 0;
+	e = 0;
 	if(s->new_playable_map == NULL)
 		return(1);
 	while(s->new_playable_map[i])
@@ -70,29 +73,14 @@ int get_pj_init_position(t_list *s)///
 		}
 		i++;
 	}
-	/* i =0;
-	while(s->playable_map[i])
-	{
-			printf("s->playable_map[%i]=%s\n",i,s->playable_map[i]);
-			e++;
-		i++;
-	} */
 	return(0);
 }
 
-
-char **create_array(t_list *s)
-{
-	s->array = ft_calloc(sizeof(char *),(s->lines + 1));
-	if(s->array == NULL)
-		return(NULL);
-	return(s->array);//
-}
-
-
 int clean_floor(t_list *s)
 {
-	int i =0;
+	int i;
+	
+	i =0;
 	while(s->floor[1][i])
 	{
 		if(s->floor[1][i] >= '0' && s->floor[1][i] <= '9')
@@ -120,7 +108,9 @@ int clean_floor(t_list *s)
 }
 int clean_celling(t_list *s)
 {
-	int i =0;
+	int i;
+	
+	i =0;
 	while(s->celling[1][i])
 	{
 		if(s->celling[1][i] >= '0' && s->celling[1][i] <= '9')
@@ -147,7 +137,6 @@ int clean_celling(t_list *s)
 	return(0);
 }
 
-/////////////////////////////////////////////
 int check_map_double_jump_line(t_list *s)
 {
 	int i = 0;
@@ -159,93 +148,45 @@ int check_map_double_jump_line(t_list *s)
 	int c = 0;
 	int stop = 0;
 	int count =0;
-	//printf("s->map2d =\n%s\n",s->map2d);
 	if(s->map2d == NULL)
 		return(1);
 	while(s->map2d[i])
 	{
 		if(s->map2d[i]=='N')
-		{
 			n++;
-			//printf("[entra n [n =%i]\n",n);
-		}
 		else if(s->map2d[i]=='S')
-		{
-
 			s1++;
-			//printf("[entra s [s1 =%i]\n",s1);
-		}
 		else if(s->map2d[i]=='E')
-		{
-
 			e++;
-			//printf("[entra e [w =%i]\n",e);
-		}
 		else if(s->map2d[i]=='W')
-		{
 			w++;
-			//printf("[entra w [w =%i]\n",w);
-		}
 		else if(s->map2d[i]=='F')
-		{
 			f++;
-			//printf("[entra f [f =%i]\n",f);
-		}
 		else if(s->map2d[i]=='C')
-		{
-
-			//printf("[entra c [c =%i]\n",c);
 			c++;
-		}
 		if((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && \
 		(w == 2 || w == 3) && f == 1 && c == 1 && (stop ==  0) && s->map2d[i] == '\n') 
-		{
-			//printf("AA||");
 			stop = 1;
-		}
 		else if((stop == 1) && s->map2d[i] == '\n')
-		{
-			//printf("BB||");
 			stop = 1;
-		}
-
 		else if( stop != 0 &&  (s->map2d[i] == '1' ))
-		{
 			stop = 2;
-			//printf("CC||");
-		}
 		else if((stop == 2 ) && s->map2d[i] == '\n')
-		{
-			//printf("DD||");
 			stop = 3;
-		}
 		else if((stop == 3) && s->map2d[i] == '\n')
-		{
-			//printf("ADIOS||n");
 			return(1);
-		}
 		count++;
-		//printf("[%c] [stop =%d]\n",s->map2d[i],stop);
 		i++;
 	}
-	//printf("TERMINA check_map_double_jump_line\n");
-/* 	printf("n=%i\n",n);
-	printf("s=%i\n",s1);
-	printf("e=%i\n",e);
-	printf("w=%i\n",w);
-	printf("f=%i\n",f);
-	printf("c=%i\n",c); */
 	return(0);
 
 }
 
-
-
-
 int invalid_char_in_array(t_list *s)
 {
-	int i = 0;
+	int i;
 
+	i = 0;
 	while(s->map3d[6][i])
 	{
 		if(s->map3d[6][i] != '1' && s->map3d[6][i] != ' ')
@@ -256,9 +197,13 @@ int invalid_char_in_array(t_list *s)
 }
 int get_playable_map(t_list *s)
 {
-	int i=0;
-	int e =0;
-	int u =0;
+	int i;
+	int e;
+	int u;
+
+	i = 0;
+	e = 0;
+	u = 0;
 	while(s->map3d[i])
 	{
 		e=0;
@@ -270,7 +215,7 @@ int get_playable_map(t_list *s)
 			break;
 		i++;
 	}
-	u =i;
+	u = i;
 	while(s->map3d[u])
 	{
 		u++;
@@ -278,7 +223,7 @@ int get_playable_map(t_list *s)
 	s->playable_map=ft_calloc(sizeof(char *),u+1);
 	if(s->playable_map == NULL)
 		return(1);
-	u =0;
+	u = 0;
 	while(s->map3d[i])
 	{
 		s->playable_map[u] = s->map3d[i];
@@ -287,46 +232,12 @@ int get_playable_map(t_list *s)
 	}
 	return(0);
 }
-int map(t_list *s)///creo que sobra
-{
-	int i;
-	i=0;
-	int a;
-	a=0;
-	while(s->map2d[a] != '\0' && strcmp("1111",s->map2d))
-	{
-		a++;
-	}
-	printf("HH=%d\n",a);
-	//split de \n y strlen de array[i]
-	/* s->map5d = ft_split(s->map2d,'\n');
-	int e=0;
-	while(s->map5d[e])
-	{
-		a += ft_strlen(s->map5d[e]);
-		printf("I=%d\n",a);
-		e++;
-	} */
-	printf("I=%d\n",i);
-	i += ft_count_array_len(s->NO_arr);
-	printf("I=%d\n",i);
-	i += ft_count_array_len(s->SO_arr);
-	printf("I=%d\n",i);
-	i += ft_count_array_len(s->WE_arr);
-	printf("I=%d\n",i);
-	i += ft_count_array_len(s->EA_arr);
-	printf("I=%d\n",i);
-	i += ft_count_array_len(s->floor);
-	printf("I=%d\n",i);
-	i += ft_count_array_len(s->celling);
-	printf("I=%d\n",i);
-	return(i);
-}
-
 
 int array_check(char *s)
 {
-	int i =0;
+	int i;
+
+	i = 0;
 	while(s[i])
 	{
 		if(s[i] == 'C' || s[i] == 'F' || (s[i] == 'N' && s[i+1] == 'O' )|| (s[i] == 'S' && s[i+1] == 'O' )||(s[i] == 'W' && s[i+1] == 'E' )|| (s[i] == 'E' && s[i+1] == 'A' ))
@@ -337,15 +248,18 @@ int array_check(char *s)
 }
 int clean_map3d_split(t_list *s)
 {
-	int i = 0;
-	int e = 0;
-	int count = 0;
+	int i;
+	int e; 
+	int count;
+
+	i = 0;
+	e = 0;
+	count = 0;
 	while(s->map3d[i])
 	{
 		count = count + array_check(s->map3d[i]);
 		i++;
 	}
-	//printf("COUNT=%i\n",count);
 	s->map_settings = ft_calloc(sizeof(char*),count+1);
 	if(s->map_settings == NULL)
 		return(1);
@@ -366,7 +280,9 @@ int clean_map3d_split(t_list *s)
 }
 int parshing_map_args(t_list *s)
 {
-	int i =0;
+	int i;
+
+	i = 0;
 		while(s->map_settings[i] &&  i < 6)
 		{
 
@@ -391,12 +307,6 @@ int parshing_map_args(t_list *s)
 
 int check_map_args(t_list *s)
 {
-	/* printf("s->NO=%zu\n",ft_arraylen(s->NO_arr));
-	printf("s->SO=%zu\n",ft_arraylen(s->SO_arr));
-	printf("s->WE=%zu\n",ft_arraylen(s->WE_arr));
-	printf("s->EA=%zu\n",ft_arraylen(s->EA_arr));
-	printf("s->floor=%zu\n",ft_arraylen(s->floor));
-	printf("s->celling=%zu\n",ft_arraylen(s->celling)); */
 	if(ft_arraylen(s->NO_arr)!= 2 || ft_arraylen(s->SO_arr)!= 2 ||\
 	 ft_arraylen(s->WE_arr)!= 2 || ft_arraylen(s->EA_arr)!= 2 ||\
 	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
@@ -405,9 +315,11 @@ int check_map_args(t_list *s)
 }
 int floor_atoi_array(t_list *s)
 {
-
-	int i = 1;
-	int e = 0;
+	int i;
+	int e; 
+	
+	i = 0;
+	e = 0;
 	while(s->floor[i])
 		i++;
 	s->floor_size = i -1;
@@ -425,9 +337,11 @@ int floor_atoi_array(t_list *s)
 }
 int cell_atoi_array(t_list *s)
 {
+	int i;
+	int e;
 
-	int i = 1;
-	int e = 0;
+	i = 1;
+	e = 0;
 	while(s->floor[i])
 		i++;
 	s->cell_size = i -1;

@@ -89,6 +89,13 @@ void toito(t_list *s)
 		//printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
 		i++;
 	}
+	printf("******s->playable_str_len******\n");
+	printf("str_len =%i\n",s->playable_str_len);
+	printf("----------------\n");
+
+	printf("******s->playable_array_len******\n");
+	printf("array_len =%i\n",s->playable_array_len); 
+	printf("----------------\n");
 	i =0;
 	printf("******s->new_playable_map******\n");
 	while(s->new_playable_map[i])
@@ -188,12 +195,13 @@ int main(int argc,char **argv)
 		}
 		get_playable_map_strlen_arraylen(s);
 		create_new_playable_map(s);
-		if(check_new_playable_map_its_playable(s)==1)
-			return(printf("Error in check_new_playable_map_its_playable\n"),1);
 		if(get_pj_init_position(s) == 1)/////////
 			return(1);
+		if(check_new_playable_map_its_playable(s,'0') == 1)
+			return(printf("Error in check_new_playable_map_its_playable 0\n"),1);
+		if(player_in_new_map(s) == 1)
+			return(1);
 		toito(s);//
-		//s->array = create_array(s);///
 		
 
 		//ft_star_game(s);

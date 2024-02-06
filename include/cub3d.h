@@ -96,12 +96,7 @@ char **ft_dual_split(char *s,char c,char d);
 int check_parameters(t_list *s);
 
 /*PARSHING*/
-int 	map(t_list *s);
-
 int 	check_chars_in_playable_map(t_list *s);
-
-char 	**create_array(t_list *s);
-
 int		invalid_char_in_array(t_list *s);
 int 	get_playable_map(t_list *s);
 
@@ -120,7 +115,8 @@ int array_check(char *s);
 int get_playable_map_strlen_arraylen(t_list *s);
 int calloc_for_new_playable_map(t_list *s);
 int create_new_playable_map(t_list *s);
-int check_new_playable_map_its_playable(t_list *s);
+int check_new_playable_map_its_playable(t_list *s,char c);
+int player_in_new_map(t_list *s);
 /*ERROR*/
 void    ft_free_array(char ***s);
 /*GAME*/
