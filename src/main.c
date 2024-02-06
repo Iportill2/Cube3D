@@ -182,8 +182,8 @@ int main(int argc,char **argv)
 		get_playable_map_strlen_arraylen(s);
 		create_new_playable_map(s);
 		if(check_new_playable_map_its_playable(s)==1)
-			return(1);
-		//toito(s);//
+			return(printf("Error in check_new_playable_map_its_playable\n"),1);
+		toito(s);//
 		//s->array = create_array(s);///
 		
 

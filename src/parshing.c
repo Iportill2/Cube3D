@@ -59,6 +59,8 @@ int get_pj_init_position(t_list *s)///
 			s->pj_init_nsew = s->playable_map[i][e] ;
 			s->w++;
 			}
+			else if(s->new_playable_map[i][e] == '-')
+				;
 			else if(s->playable_map[i][e] != 'N' && s->playable_map[i][e] != 'S' &&s->playable_map[i][e] != 'E' &&s->playable_map[i][e] != 'W' &&s->playable_map[i][e] != '0' && s->playable_map[i][e] != '1' &&s->playable_map[i][e] != ' ' && s->playable_map[i][e] != '\n')
 			{
 				s->invalid_char++;
