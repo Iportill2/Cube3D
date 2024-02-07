@@ -62,7 +62,6 @@ typedef struct s_list
 }	t_list;
 
 /*MAIN*/
-void 	toito(t_list *s);
 int 	main(int argc,char **argv);
 int 	read_map(char **argv,t_list *s);
 int 	run_program();
@@ -126,4 +125,7 @@ int		close_window(t_list *s);
 int		key_press(int keycode, t_list *s);
 void	ft_hook(t_list *s);
 void	ft_star_game(t_list *s);
+/*GET_MAPS*/
+void 	toito(t_list *s);
+int 	get_maps(t_list *s,char **argv);
 #endif
