@@ -214,12 +214,10 @@ int get_playable_map(t_list *s)
 		i++;
 	}
 	u = i;
-	printf("u=%d\n",u);
 	while(s->map3d[u])
 	{
 		u++;
 	}
-	printf("u=%d\n",u);
 	s->playable_map=ft_calloc(sizeof(char *),u+1);
 	if(s->playable_map == NULL)
 		return(1);

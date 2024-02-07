@@ -161,6 +161,14 @@ int main(int argc,char **argv)
 			return(printf("Error in ft_split: s->map3d == NULL\n"),1);
 		if(clean_map3d_split(s) == 1)
 			return(printf("Error clean_map3d_split"),1);
+		get_playable_map(s);
+		get_playable_map_strlen_arraylen(s);
+		create_new_playable_map(s);
+		
+		
+		if(get_pj_init_position(s) == 1)/////////
+			return(1);
+		
 		parshing_map_args(s);
 		if(check_map_args(s) == 1)
 			return(1);
@@ -180,22 +188,17 @@ int main(int argc,char **argv)
 			return(printf("error reserving memory for s->cell_int_arr\n"),1);
 
 
-		if(invalid_char_in_array(s) == 1)
+		/* if(invalid_char_in_array(s) == 1)
 		{
 			printf("Fail in funtion invalid_char_in_array\n");
 			return(1);
-		}
-		get_playable_map(s);
+		} */
 		if(check_chars_in_playable_map(s) == 1)///
 			return(1);
 		if(check_jumplines_in_playable_map(s) == 1)
 			return(1);
 		if(check_map_double_jump_line(s) == 1)
 			return(printf("error en check_map_double_jump_line\n"),1);
-		get_playable_map_strlen_arraylen(s);
-		create_new_playable_map(s);
-		if(get_pj_init_position(s) == 1)/////////
-			return(1);
 		if(check_new_playable_map_its_playable(s,'0') == 1)
 			return(printf("Error in check_new_playable_map_its_playable 0\n"),1);
 		if(player_in_new_map(s) == 1)
