@@ -3,13 +3,13 @@
  SO textures/S.xpm   
  EA textures/E.xpm  
   WE textures/W.xpm    
- F 220,200,0   
+ F 222,222,2   
  
  
-C 225,30,0
+C 222,32,2
 
  1111
-100001   
+100N01   
 100001   
 1000N1   
  1111   

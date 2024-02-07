@@ -62,9 +62,7 @@ int get_pj_init_position(t_list *s)///
 			s->pj_init_nsew = s->new_playable_map[i][e] ;
 			s->w++;
 			}
-			else if(s->new_playable_map[i][e] == '-')
-				;
-			else if(s->new_playable_map[i][e] != 'N' && s->new_playable_map[i][e] != 'S' && s->new_playable_map[i][e] != 'E' && s->new_playable_map[i][e] != 'W' && s->new_playable_map[i][e] != '0' && s->new_playable_map[i][e] != '1' && s->new_playable_map[i][e] != ' ' && s->new_playable_map[i][e] != '\n')
+			else if(s->new_playable_map[i][e] != 'N' && s->new_playable_map[i][e] != 'S' && s->new_playable_map[i][e] != 'E' && s->new_playable_map[i][e] != 'W' && s->new_playable_map[i][e] != '0' && s->new_playable_map[i][e] != '1' && s->new_playable_map[i][e] != ' ' && s->new_playable_map[i][e] != '-' && s->new_playable_map[i][e] != '\n')
 			{
 				s->invalid_char++;
 				printf("INVALID=%c\n",s->new_playable_map[i][e]);
@@ -216,10 +214,12 @@ int get_playable_map(t_list *s)
 		i++;
 	}
 	u = i;
+	printf("u=%d\n",u);
 	while(s->map3d[u])
 	{
 		u++;
 	}
+	printf("u=%d\n",u);
 	s->playable_map=ft_calloc(sizeof(char *),u+1);
 	if(s->playable_map == NULL)
 		return(1);
@@ -260,6 +260,8 @@ int clean_map3d_split(t_list *s)
 		count = count + array_check(s->map3d[i]);
 		i++;
 	}
+	if(count != 6)
+		return(printf("Too many arguments in map_settings\n"),1);
 	s->map_settings = ft_calloc(sizeof(char*),count+1);
 	if(s->map_settings == NULL)
 		return(1);
