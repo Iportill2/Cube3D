@@ -1,12 +1,12 @@
 #include "../include/cub3d.h"
 
-int check_jumplines_in_playable_map(t_list *s)/////
+int ft_check_jumplines_in_playable_map(t_list *s)/////
 {
 	if(s == NULL)
 		return(1);
 	return(0);
 }
-int check_chars_in_playable_map(t_list *s)
+int ft_check_chars_in_playable_map(t_list *s)
 {
 	if(s->n == 1 && (s->s > 0 || s->e > 0 || s->w > 0))
 		return(printf("Initial position set multiple times\n"), free((void *)s), 1);
@@ -26,17 +26,17 @@ int check_chars_in_playable_map(t_list *s)
 		return(printf("W set more than one time\n"), free((void *)s), 1);
 	if(s->invalid_char != 0)
 		return(printf("Invalid character in map\n"), free((void *)s), 1);
-	if(check_initial_position(s) == 1)
+	if(ft_check_initial_position(s) == 1)
 		return(1);
 	return(0);
 }
-int check_initial_position(t_list *s)
+int ft_check_initial_position(t_list *s)
 {
 	if(s->pj_init_nsew != 'N' && s->pj_init_nsew != 'S' && s->pj_init_nsew != 'W'&& s->pj_init_nsew != 'E')
 		return(printf("The map haven't initial position\n"),1);
 	return(0);
 }
-int get_pj_init_position(t_list *s)///
+int ft_get_pj_init_position(t_list *s)///
 {
 	int i ;
 	int e; 
@@ -85,7 +85,7 @@ int get_pj_init_position(t_list *s)///
 	return(0);
 }
 
-int clean_floor(t_list *s)
+int ft_clean_floor(t_list *s)
 {
 	int i;
 	
@@ -115,7 +115,7 @@ int clean_floor(t_list *s)
 	}
 	return(0);
 }
-int clean_celling(t_list *s)
+int ft_clean_celling(t_list *s)
 {
 	int i;
 	
@@ -146,7 +146,7 @@ int clean_celling(t_list *s)
 	return(0);
 }
 
-int check_map_double_jump_line(t_list *s)
+int ft_check_map_double_jump_line(t_list *s)
 {
 	int i = 0;
 	int n = 0;
@@ -191,20 +191,7 @@ int check_map_double_jump_line(t_list *s)
 
 }
 
-int invalid_char_in_array(t_list *s)
-{
-	int i;
-
-	i = 0;
-	while(s->map3d[6][i])
-	{
-		if(s->map3d[6][i] != '1' && s->map3d[6][i] != ' ')
-			return(1);
-		i++;
-	}
-	return(0);
-}
-int get_playable_map(t_list *s)
+int ft_get_playable_map(t_list *s)
 {
 	int i;
 	int e;
@@ -242,7 +229,7 @@ int get_playable_map(t_list *s)
 	return(0);
 }
 
-int array_check(char *s)
+int ft_array_check(char *s)
 {
 	int i;
 
@@ -257,7 +244,7 @@ int array_check(char *s)
 	}
 	return(0);
 }
-int clean_map3d_split(t_list *s)
+int ft_clean_map3d_split(t_list *s)
 {
 	int i;
 	int e; 
@@ -268,7 +255,7 @@ int clean_map3d_split(t_list *s)
 	count = 0;
 	while(s->map3d[i])
 	{
-		count = count + array_check(s->map3d[i]);
+		count = count + ft_array_check(s->map3d[i]);
 		i++;
 	}
 	if(count != 6)
@@ -280,7 +267,7 @@ int clean_map3d_split(t_list *s)
 	while(s->map3d[i])
 	{
 
-		if(array_check(s->map3d[i]) == 1)
+		if(ft_array_check(s->map3d[i]) == 1)
 		{
 			s->map_settings[e]=ft_strdup(s->map3d[i]);
 			e++;
@@ -291,7 +278,7 @@ int clean_map3d_split(t_list *s)
 	}
 	return(0);
 }
-void parshing_map_args(t_list *s)
+void ft_parshing_map_args(t_list *s)
 {
 	int i;
 
@@ -316,15 +303,15 @@ void parshing_map_args(t_list *s)
 	return;
 }
 
-int check_map_args(t_list *s)
+int ft_check_map_args(t_list *s)
 {
 	if(ft_arraylen(s->NO_arr)!= 2 || ft_arraylen(s->SO_arr)!= 2 ||\
 	 ft_arraylen(s->WE_arr)!= 2 || ft_arraylen(s->EA_arr)!= 2 ||\
 	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
-		return(printf("Error in check_map_args\n"),1);
+		return(printf("Error in ft_check_map_args\n"),1);
 	return(0);
 }
-int floor_atoi_array(t_list *s)
+int ft_floor_atoi_array(t_list *s)
 {
 	int i;
 	int e; 
@@ -346,7 +333,7 @@ int floor_atoi_array(t_list *s)
 	}
 	return(0);
 }
-int cell_atoi_array(t_list *s)
+int ft_cell_atoi_array(t_list *s)
 {
 	int i;
 	int e;
@@ -366,5 +353,6 @@ int cell_atoi_array(t_list *s)
 		e++;
 		i++;
 	}
+	
 	return(0);
 }

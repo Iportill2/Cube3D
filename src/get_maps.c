@@ -1,21 +1,54 @@
 #include "../include/cub3d.h"
 
-int get_maps(t_list *s,char **argv)
+int ft_get_maps(t_list *s,char **argv)
 {
 	
-		if(read_map(argv,s) == 1)
+		if(ft_read_map(argv,s) == 1)
 			return(1);
 		s->map3d = ft_split(s->map2d,'\n');
 		if(s->map3d == NULL)
 			return(printf("Error in ft_split: s->map3d == NULL\n"),1);
-		if(clean_map3d_split(s) == 1)
+		if(ft_clean_map3d_split(s) == 1)
 			return(printf("Error clean_map3d_split"),1);
-		get_playable_map(s);
-		get_playable_map_strlen_arraylen(s);
-		create_new_playable_map(s);
+		ft_get_playable_map(s);
+		ft_get_playable_map_strlen_arraylen(s);
+		ft_create_new_playable_map(s);
 	return(0);
 }
 
+int ft_checks(t_list *s)
+{
+	if(ft_check_map_args(s) == 1)
+		return(printf("Error in ft_check_map_args\n"),1);
+	if(ft_check_chars_in_playable_map(s) == 1)///
+		return(printf("error en ft_check_chars_in_playable_map\n"),1);
+	if(ft_check_jumplines_in_playable_map(s) == 1)
+		return(printf("error en ft_check_chars_in_playable_map\n"),1);
+	if(ft_check_map_double_jump_line(s) == 1)
+		return(printf("error en ft_check_jumplines_in_playable_map\n"),1);
+	if(ft_check_new_playable_map_its_playable(s,'0') == 1)
+		return(printf("Error in ft_check_new_playable_map_its_playable 0\n"),1);
+	if(ft_check_player_in_new_map(s) == 1)
+		return(printf("Error in ft_check_player_in_new_map\n"),1);
+	return(0);
+}
+int ft_floor_cell(t_list *s)
+{
+	if(ft_get_pj_init_position(s) == 1)
+		return(printf("Error in ft_get_pj_init_position\n"),1);
+	ft_parshing_map_args(s);
+	if(ft_clean_floor(s) == 1)
+		return(printf("error en ft_clean_floor\n"),1);
+	if(ft_clean_celling(s) == 1)
+		return(printf("error en ft_clean_celling\n"),1);
+	if(ft_floor_atoi_array(s) == 1)
+		return(printf("error reserving memory for s->floor_int_arr\n"),1);
+	if(ft_cell_atoi_array(s) == 1)
+		return(printf("error reserving memory for s->cell_int_arr\n"),1);
+	s->floor_rgb =ft_transf_rgb(s->floor_int_arr[0], s->floor_int_arr[1], s->floor_int_arr[2]);
+	s->cell_rgb =ft_transf_rgb(s->celling_int_arr[0], s->celling_int_arr[1], s->celling_int_arr[2]);
+	return(0);
+}
 void toito(t_list *s)
 {
 	(void)s;
@@ -117,6 +150,8 @@ void toito(t_list *s)
 		//printf("s->playable_map[%i] = %s\n",i,s->playable_map[i]);
 		i++;
 	}
+	printf("s->floor_rgb =%i\n",s->floor_rgb);
+	printf("s->celling_rgb =%i\n",s->cell_rgb);
 	printf("----------------\n");
 
 

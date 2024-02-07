@@ -33,7 +33,7 @@ int ft_count_words(char *s,char c)
 	}
 	return(len);
 }
-char *word_dupe(char *s,char c)
+char *ft_word_dupe(char *s,char c)
 {
 	size_t i;
 	size_t len;
@@ -54,7 +54,7 @@ char *word_dupe(char *s,char c)
 	dupe[i] = '\0';
 	return(dupe);
 }
-int fill_words(char **array,char *s,char c)
+int ft_fill_words(char **array,char *s,char c)
 {
 	int i;
 	int index;
@@ -68,7 +68,7 @@ int fill_words(char **array,char *s,char c)
 		i++;
 	while (s[i])
 	{
-		array[index] = word_dupe(s+i,c);
+		array[index] = ft_word_dupe(s+i,c);
 		index++;
 		while(s[i] && s[i] != c)
 			i++;
@@ -87,7 +87,7 @@ char **ft_split(char *s,char c)
 	num_words=ft_count_words(s,c);
 	array=ft_calloc(sizeof(char *),num_words+1);
 	i=0;
-	if(fill_words(array,s,c) == 1)
+	if(ft_fill_words(array,s,c) == 1)
 	{
 		while(array[i])
 		{

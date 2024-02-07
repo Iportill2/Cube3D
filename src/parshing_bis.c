@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-int get_playable_map_strlen_arraylen(t_list *s)
+int ft_get_playable_map_strlen_arraylen(t_list *s)
 {
 	int i;
 	
@@ -14,7 +14,7 @@ int get_playable_map_strlen_arraylen(t_list *s)
 	}
 	return(0);
 }
-int calloc_for_new_playable_map(t_list *s)
+int ft_calloc_for_new_playable_map(t_list *s)
 {
 	int i;
 
@@ -31,14 +31,14 @@ int calloc_for_new_playable_map(t_list *s)
 	}
 	return(0); 
 }
-int create_new_playable_map(t_list *s)
+int ft_create_new_playable_map(t_list *s)
 {
 	int i ;
 	int e; 
 	
 	i = 0;
 	e = 0;
-	if(calloc_for_new_playable_map(s)==1)
+	if(ft_calloc_for_new_playable_map(s)==1)
 		return(1);
 	while(s->playable_map[i])
 	{
@@ -60,7 +60,7 @@ int create_new_playable_map(t_list *s)
 	}
 	return(0);
 }
-int check_new_playable_map_its_playable(t_list *s,char c)
+int ft_check_new_playable_map_its_playable(t_list *s,char c)
 {
 	int i ;
 	int e; 
@@ -99,9 +99,9 @@ int check_new_playable_map_its_playable(t_list *s,char c)
 	}
 	return(0);
 }
-int player_in_new_map(t_list *s)
+int ft_check_player_in_new_map(t_list *s)
 {
-	if(check_new_playable_map_its_playable(s,s->pj_init_nsew) == 1)
-		return(printf("Error in check_new_playable_map_its_playable %c\n",s->pj_init_nsew),1);
+	if(ft_check_new_playable_map_its_playable(s,s->pj_init_nsew) == 1)
+		return(printf("Error in ft_check_new_playable_map_its_playable %c\n",s->pj_init_nsew),1);
 	return(0);
 }

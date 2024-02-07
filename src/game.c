@@ -16,14 +16,14 @@ void	ft_destroy(t_list *s)
 	mlx_destroy_window(s->mlx, s->window);
 }
 
-int	close_window(t_list *s)
+int	ft_close_window(t_list *s)
 {
 	(void)s;
 	printf("You close the window\n");
 	return (0);
 }
 
-int	key_press(int keycode, t_list *s)
+int	ft_key_press(int keycode, t_list *s)
 {
 	(void)s;
 	if (keycode == Q || keycode == ESC)
@@ -46,8 +46,8 @@ int	key_press(int keycode, t_list *s)
 
 void	ft_hook(t_list *s)
 {
-	mlx_hook(s->window, 17, 1, close_window, s);
-	mlx_hook(s->window, 2, 1, key_press, s);
+	mlx_hook(s->window, 17, 1, ft_close_window, s);
+	mlx_hook(s->window, 2, 1, ft_key_press, s);
 }
 
 

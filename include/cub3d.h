@@ -65,7 +65,7 @@ typedef struct s_list
 
 /*MAIN*/
 int 	main(int argc,char **argv);
-int 	read_map(char **argv,t_list *s);
+int 	ft_read_map(char **argv,t_list *s);
 int 	run_program();
 /*UTILS_ONE (5)*/
 size_t 	ft_strlen(const char *s);
@@ -78,55 +78,56 @@ char	*ft_strjoin(const char* s1, const char* s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s);
 int 	ft_strcmp(char *s1,char *s2);
-int ft_transf_rgb(int r, int g, int b);
+int 	ft_transf_rgb(int r, int g, int b);
 
 /*SPLIT (5)*/
 int 	ft_wordlen(char *s,char c);
 int 	ft_count_words(char *s,char c);
-char 	*word_dupe(char *s,char c);
-int 	fill_words(char **array,char *s,char c);
+char 	*ft_word_dupe(char *s,char c);
+int 	ft_fill_words(char **array,char *s,char c);
 char 	**ft_split(char *s,char c);
 
 /*DUAL_SPLIT (5)*/
 int 	ft_dual_wordlen(char *s,char c,char d);
 int 	ft_dual_count_words(char *s,char c,char d);
-char 	*dual_word_dupe(char *s,char c,char d);
-int 	dual_fill_words(char **array,char *s,char c,char d);
+char 	*ft_dual_word_dupe(char *s,char c,char d);
+int 	ft_dual_fill_words(char **array,char *s,char c,char d);
 char 	**ft_dual_split(char *s,char c,char d);
 
 /*PARSHING*/
-int 	check_chars_in_playable_map(t_list *s);
-int		invalid_char_in_array(t_list *s);
-int 	get_playable_map(t_list *s);
+int 	ft_check_chars_in_playable_map(t_list *s);
+int 	ft_get_playable_map(t_list *s);
 
-void 	parshing_map_args(t_list *s);
-int 	check_map_args(t_list *s);
-int 	floor_atoi_array(t_list *s);
-int 	cell_atoi_array(t_list *s);
-int 	check_jumplines_in_playable_map(t_list *s);
-int 	get_pj_init_position(t_list *s);
-int 	check_map_double_jump_line(t_list *s);
-int 	clean_floor(t_list *s);
-int 	clean_celling(t_list *s);
-int 	clean_map3d_split(t_list *s);
-int 	array_check(char *s);
-int 	check_initial_position(t_list *s);
+void 	ft_parshing_map_args(t_list *s);
+int 	ft_check_map_args(t_list *s);
+int 	ft_floor_atoi_array(t_list *s);
+int 	ft_cell_atoi_array(t_list *s);
+int 	ft_check_jumplines_in_playable_map(t_list *s);
+int 	ft_get_pj_init_position(t_list *s);
+int 	ft_check_map_double_jump_line(t_list *s);
+int 	ft_clean_floor(t_list *s);
+int 	ft_clean_celling(t_list *s);
+int 	ft_clean_map3d_split(t_list *s);
+int 	ft_array_check(char *s);
+int 	ft_check_initial_position(t_list *s);
 /*PARSHING_BIS*/
-int 	get_playable_map_strlen_arraylen(t_list *s);
-int 	calloc_for_new_playable_map(t_list *s);
-int 	create_new_playable_map(t_list *s);
-int 	check_new_playable_map_its_playable(t_list *s,char c);
-int 	player_in_new_map(t_list *s);
+int 	ft_get_playable_map_strlen_arraylen(t_list *s);
+int 	ft_calloc_for_new_playable_map(t_list *s);
+int 	ft_create_new_playable_map(t_list *s);
+int 	ft_check_new_playable_map_its_playable(t_list *s,char c);
+int 	ft_check_player_in_new_map(t_list *s);
 /*ERROR*/
 void    ft_free_array(char ***s);
 /*GAME*/
 //void	ft_error(t_list *s, char *text, int error);
 void	ft_destroy(t_list *s);
-int		close_window(t_list *s);
-int		key_press(int keycode, t_list *s);
+int		ft_close_window(t_list *s);
+int		ft_key_press(int keycode, t_list *s);
 void	ft_hook(t_list *s);
 void	ft_star_game(t_list *s);
 /*GET_MAPS*/
-void 	toito(t_list *s);
-int 	get_maps(t_list *s,char **argv);
+void 	toito(t_list *s);////////
+int 	ft_get_maps(t_list *s,char **argv);
+int 	ft_checks(t_list *s);
+int 	ft_floor_cell(t_list *s);
 #endif
