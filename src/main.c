@@ -203,7 +203,7 @@ int main(int argc,char **argv)
 			return(printf("Error in check_new_playable_map_its_playable 0\n"),1);
 		if(player_in_new_map(s) == 1)
 			return(1);
-		toito(s);//
+		//toito(s);//
 		
 
 		//ft_star_game(s);

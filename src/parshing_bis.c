@@ -72,9 +72,12 @@ int check_new_playable_map_its_playable(t_list *s,char c)
 		e=0;
 		while (s->new_playable_map[i][e])
 		{
-			if((i == 0 || i == s->playable_array_len) && (s->new_playable_map[i][e] == c))
+			if((i == 0 || i == (s->playable_array_len - 1)) && (s->new_playable_map[i][e] == c))
 			{
-				printf("entra\n");
+				return(1);
+			}
+			if((e == 0 || e == (s->playable_str_len - 1)) && (s->new_playable_map[i][e] == c))
+			{
 				return(1);
 			}
 			if(s->new_playable_map[i][e] == c)
@@ -83,7 +86,7 @@ int check_new_playable_map_its_playable(t_list *s,char c)
 					return(1);
 				else if((i != s->playable_str_len) && (s->new_playable_map[i+1][e] == '-'))
 					return(1);
-				else if((i != 0) && (s->new_playable_map[i][e-1] == '-'))
+				else if((e != 0) && (s->new_playable_map[i][e-1] == '-'))
 					return(1);
 				else if((i != s->playable_array_len) && (s ->new_playable_map[i][e+1] == '-'))
 					return(1);
@@ -92,8 +95,6 @@ int check_new_playable_map_its_playable(t_list *s,char c)
 		}
 		i++;
 	}
-	printf("i=%d\ns->playable_array_len=%d\n",i,s->playable_array_len);
-	printf("e=%d\ns->playable_str_len=%d\n\n",e,s->playable_str_len);
 	return(0);
 }
 int player_in_new_map(t_list *s)
