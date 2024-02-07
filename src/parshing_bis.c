@@ -74,22 +74,24 @@ int check_new_playable_map_its_playable(t_list *s,char c)
 		{
 			if((i == 0 || i == (s->playable_array_len - 1)) && (s->new_playable_map[i][e] == c))
 			{
+				printf("Entra1");
 				return(1);
 			}
 			if((e == 0 || e == (s->playable_str_len - 1)) && (s->new_playable_map[i][e] == c))
 			{
+				printf("Entra2");
 				return(1);
 			}
 			if(s->new_playable_map[i][e] == c)
 			{
 				if((i != 0) && (s->new_playable_map[i-1][e] == '-'))
-					return(1);
+					return(printf("Entra3"),1);
 				else if((i != s->playable_str_len) && (s->new_playable_map[i+1][e] == '-'))
-					return(1);
+					return(printf("Entra4"),1);
 				else if((e != 0) && (s->new_playable_map[i][e-1] == '-'))
-					return(1);
+					return(printf("Entra5"),1);
 				else if((i != s->playable_array_len) && (s ->new_playable_map[i][e+1] == '-'))
-					return(1);
+					return(printf("Entra6"),1);
 			}
 			e++;
 		}
