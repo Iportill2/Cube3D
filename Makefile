@@ -17,7 +17,9 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)error.c \
 			$(SRC_DIR)parshing.c \
 			$(SRC_DIR)split.c \
-			$(SRC_DIR)utils.c \
+			$(SRC_DIR)dual_split.c \
+			$(SRC_DIR)utils_one.c \
+			$(SRC_DIR)utils_two.c \
 			$(SRC_DIR)parshing_bis.c \
 			$(SRC_DIR)get_maps.c \
 			$(SRC_DIR)game.c 

@@ -39,8 +39,10 @@ int main(int argc,char **argv)
 	 if (argc ==2)
 	{
 		len = ft_strlen(argv[1]);
-		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u') && (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.'))
+		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u')\
+		 && (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.'))
 			return(printf("Wrong file extension\n"), 1);
+		s=ft_calloc(sizeof(t_list),(1));
 		////////////////////////////////////////////////////
 		if(get_maps(s,argv)== 1)
 			return(1);
@@ -82,8 +84,10 @@ int main(int argc,char **argv)
 		if(player_in_new_map(s) == 1)
 			return(1);
 		//toito(s);//
-		
-
+		s->floor_rgb =ft_transf_rgb(s->floor_int_arr[0], s->floor_int_arr[1], s->floor_int_arr[2]);
+		s->cell_rgb =ft_transf_rgb(s->celling_int_arr[0], s->celling_int_arr[1], s->celling_int_arr[2]);
+		printf("s->floor_rgb =%i\n",s->floor_rgb);
+		printf("s->celling_rgb =%i\n",s->cell_rgb);
 		//ft_star_game(s);
 	}
 	else

@@ -26,6 +26,14 @@ int check_chars_in_playable_map(t_list *s)
 		return(printf("W set more than one time\n"), free((void *)s), 1);
 	if(s->invalid_char != 0)
 		return(printf("Invalid character in map\n"), free((void *)s), 1);
+	if(check_initial_position(s) == 1)
+		return(1);
+	return(0);
+}
+int check_initial_position(t_list *s)
+{
+	if(s->pj_init_nsew != 'N' && s->pj_init_nsew != 'S' && s->pj_init_nsew != 'W'&& s->pj_init_nsew != 'E')
+		return(printf("The map haven't initial position\n"),1);
 	return(0);
 }
 int get_pj_init_position(t_list *s)///

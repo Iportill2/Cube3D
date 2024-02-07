@@ -2,7 +2,7 @@
 
 int get_maps(t_list *s,char **argv)
 {
-	s=ft_calloc(sizeof(t_list),(1));
+	
 		if(read_map(argv,s) == 1)
 			return(1);
 		s->map3d = ft_split(s->map2d,'\n');
