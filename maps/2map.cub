@@ -3,7 +3,7 @@ NO textures/NO.xpm
 SO              textures/SO.xpm
 WE       textures/WE.xpm
 
-F 0,32,   0         
+F 255,0,   0         
 C   0,85, 0
 
 
