@@ -1,38 +1,44 @@
 #include "../include/cub3d.h"
 
-size_t ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
-	int i;
+	int	i;
 
-	i =0;
-	if(s == NULL)
-		return(0);
-	while(s[i])
-		i++;
-	return(i);
-}
-size_t ft_arraylen(char **arr)
-{
-	size_t i;
 	i = 0;
-	if(arr == NULL)
-		return(0);
-	while(arr[i])
+	if (s == NULL)
+		return (0);
+	while (s[i])
 		i++;
-	return(i);
+	return (i);
 }
-int ft_count_array_len(char **arr)
-{
-	int len = 0;
 
-	int i = 0;
-	int e = 0;
-	if(arr == NULL)
-		return(0);
-	while(arr[i])
+size_t	ft_arraylen(char **arr)
+{
+	size_t	i;
+
+	i = 0;
+	if (arr == NULL)
+		return (0);
+	while (arr[i])
+		i++;
+	return (i);
+}
+
+int	ft_count_array_len(char **arr)
+{
+	int	len;
+	int	i;
+	int	e;
+
+	i = 0;
+	e = 0;
+	len = 0;
+	if (arr == NULL)
+		return (0);
+	while (arr[i])
 	{
-		e=0;
-		while(arr[i][e])
+		e = 0;
+		while (arr[i][e])
 		{
 			e++;
 			len++;
@@ -40,8 +46,9 @@ int ft_count_array_len(char **arr)
 		i++;
 		len++;
 	}
-	return(len);
+	return (len);
 }
+
 int	ft_atoi(const char *str)//
 {
 	int	i;
@@ -67,15 +74,14 @@ int	ft_atoi(const char *str)//
 	return (num * sign);
 }
 
-void* ft_calloc(size_t num, size_t size) 
+void	*ft_calloc(size_t num, size_t size)
 {
-    void* structure;
+	void	*structure;
 
 	structure = NULL;
 	structure = malloc(num * size);
-    if (structure == NULL) 
-        return NULL;
-    memset(structure, 0, num * size);
-
-    return (structure);
+	if (structure == NULL)
+		return (NULL);
+	memset(structure, 0, num * size);
+	return (structure);
 }

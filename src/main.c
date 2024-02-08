@@ -43,7 +43,7 @@ int	main( int argc, char **argv)
 			return (printf("Error in ft_floor_cell\n"), 1);
 		if (ft_checks(s) == 1)
 			return (printf("Error in ft_check\n"), 1);
-		toito(s);
+		//toito(s);
 		//ft_star_game(s);
 	}
 	else

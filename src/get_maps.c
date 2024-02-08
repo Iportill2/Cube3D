@@ -32,6 +32,10 @@ int	ft_checks(t_list *s)
 	}
 	if (ft_check_player_in_new_map(s) == 1)
 		return (printf("Error in ft_check_player_in_new_map\n"), 1);
+	if (check_textures(s) == 1)
+		return (printf("Error in check_textures\n"), 1);
+	if (check_floor_cellig_values(s) == 1)
+		return (printf("Error in check_floor_cellig_values\n"), 1);
 	return (0);
 }
 
@@ -63,31 +67,31 @@ void	toito(t_list *s)
 	i = 0;
 	printf("---TOITO-----\n");
 	i = 0;
-	printf("******NO_arr*******\n");
-	while (s->NO_arr && s->NO_arr[i])
+	printf("******no_arr*******\n");
+	while (s->no_arr && s->no_arr[i])
 	{
-		printf("s->NO_arr[%i] = %s\n", i, s->NO_arr[i]);
+		printf("s->no_arr[%i] = %s\n", i, s->no_arr[i]);
 		i++;
 	}
 	i = 0;
-	printf("******SO_arr*******\n");
-	while (s->SO_arr && s->SO_arr[i])
+	printf("******so_arr*******\n");
+	while (s->so_arr && s->so_arr[i])
 	{
-		printf("s->SO_arr[%i] = %s\n", i, s->SO_arr[i]);
+		printf("s->so_arr[%i] = %s\n", i, s->so_arr[i]);
 		i++;
 	}
 	i = 0;
-	printf("******WE_arr*******\n");
-	while (s->WE_arr && s->WE_arr[i])
+	printf("******we_arr*******\n");
+	while (s->we_arr && s->we_arr[i])
 	{
-		printf("s->WE[%i] = %s\n", i, s->WE_arr[i]);
+		printf("s->WE[%i] = %s\n", i, s->we_arr[i]);
 		i++;
 	}
 	i = 0;
-	printf("******EA_arr*******\n");
-	while (s->EA_arr && s->EA_arr[i])
+	printf("******ea_arr*******\n");
+	while (s->ea_arr && s->ea_arr[i])
 	{
-		printf("s->EA[%i] = %s\n", i, s->EA_arr[i]);
+		printf("s->EA[%i] = %s\n", i, s->ea_arr[i]);
 		i++;
 	}
 	i = 0;

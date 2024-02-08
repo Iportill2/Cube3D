@@ -43,6 +43,7 @@ int	ft_check_initial_position(t_list *s)
 		return (printf("The map haven't initial position\n"), 1);
 	return (0);
 }
+
 int	ft_get_pj_init_position(t_list *s)///
 {
 	int	i;
@@ -84,7 +85,7 @@ int	ft_get_pj_init_position(t_list *s)///
 			&& s->playable_map[i][e] != ' ' && s->playable_map[i][e] != '\n')
 			{
 				s->invalid_char++;
-				printf("INVALID=%c\n",s->playable_map[i][e]);
+				printf("INVALID=%c\n", s->playable_map[i][e]);
 			}
 			e++;
 		}
@@ -124,7 +125,7 @@ int	ft_clean_floor(t_list *s)
 	return (0);
 }
 
-int ft_clean_celling(t_list *s)
+int	ft_clean_celling(t_list *s)
 {
 	int	i;
 
@@ -210,7 +211,7 @@ int	ft_check_map_double_jump_line(t_list *s)
 	return (0);
 }
 
-int ft_get_playable_map(t_list *s)
+int	ft_get_playable_map(t_list *s)
 {
 	int	i;
 	int	e;
@@ -267,84 +268,85 @@ int	ft_array_check(char *s)
 
 int	ft_clean_map3d_split(t_list *s)
 {
-	int i;
-	int e; 
-	int count;
+	int	i;
+	int	e;
+	int	count;
 
 	i = 0;
 	e = 0;
 	count = 0;
-	while(s->map3d[i])
+	while (s->map3d[i])
 	{
 		count = count + ft_array_check(s->map3d[i]);
 		i++;
 	}
-	if(count != 6)
-		return(printf("Too many arguments in map_settings\n"),1);
-	s->map_settings = ft_calloc(sizeof(char*),count+1);
-	if(s->map_settings == NULL)
-		return(1);
-	i=0;
-	while(s->map3d[i])
+	if (count != 6)
+		return (printf("Too many arguments in map_settings\n"), 1);
+	s->map_settings = ft_calloc(sizeof(char *), count + 1);
+	if (s->map_settings == NULL)
+		return (1);
+	i = 0;
+	while (s->map3d[i])
 	{
-
-		if(ft_array_check(s->map3d[i]) == 1)
+		if (ft_array_check(s->map3d[i]) == 1)
 		{
-			s->map_settings[e]=ft_strdup(s->map3d[i]);
+			s->map_settings[e] = ft_strdup(s->map3d[i]);
 			e++;
 			i++;
 		}
 		else
 			i++;
 	}
-	return(0);
+	return (0);
 }
-void ft_parshing_map_args(t_list *s)
+
+void	ft_parshing_map_args(t_list *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
-		while(s->map_settings[i] &&  i < 6)
-		{
-			s->map_date=ft_dual_split(s->map_settings[i],' ',',');
-			if(ft_strcmp(s->map_date[0], "NO") == 0)
-				s->NO_arr = s->map_date;
-			else if(ft_strcmp(s->map_date[0], "SO") == 0)
-				s->SO_arr = s->map_date;
-			else if(ft_strcmp(s->map_date[0], "WE") == 0)
-				s->WE_arr = s->map_date;
-			else if(ft_strcmp(s->map_date[0], "EA") == 0)
-				s->EA_arr = s->map_date;
-			else if(ft_strcmp(s->map_date[0], "F") == 0)
-				s->floor = s->map_date;
-			else if(ft_strcmp(s->map_date[0], "C") == 0)
-				s->celling = s->map_date;
-			i++;
-		}
-	return;
+	while (s->map_settings[i] && i < 6)
+	{
+		s->map_date = ft_dual_split(s->map_settings[i], ' ', ',');
+		if (ft_strcmp(s->map_date[0], "NO") == 0)
+			s->no_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "SO") == 0)
+			s->so_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "WE") == 0)
+			s->we_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "EA") == 0)
+			s->ea_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "F") == 0)
+			s->floor = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "C") == 0)
+			s->celling = s->map_date;
+		i++;
+	}
+	return ;
 }
 
-int ft_check_map_args(t_list *s)
+int	ft_check_map_args(t_list *s)
 {
-	if(ft_arraylen(s->NO_arr)!= 2 || ft_arraylen(s->SO_arr)!= 2 ||\
-	 ft_arraylen(s->WE_arr)!= 2 || ft_arraylen(s->EA_arr)!= 2 ||\
-	 ft_arraylen(s->floor)!= 4 || ft_arraylen(s->celling)!= 4)
-		return(printf("Error in ft_check_map_args\n"),1);
-	return(0);
+	if (ft_arraylen(s->no_arr) != 2 || ft_arraylen(s->so_arr) != 2 || \
+	ft_arraylen(s->we_arr) != 2 || ft_arraylen(s->ea_arr) != 2 || \
+	ft_arraylen(s->floor) != 4 || ft_arraylen(s->celling) != 4)
+		return (printf("Error in ft_check_map_args\n"), 1);
+	return (0);
 }
-int ft_floor_atoi_array(t_list *s)
+
+int	ft_floor_atoi_array(t_list *s)
 {
-	int i;
-	int e; 
-	
+	int	i;
+	int	e;
+
 	i = 0;
 	e = 0;
-	while(s->floor[i])
+	while (s->floor[i])
 		i++;
 	s->floor_size = i -1;
-	s->floor_int_arr = ft_calloc(sizeof(int *),(s->floor_size));
-	if(s->floor_int_arr == NULL)
-		return(1);
+	s->floor_int_arr = ft_calloc(sizeof(int *), (s->floor_size));
+	if (s->floor_int_arr == NULL)
+		return (1);
 	i = 1;
 	while (s->floor[i])
 	{
@@ -352,21 +354,22 @@ int ft_floor_atoi_array(t_list *s)
 		e++;
 		i++;
 	}
-	return(0);
+	return (0);
 }
-int ft_cell_atoi_array(t_list *s)
+
+int	ft_cell_atoi_array(t_list *s)
 {
-	int i;
-	int e;
+	int	i;
+	int	e;
 
 	i = 1;
 	e = 0;
-	while(s->floor[i])
+	while (s->floor[i])
 		i++;
 	s->cell_size = i -1;
-	s->celling_int_arr = ft_calloc(sizeof(int *),(s->cell_size));
-	if(s->celling_int_arr == NULL)
-		return(1);
+	s->celling_int_arr = ft_calloc(sizeof(int *), (s->cell_size));
+	if (s->celling_int_arr == NULL)
+		return (1);
 	i = 1;
 	while (s->floor[i])
 	{
@@ -374,6 +377,51 @@ int ft_cell_atoi_array(t_list *s)
 		e++;
 		i++;
 	}
-	
-	return(0);
+	return (0);
+}
+
+int	ft_transf_rgb(int r, int g, int b)
+{
+	return (0 << 24 | r << 16 | g << 8 | b);
+}
+
+int check_textures(t_list *s)
+{
+	int	fd;
+
+	fd = open(s->no_arr[1], O_RDONLY);
+	if (fd == -1)
+		return (printf("Error in s->no_arr[1]º\n"), 1);
+	fd = open(s->so_arr[1], O_RDONLY);
+	if (fd == -1)
+		return (printf("Error in s->so_arr[1]º\n"), 1);
+	fd = open(s->we_arr[1], O_RDONLY);
+	if (fd == -1)
+		return (printf("Error in s->we_arr[1]º\n"), 1);
+	fd = open(s->ea_arr[1], O_RDONLY);
+	if (fd == -1)
+		return (printf("Error in s->ea_arr[1]º\n"), 1);
+	return (0);
+}
+int	check_floor_cellig_values(t_list *s)
+{
+	int	i;
+
+	i = 0;
+	while (i < s->cell_size)
+	{
+		if (s->celling_int_arr[i] > -1 && s->celling_int_arr[i] < 256)
+			i++;
+		else
+			return (1);
+	}
+	i = 0;
+	while (i < s->floor_size)
+	{
+		if (s->floor_int_arr[i] > -1 && s->floor_int_arr[i] < 256)
+			i++;
+		else
+			return (1);
+	}
+	return (0);
 }
