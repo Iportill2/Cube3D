@@ -1,0 +1,95 @@
+#include "../include/cub3d.h"
+
+int	ft_array_check(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == 'C' || s[i] == 'F' || (s[i] == 'N' && s[i + 1] == 'O' ) || \
+		(s[i] == 'S' && s[i + 1] == 'O' ) || (s[i] == 'W' \
+		&& s[i + 1] == 'E' ) || \
+		(s[i] == 'E' && s[i + 1] == 'A' ))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_initial_position(t_list *s)
+{
+	if (s->pj_init_nsew != 'N' && s->pj_init_nsew != 'S' && \
+	s->pj_init_nsew != 'W' && s->pj_init_nsew != 'E')
+		return (printf("The map haven't initial position\n"), 1);
+	return (0);
+}
+
+int	ft_check_new_playable_map_its_playable(t_list *s, char c)
+{
+	int	i;
+	int	e;
+
+	i = 0;
+	e = 0;
+	while (s->new_playable_map && s->new_playable_map[i])
+	{
+		e = -1;
+		while (s->new_playable_map[i][e++])
+		{
+			if ((i == 0 || i == (s->playable_array_len - 1)) && \
+			(s->new_playable_map[i][e] == c))
+				return (1);
+			if ((e == 0 || e == (s->playable_str_len - 1)) && \
+			(s->new_playable_map[i][e] == c))
+				return (1);
+			if (s->new_playable_map[i][e] == c)
+			{
+				if ((i != 0) && (s->new_playable_map[i - 1][e] == '-'))
+					return (1);
+				else if ((i != s->playable_str_len) && \
+				(s->new_playable_map[i + 1][e] == '-'))
+					return (1);
+				else if ((e != 0) && (s->new_playable_map[i][e - 1] == '-'))
+					return (1);
+				else if ((i != s->playable_array_len) && \
+				(s->new_playable_map[i][e + 1] == '-'))
+					return (1);
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	ft_check_player_in_new_map(t_list *s)
+{
+	if (ft_check_new_playable_map_its_playable(s, s->pj_init_nsew) == 1)
+		return (printf("Error in ft_check_new_playable_map_its_playable %c\n", \
+		s->pj_init_nsew), 1);
+	return (0);
+}
+
+int	ft_checks(t_list *s)
+{
+	if (ft_check_map_args(s) == 1)
+		return (printf("Error in ft_check_map_args\n"), 1);
+	if (ft_check_chars_in_playable_map(s) == 1)
+		return (printf("error en ft_check_chars_in_playable_map\n"), 1);
+	if (ft_check_jumplines_in_playable_map(s) == 1)
+		return (printf("error en ft_check_chars_in_playable_map\n"), 1);
+	if (ft_check_map_double_jump_line(s) == 1)
+		return (printf("error en ft_check_jumplines_in_playable_map\n"), 1);
+	if (ft_check_new_playable_map_its_playable(s, '0') == 1)
+	{
+		printf("Error in ft_check_new_playable_map_its_playable 0\n");
+		return (1);
+	}
+	if (ft_check_player_in_new_map(s) == 1)
+		return (printf("Error in ft_check_player_in_new_map\n"), 1);
+	if (ft_check_textures(s) == 1)
+		return (printf("Error in check_textures\n"), 1);
+	if (ft_check_floor_cellig_values(s) == 1)
+		return (printf("Error in check_floor_cellig_values\n"), 1);
+	return (0);
+}

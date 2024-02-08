@@ -1,271 +1,29 @@
 #include "../include/cub3d.h"
 
-int	ft_check_jumplines_in_playable_map(t_list *s)
-{
-	if (s == NULL)
-		return (1);
-	return (0);
-}
-
-int	ft_check_chars_in_playable_map(t_list *s)
-{
-	if (s->n == 1 && (s->s > 0 || s->e > 0 || s->w > 0))
-		return (printf("Initial position set multiple times\n"), \
-		free((void *)s), 1);
-	if (s->s == 1 && (s->n > 0 || s->e > 0 || s->w > 0))
-		return (printf("Initial position set multiple times\n"), \
-		free((void *)s), 1);
-	if (s->e == 1 && (s->s > 0 || s->n > 0 || s->w > 0))
-		return (printf("Initial position set multiple times\n"), \
-		free((void *)s), 1);
-	if (s->w == 1 && (s->s > 0 || s->e > 0 || s->n > 0))
-		return (printf("Initial position set multiple times\n"), \
-		free((void *)s), 1);
-	if (s->n != 0 && s->n != 1)
-		return (printf("N set more than one time\n"), free((void *)s), 1);
-	if (s->s != 0 && s->s != 1)
-		return (printf("S set more than one time\n"), free((void *)s), 1);
-	if (s->e != 0 && s->e != 1)
-		return (printf("E set more than one time\n"), free((void *)s), 1);
-	if (s->w != 0 && s->w != 1)
-		return (printf("W set more than one time\n"), free((void *)s), 1);
-	if (s->invalid_char != 0)
-		return (printf("Invalid character in map\n"), free((void *)s), 1);
-	if (ft_check_initial_position(s) == 1)
-		return (1);
-	return (0);
-}
-
-int	ft_check_initial_position(t_list *s)
-{
-	if (s->pj_init_nsew != 'N' && s->pj_init_nsew != 'S' && \
-	s->pj_init_nsew != 'W' && s->pj_init_nsew != 'E')
-		return (printf("The map haven't initial position\n"), 1);
-	return (0);
-}
-
-int	ft_get_pj_init_position(t_list *s)///
+void	ft_parshing_map_args(t_list *s)
 {
 	int	i;
-	int	e;
 
 	i = 0;
-	e = 0;
-	if (s->playable_map == NULL)
-		return (1);
-	while (s->playable_map[i])
+	while (s->map_settings[i] && i < 6)
 	{
-		e = 0;
-		while (s->playable_map[i][e])
-		{
-			if (s->playable_map[i][e] == 'N')
-			{
-				s->pj_init_nsew = s->playable_map[i][e];
-				s->n++;
-			}
-			else if (s->playable_map[i][e] == 'S')
-			{
-				s->pj_init_nsew = s->playable_map[i][e];
-				s->s++;
-			}
-			else if (s->playable_map[i][e] == 'E')
-			{
-				s->pj_init_nsew = s->playable_map[i][e];
-				s->e++;
-			}
-			else if (s->playable_map[i][e] == 'W')
-			{
-				s->pj_init_nsew = s->playable_map[i][e];
-				s->w++;
-			}
-			else if (s->playable_map[i][e] != 'N' && \
-			s->playable_map[i][e] != 'S'\
-			&& s->playable_map[i][e] != 'E' && s->playable_map[i][e] != 'W' \
-			&& s->playable_map[i][e] != '0' && s->playable_map[i][e] != '1' \
-			&& s->playable_map[i][e] != ' ' && s->playable_map[i][e] != '\n')
-			{
-				s->invalid_char++;
-				printf("INVALID=%c\n", s->playable_map[i][e]);
-			}
-			e++;
-		}
+		s->map_date = ft_dual_split(s->map_settings[i], ' ', ',');
+		if (ft_strcmp(s->map_date[0], "NO") == 0)
+			s->no_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "SO") == 0)
+			s->so_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "WE") == 0)
+			s->we_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "EA") == 0)
+			s->ea_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "F") == 0)
+			s->floor = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "C") == 0)
+			s->celling = s->map_date;
 		i++;
 	}
-	return (0);
+	return ;
 }
-
-int	ft_clean_floor(t_list *s)
-{
-	int	i;
-
-	i = 0;
-	while (s->floor[1][i])
-	{
-		if (s->floor[1][i] >= '0' && s->floor[1][i] <= '9')
-			i++;
-		else
-			return (1);
-	}
-	i = 0;
-	while (s->floor[2][i])
-	{
-		if (s->floor[2][i] >= '0' && s->floor[2][i] <= '9')
-			i++;
-		else
-			return (1);
-	}
-	i = 0;
-	while (s->floor[3][i])
-	{
-		if (s->floor[3][i] >= '0' && s->floor[3][i] <= '9')
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}
-
-int	ft_clean_celling(t_list *s)
-{
-	int	i;
-
-	i = 0;
-	while (s->celling[1][i])
-	{
-		if (s->celling[1][i] >= '0' && s->celling[1][i] <= '9')
-			i++;
-		else
-			return (1);
-	}
-	i = 0;
-	while (s->celling[2][i])
-	{
-		if (s->celling[2][i] >= '0' && s->celling[2][i] <= '9')
-			i++;
-		else
-			return (1);
-	}
-	i = 0;
-	while (s->celling[3][i])
-	{
-		if (s->celling[3][i] >= '0' && s->celling[3][i] <= '9')
-			i++;
-		else
-			return (1);
-	}
-	return (0);
-}
-
-int	ft_check_map_double_jump_line(t_list *s)
-{
-	int	i;
-	int	n;
-	int	s1;
-	int	w;
-	int	e;
-	int	f;
-	int	c;
-	int	stop;
-	int	count;
-
-	i = 0;
-	n = 0;
-	s1 = 0;
-	w = 0;
-	e = 0;
-	f = 0;
-	c = 0;
-	stop = 0;
-	count = 0;
-	if (s->map2d == NULL)
-		return (1);
-	while (s->map2d[i])
-	{
-		if (s->map2d[i] == 'N')
-			n++;
-		else if (s->map2d[i] == 'S')
-			s1++;
-		else if (s->map2d[i] == 'E')
-			e++;
-		else if (s->map2d[i] == 'W')
-			w++;
-		else if (s->map2d[i] == 'F')
-			f++;
-		else if (s->map2d[i] == 'C')
-			c++;
-		if ((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && \
-		(w == 2 || w == 3) && f == 1 && c == 1 && (stop == 0) \
-		&& s->map2d[i] == '\n')
-			stop = 1;
-		else if ((stop == 1) && s->map2d[i] == '\n')
-			stop = 1;
-		else if (stop != 0 && (s->map2d[i] == '1'))
-			stop = 2;
-		else if ((stop == 2) && s->map2d[i] == '\n')
-			stop = 3;
-		else if ((stop == 3) && s->map2d[i] == '\n')
-			return (1);
-		count++;
-		i++;
-	}
-	return (0);
-}
-
-int	ft_get_playable_map(t_list *s)
-{
-	int	i;
-	int	e;
-	int	u;
-
-	i = 0;
-	e = 0;
-	u = 0;
-	while (s->map3d[i])
-	{
-		e = 0;
-		while (s->map3d[i][e] == ' ' || s->map3d[i][e] == '\t')
-		{
-			e++;
-		}
-		if (s->map3d[i][e] == '0' || s->map3d[i][e] == '1')
-			break ;
-		i++;
-	}
-	u = i;
-	while (s->map3d[u])
-	{
-		u++;
-	}
-	s->playable_map = ft_calloc(sizeof(char *), u + 1);
-	if (s->playable_map == NULL)
-		return (1);
-	u = 0;
-	while (s->map3d[i])
-	{
-		s->playable_map[u] = s->map3d[i];
-		u++;
-		i++;
-	}
-	return (0);
-}
-
-int	ft_array_check(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == 'C' || s[i] == 'F' || (s[i] == 'N' && s[i + 1] == 'O' ) || \
-		(s[i] == 'S' && s[i + 1] == 'O' ) || (s[i] == 'W' \
-		&& s[i + 1] == 'E' ) || \
-		(s[i] == 'E' && s[i + 1] == 'A' ))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	ft_clean_map3d_split(t_list *s)
 {
 	int	i;
@@ -300,128 +58,52 @@ int	ft_clean_map3d_split(t_list *s)
 	return (0);
 }
 
-void	ft_parshing_map_args(t_list *s)
-{
-	int	i;
-
-	i = 0;
-	while (s->map_settings[i] && i < 6)
-	{
-		s->map_date = ft_dual_split(s->map_settings[i], ' ', ',');
-		if (ft_strcmp(s->map_date[0], "NO") == 0)
-			s->no_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "SO") == 0)
-			s->so_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "WE") == 0)
-			s->we_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "EA") == 0)
-			s->ea_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "F") == 0)
-			s->floor = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "C") == 0)
-			s->celling = s->map_date;
-		i++;
-	}
-	return ;
-}
-
-int	ft_check_map_args(t_list *s)
-{
-	if (ft_arraylen(s->no_arr) != 2 || ft_arraylen(s->so_arr) != 2 || \
-	ft_arraylen(s->we_arr) != 2 || ft_arraylen(s->ea_arr) != 2 || \
-	ft_arraylen(s->floor) != 4 || ft_arraylen(s->celling) != 4)
-		return (printf("Error in ft_check_map_args\n"), 1);
-	return (0);
-}
-
-int	ft_floor_atoi_array(t_list *s)
+int	ft_create_new_playable_map(t_list *s)
 {
 	int	i;
 	int	e;
 
 	i = 0;
 	e = 0;
-	while (s->floor[i])
-		i++;
-	s->floor_size = i -1;
-	s->floor_int_arr = ft_calloc(sizeof(int *), (s->floor_size));
-	if (s->floor_int_arr == NULL)
+	if (ft_calloc_for_new_playable_map(s) == 1)
 		return (1);
-	i = 1;
-	while (s->floor[i])
+	while (s->playable_map[i])
 	{
-		s->floor_int_arr[e] = ft_atoi(s->floor[i]);
-		e++;
+		e = 0;
+		while (s->playable_map[i][e])
+		{
+			if (s->playable_map[i][e] == ' ')
+				s->new_playable_map[i][e] = '-';
+			else
+				s->new_playable_map[i][e] = s->playable_map[i][e];
+			e++;
+		}
+		while (e < s->playable_str_len)
+		{
+			s->new_playable_map[i][e] = '-';
+			e++;
+		}
 		i++;
 	}
 	return (0);
 }
 
-int	ft_cell_atoi_array(t_list *s)
-{
-	int	i;
-	int	e;
-
-	i = 1;
-	e = 0;
-	while (s->floor[i])
-		i++;
-	s->cell_size = i -1;
-	s->celling_int_arr = ft_calloc(sizeof(int *), (s->cell_size));
-	if (s->celling_int_arr == NULL)
-		return (1);
-	i = 1;
-	while (s->floor[i])
-	{
-		s->celling_int_arr[e] = ft_atoi(s->celling[i]);
-		e++;
-		i++;
-	}
-	return (0);
-}
-
-int	ft_transf_rgb(int r, int g, int b)
-{
-	return (0 << 24 | r << 16 | g << 8 | b);
-}
-
-int check_textures(t_list *s)
-{
-	int	fd;
-
-	fd = open(s->no_arr[1], O_RDONLY);
-	if (fd == -1)
-		return (printf("Error in s->no_arr[1]º\n"), 1);
-	fd = open(s->so_arr[1], O_RDONLY);
-	if (fd == -1)
-		return (printf("Error in s->so_arr[1]º\n"), 1);
-	fd = open(s->we_arr[1], O_RDONLY);
-	if (fd == -1)
-		return (printf("Error in s->we_arr[1]º\n"), 1);
-	fd = open(s->ea_arr[1], O_RDONLY);
-	if (fd == -1)
-		return (printf("Error in s->ea_arr[1]º\n"), 1);
-	return (0);
-}
-int	check_floor_cellig_values(t_list *s)
+int	ft_calloc_for_new_playable_map(t_list *s)
 {
 	int	i;
 
 	i = 0;
-	while (i < s->cell_size)
+	s->new_playable_map = ft_calloc(sizeof(char *), \
+	(s->playable_array_len + 1));
+	if (s->new_playable_map == NULL)
+		return (1);
+	while (s->playable_map[i])
 	{
-		if (s->celling_int_arr[i] > -1 && s->celling_int_arr[i] < 256)
-			i++;
-		else
+		s->new_playable_map[i] = ft_calloc(sizeof(char), \
+		(s->playable_str_len + 1));
+		if (s->new_playable_map[i] == NULL)
 			return (1);
-	}
-	i = 0;
-	while (i < s->floor_size)
-	{
-		if (s->floor_int_arr[i] > -1 && s->floor_int_arr[i] < 256)
-			i++;
-		else
-			return (1);
+		i++;
 	}
 	return (0);
 }

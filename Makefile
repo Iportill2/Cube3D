@@ -14,13 +14,15 @@ SRCS_BONUS=	$(SRC_DIR_BONUS)main_bonus.c
 
 
 SRCS	=	$(SRC_DIR)main.c \
-			$(SRC_DIR)error.c \
+			$(SRC_DIR)check_one.c \
+			$(SRC_DIR)check_two.c \
+			$(SRC_DIR)errors_and_frees.c \
 			$(SRC_DIR)parshing.c \
+			$(SRC_DIR)cell_and_rgb.c \
 			$(SRC_DIR)split.c \
 			$(SRC_DIR)dual_split.c \
 			$(SRC_DIR)utils_one.c \
 			$(SRC_DIR)utils_two.c \
-			$(SRC_DIR)parshing_bis.c \
 			$(SRC_DIR)get_maps.c \
 			$(SRC_DIR)game.c 
 			
