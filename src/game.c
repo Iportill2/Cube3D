@@ -1,15 +1,5 @@
 #include "../include/cub3d.h"
 
-/* void	ft_error(t_list *s, char *text, int error)
-{
-	if (error)
-		ft_putendl_fd("Error", 1);
-	if (error != 3)
-		ft_destroy(s);
-	//ft_free(game);
-	ft_putendl_fd(text, 1);
-	exit(0);
-} */
 void	ft_destroy(t_list *s)
 {
 	mlx_clear_window(s->mlx, s->window);
@@ -31,7 +21,6 @@ int	ft_key_press(int keycode, t_list *s)
 		ft_destroy(s);
 		printf("You close the window\n");
 		exit(0);
-		//ft_error(s, "You close the window", 0);
 	}
 	else if (keycode == W)
 		printf("");
@@ -49,7 +38,6 @@ void	ft_hook(t_list *s)
 	mlx_hook(s->window, 17, 1, ft_close_window, s);
 	mlx_hook(s->window, 2, 1, ft_key_press, s);
 }
-
 
 void	ft_star_game(t_list *s)
 {

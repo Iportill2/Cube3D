@@ -88,7 +88,7 @@ char	**ft_dual_split(char *s, char c, char d)
 	array = NULL;
 	num_words = ft_dual_count_words(s, c, d);
 	array = ft_calloc(sizeof(char *), (num_words +1));
-	i =0;
+	i = 0;
 	if (ft_dual_fill_words(array, s, c, d) == 1)
 	{
 		while (array[i])
@@ -96,7 +96,7 @@ char	**ft_dual_split(char *s, char c, char d)
 			free(array[i]);
 			i++;
 		}
-		
+		free(array);
 	}
 	return (array);
 }

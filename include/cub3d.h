@@ -66,7 +66,6 @@ typedef struct s_list
 /*MAIN*/
 int 	main(int argc,char **argv);
 int 	ft_read_map(char **argv,t_list *s);
-int 	run_program();
 /*UTILS_ONE (5)*/
 size_t 	ft_strlen(const char *s);
 size_t 	ft_arraylen(char **arr);
