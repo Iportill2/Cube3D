@@ -30,7 +30,6 @@ typedef struct s_list
 	char	**map_settings;
 	char	*map2d;
 	char	**map3d;
-	char	**map5d;
 	char	pj_init_nsew;
 	int		invalid_char;
 	int		n;
@@ -144,4 +143,5 @@ int		ft_calloc_for_new_playable_map(t_list *s, int e);
 
 /*ERRORS_AND_FREES X*/
 void	ft_free_array(char ***s);
+void	ft_free_struc(t_list *s);
 #endif

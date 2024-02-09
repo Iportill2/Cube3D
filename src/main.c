@@ -4,7 +4,6 @@ void	toito(t_list *s)
 {
 	int	i;
 
-	(void)s;
 	i = 0;
 	printf("---TOITO-----\n");
 	i = 0;
@@ -169,7 +168,8 @@ int	main( int argc, char **argv)
 		if (ft_checks(s) == 1)
 			return (printf("Error in ft_check\n"), 1);
 		toito(s);
-		ft_star_game(s);
+		//ft_star_game(s);
+		//ft_free_struc(s);
 	}
 	else
 		printf("Invalid num of arguments\n");
