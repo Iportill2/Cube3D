@@ -113,5 +113,3 @@ int	ft_get_pj_init_position(t_list *s)
 	}
 	return (0);
 }
-
-

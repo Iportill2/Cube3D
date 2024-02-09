@@ -70,10 +70,8 @@ int	ft_checks(t_list *s)
 		return (printf("Error in ft_check_map_args\n"), 1);
 	if (ft_check_chars_in_playable_map(s) == 1)
 		return (printf("error en ft_check_chars_in_playable_map\n"), 1);
-	if (ft_check_jumplines_in_playable_map(s) == 1)
-		return (printf("error en ft_check_chars_in_playable_map\n"), 1);
 	if (ft_check_map_double_jump_line(s) == 1)
-		return (printf("error en ft_check_jumplines_in_playable_map\n"), 1);
+		return (printf("error in ft_check_map_double_jump_line\n"), 1);
 	if (ft_check_new_playable_map_its_playable(s, '0') == 1)
 	{
 		printf("Error in ft_check_new_playable_map_its_playable 0\n");

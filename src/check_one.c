@@ -57,64 +57,53 @@ int	ft_check_map_args(t_list *s)
 	return (0);
 }
 
-int	ft_check_jumplines_in_playable_map(t_list *s)
+int	ft_check_map_double_jump_line_bis(t_list *s, int n, int e, int w)
 {
-	if (s == NULL)
+	if (s->map2d[s->i] == 'N')
+		n++;
+	else if (s->map2d[s->i] == 'S')
+		s->s_c++;
+	else if (s->map2d[s->i] == 'E')
+		e++;
+	else if (s->map2d[s->i] == 'W')
+		w++;
+	else if (s->map2d[s->i] == 'F')
+		s->f++;
+	else if (s->map2d[s->i] == 'C')
+		s->c++;
+	if ((n == 2 || n == 3) && (s->s_c == 2 || s->s_c == 3) && \
+	(e == 3 || e == 4) && (w == 2 || w == 3) && s->f == 1 && \
+	s->c == 1 && (s->stop == 0) && s->map2d[s->i] == '\n')
+		s->stop = 1;
+	else if ((s->stop == 1) && s->map2d[s->i] == '\n')
+		s->stop = 1;
+	else if (s->stop != 0 && (s->map2d[s->i] == '1'))
+		s->stop = 2;
+	else if ((s->stop == 2) && s->map2d[s->i] == '\n')
+		s->stop = 3;
+	else if ((s->stop == 3) && s->map2d[s->i] == '\n')
 		return (1);
 	return (0);
 }
 
 int	ft_check_map_double_jump_line(t_list *s)
 {
-	int	i;
 	int	n;
 	int	s1;
 	int	w;
 	int	e;
-	int	f;
-	int	c;
-	int	stop;
-	int	count;
 
-	i = 0;
 	n = 0;
 	s1 = 0;
 	w = 0;
 	e = 0;
-	f = 0;
-	c = 0;
-	stop = 0;
-	count = 0;
 	if (s->map2d == NULL)
 		return (1);
-	while (s->map2d[i])
+	while (s->map2d[s->i])
 	{
-		if (s->map2d[i] == 'N')
-			n++;
-		else if (s->map2d[i] == 'S')
-			s1++;
-		else if (s->map2d[i] == 'E')
-			e++;
-		else if (s->map2d[i] == 'W')
-			w++;
-		else if (s->map2d[i] == 'F')
-			f++;
-		else if (s->map2d[i] == 'C')
-			c++;
-		if ((n == 2 || n == 3) && (s1 == 2 || s1 == 3) && (e == 3 || e == 4) && \
-		(w == 2 || w == 3) && f == 1 && c == 1 && (stop == 0) \
-		&& s->map2d[i] == '\n')
-			stop = 1;
-		else if ((stop == 1) && s->map2d[i] == '\n')
-			stop = 1;
-		else if (stop != 0 && (s->map2d[i] == '1'))
-			stop = 2;
-		else if ((stop == 2) && s->map2d[i] == '\n')
-			stop = 3;
-		else if ((stop == 3) && s->map2d[i] == '\n')
-			return (1);
-		count++;
-		i++;
+		if (ft_check_map_double_jump_line_bis(s, n, e, w) == 1)
+			return (printf("Error in ft_check_map_double_jump_line\n"), 1);
+		s->i++;
 	}
 	return (0);
 }

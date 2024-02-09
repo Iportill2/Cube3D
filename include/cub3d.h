@@ -28,7 +28,6 @@ typedef struct s_list
 	char	**playable_map;
 	char	**new_playable_map;
 	char	**map_settings;
-	int		stop;
 	char	*map2d;
 	char	**map3d;
 	char	**map5d;
@@ -58,6 +57,13 @@ typedef struct s_list
 	char	**so_arr;
 	char	**we_arr;
 	char	**ea_arr;
+
+	int		stop;
+	int		c;
+	int		f;
+	int		i;
+	int		n_c;
+	int		s_c;
 
 }	t_list;
 
@@ -96,7 +102,7 @@ char	**ft_dual_split(char *s, char c, char d);
 int		ft_check_chars_in_playable_map(t_list *s);
 int		ft_check_textures(t_list *s);
 int		ft_check_map_args(t_list *s);
-int		ft_check_jumplines_in_playable_map(t_list *s);
+int		ft_check_map_double_jump_line_bis(t_list *s, int n, int e, int w);
 int		ft_check_map_double_jump_line(t_list *s);
 /*CHECK_TWO (5) X*/
 int		ft_check_initial_position(t_list *s);

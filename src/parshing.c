@@ -38,7 +38,6 @@ int	ft_clean_map3d_split_bis(t_list *s, int i, int count)
 	if (s->map_settings == NULL)
 		return (1);
 	return (0);
-
 }
 
 int	ft_clean_map3d_split(t_list *s)
