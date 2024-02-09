@@ -29,7 +29,7 @@ int	ft_check_chars_in_playable_map(t_list *s)
 	return (0);
 }
 
-int ft_check_textures(t_list *s)
+int	ft_check_textures(t_list *s)
 {
 	int	fd;
 

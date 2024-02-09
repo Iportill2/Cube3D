@@ -1,27 +1,34 @@
 #include "../include/cub3d.h"
 
-int	ft_array_check(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == 'C' || s[i] == 'F' || (s[i] == 'N' && s[i + 1] == 'O' ) || \
-		(s[i] == 'S' && s[i + 1] == 'O' ) || (s[i] == 'W' \
-		&& s[i + 1] == 'E' ) || \
-		(s[i] == 'E' && s[i + 1] == 'A' ))
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 int	ft_check_initial_position(t_list *s)
 {
 	if (s->pj_init_nsew != 'N' && s->pj_init_nsew != 'S' && \
 	s->pj_init_nsew != 'W' && s->pj_init_nsew != 'E')
 		return (printf("The map haven't initial position\n"), 1);
+	return (0);
+}
+
+int	ft_check_new_playable_map_bis(t_list *s, char c, int i, int e)
+{
+	if ((i == 0 || i == (s->playable_array_len - 1)) && \
+	(s->new_playable_map[i][e] == c))
+		return (1);
+	if ((e == 0 || e == (s->playable_str_len - 1)) && \
+	(s->new_playable_map[i][e] == c))
+		return (1);
+	if (s->new_playable_map[i][e] == c)
+	{
+		if ((i != 0) && (s->new_playable_map[i - 1][e] == '-'))
+			return (1);
+		else if ((i != s->playable_str_len) && \
+		(s->new_playable_map[i + 1][e] == '-'))
+			return (1);
+		else if ((e != 0) && (s->new_playable_map[i][e - 1] == '-'))
+			return (1);
+		else if ((i != s->playable_array_len) && \
+		(s->new_playable_map[i][e + 1] == '-'))
+			return (1);
+	}
 	return (0);
 }
 
@@ -34,28 +41,15 @@ int	ft_check_new_playable_map_its_playable(t_list *s, char c)
 	e = 0;
 	while (s->new_playable_map && s->new_playable_map[i])
 	{
-		e = -1;
-		while (s->new_playable_map[i][e++])
+		e = 0;
+		while (s->new_playable_map[i][e])
 		{
-			if ((i == 0 || i == (s->playable_array_len - 1)) && \
-			(s->new_playable_map[i][e] == c))
-				return (1);
-			if ((e == 0 || e == (s->playable_str_len - 1)) && \
-			(s->new_playable_map[i][e] == c))
-				return (1);
-			if (s->new_playable_map[i][e] == c)
+			if (ft_check_new_playable_map_bis(s, c, i, e) == 1)
 			{
-				if ((i != 0) && (s->new_playable_map[i - 1][e] == '-'))
-					return (1);
-				else if ((i != s->playable_str_len) && \
-				(s->new_playable_map[i + 1][e] == '-'))
-					return (1);
-				else if ((e != 0) && (s->new_playable_map[i][e - 1] == '-'))
-					return (1);
-				else if ((i != s->playable_array_len) && \
-				(s->new_playable_map[i][e + 1] == '-'))
-					return (1);
+				printf("Error in ft_check_new_playable_map_bis\n");
+				return (1);
 			}
+			e++;
 		}
 		i++;
 	}

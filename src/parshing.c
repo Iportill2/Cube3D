@@ -24,6 +24,23 @@ void	ft_parshing_map_args(t_list *s)
 	}
 	return ;
 }
+
+int	ft_clean_map3d_split_bis(t_list *s, int i, int count)
+{
+	while (s->map3d[i])
+	{
+		count = count + ft_array_check(s->map3d[i]);
+		i++;
+	}
+	if (count != 6)
+		return (printf("Too many arguments in map_settings\n"), 1);
+	s->map_settings = ft_calloc(sizeof(char *), count + 1);
+	if (s->map_settings == NULL)
+		return (1);
+	return (0);
+
+}
+
 int	ft_clean_map3d_split(t_list *s)
 {
 	int	i;
@@ -33,14 +50,8 @@ int	ft_clean_map3d_split(t_list *s)
 	i = 0;
 	e = 0;
 	count = 0;
-	while (s->map3d[i])
-	{
-		count = count + ft_array_check(s->map3d[i]);
-		i++;
-	}
-	if (count != 6)
-		return (printf("Too many arguments in map_settings\n"), 1);
-	s->map_settings = ft_calloc(sizeof(char *), count + 1);
+	if (ft_clean_map3d_split_bis(s, i, count) == 1)
+		return (printf("Error in ft_clean_map3d_split_bis\n"), 1);
 	if (s->map_settings == NULL)
 		return (1);
 	i = 0;
@@ -65,8 +76,28 @@ int	ft_create_new_playable_map(t_list *s)
 
 	i = 0;
 	e = 0;
-	if (ft_calloc_for_new_playable_map(s) == 1)
+	s->new_playable_map = ft_calloc(sizeof(char *), \
+	(s->playable_array_len + 1));
+	if (s->new_playable_map == NULL)
 		return (1);
+	while (s->playable_map[i])
+	{
+		s->new_playable_map[i] = ft_calloc(sizeof(char), \
+		(s->playable_str_len + 1));
+		if (s->new_playable_map[i] == NULL)
+			return (1);
+		i++;
+	}
+	if (ft_calloc_for_new_playable_map(s, e) == 1)
+		return (1);
+	return (0);
+}
+
+int	ft_calloc_for_new_playable_map(t_list *s, int e)
+{
+	int	i;
+
+	i = 0;
 	while (s->playable_map[i])
 	{
 		e = 0;
@@ -83,26 +114,6 @@ int	ft_create_new_playable_map(t_list *s)
 			s->new_playable_map[i][e] = '-';
 			e++;
 		}
-		i++;
-	}
-	return (0);
-}
-
-int	ft_calloc_for_new_playable_map(t_list *s)
-{
-	int	i;
-
-	i = 0;
-	s->new_playable_map = ft_calloc(sizeof(char *), \
-	(s->playable_array_len + 1));
-	if (s->new_playable_map == NULL)
-		return (1);
-	while (s->playable_map[i])
-	{
-		s->new_playable_map[i] = ft_calloc(sizeof(char), \
-		(s->playable_str_len + 1));
-		if (s->new_playable_map[i] == NULL)
-			return (1);
 		i++;
 	}
 	return (0);

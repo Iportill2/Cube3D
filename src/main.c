@@ -110,6 +110,21 @@ void	toito(t_list *s)
 	printf("---TOITO-----\n");
 }
 
+int	ft_get_playable_map_strlen_arraylen(t_list *s)
+{
+	int	i;
+
+	i = 0;
+	while (s->playable_map && s->playable_map[s->playable_array_len])
+	{
+		i = ft_strlen(s->playable_map[s->playable_array_len]);
+		if (i > s->playable_str_len)
+			s->playable_str_len = i;
+		s->playable_array_len++;
+	}
+	return (0);
+}
+
 int	ft_read_map(char **argv, t_list *s)
 {
 	char	*temp;
