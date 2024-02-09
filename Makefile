@@ -4,7 +4,7 @@ NAME		= cub3D
 NAME_BONUS	= cub3D_bonus
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra #-fsanitize=address -g3 #-llsan #-fsanitize=leak 
+CFLAGS		= -Wall -Werror -Wextra -g3 #-fsanitize=address -g3 #-llsan #-fsanitize=leak 
 LMLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
 RM			= rm -rf
 LIB			= Libft

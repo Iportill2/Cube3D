@@ -141,7 +141,7 @@ int	ft_read_map(char **argv, t_list *s)
 		temp[1] = '\0';
 		read_bytes = read(fd, temp, 1);
 		s->map2d = ft_strjoin(s->map2d, temp);
-		free((void *)temp);
+		free(temp);
 		if (read_bytes == 0)
 			break ;
 	}
@@ -169,7 +169,7 @@ int	main( int argc, char **argv)
 			return (printf("Error in ft_check\n"), 1);
 		toito(s);
 		//ft_star_game(s);
-		//ft_free_struc(s);
+		ft_free_struc(s);
 	}
 	else
 		printf("Invalid num of arguments\n");

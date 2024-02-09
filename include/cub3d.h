@@ -39,9 +39,6 @@ typedef struct s_list
 
 	char	**map_date;
 
-	int		lines;
-	char	**array;
-
 	char	**floor;
 	int		*floor_int_arr;
 	int		floor_size;
