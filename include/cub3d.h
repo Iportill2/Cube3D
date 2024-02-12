@@ -1,6 +1,5 @@
 #ifndef CUB3D_H
 # define CUB3D_H
-
 # include "../mlx/mlx.h"
 # include <fcntl.h>
 # include <unistd.h>
@@ -16,9 +15,19 @@
 # define D 2
 # define ESC 0x35
 
+typedef struct s_img
+{
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		x;
+	int		y;
+}			t_img;
+
 typedef struct s_list
 {
-	void	*mlx;
 	void	*window;
 
 	int		playable_str_len;
@@ -59,13 +68,81 @@ typedef struct s_list
 	int		i;
 	int		n_c;
 	int		s_c;
+///////////////////
+	int		color;
+	char	**map;
+	char	**pam;
+	double	px;
+	double	py;
+	double	rx;
+	double	ry;
+	
+	double	walk_step;
+	double	rotate_step;
+	
+	double	dis_x;
+	double	dis_y;
+	double	angle_ini;
+	double	angle_dist_rad;
+	double	angle;
+	double	angle_rad;
+	
+	void	*mlx;
+	void	*mlx_win;
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	
+	double	adyacent;
+	double	opposit;
+	double	hypo_x;
+	double	hypo_y;
+
+	double	dist_ini;
+	double	dist;
+	
+	double	closer;
+
+	int		contact;
+
+	t_img	nx;
+	void	*norte;
+
+
 
 }	t_list;
 
 /*MAIN X*/
+char	**ft_pam(char **map);
+int		ft_maplen(char *s);
+
 void	toito(t_list *s);////
 int		ft_read_map(char **argv, t_list *s);
 int		ft_get_playable_map_strlen_arraylen(t_list *s);
+/*MOVE_Q1*/
+int		ft_move_q1(t_list *s, int i);
+/*MOVE_Q2*/
+int		ft_move_q2(t_list *s, int i);
+/*MOVE_Q3*/
+int		ft_move_q3(t_list *s, int i);
+/*MOVE_Q4*/
+int		ft_move_q4(t_list *s, int i);
+/*MOVE*/
+int		ft_move(t_list *s);
+/*SCREEN*/
+void	my_mlx_pixel_put(t_list *s, int x, int y, int color);
+void	ft_create_line(t_list *s, int x);
+int		ft_key_hook(int keycode, t_list *s);
+void	ft_charge_image(t_list *s);
+void	ft_screen(t_list *s);
+/*WALK*/
+void	ft_walk_colision(t_list *s, double x, double y);
+void	ft_walk_left(t_list *s);
+void	ft_walk_right(t_list *s);
+void	ft_walk_forward(t_list *s);
+void	ft_walk_backward(t_list *s);
 /*UTILS_ONE (5) X*/
 size_t	ft_strlen(const char *s);
 size_t	ft_arraylen(char **arr);

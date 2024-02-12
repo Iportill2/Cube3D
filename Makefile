@@ -19,7 +19,16 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)utils_one.c \
 			$(SRC_DIR)utils_two.c \
 			$(SRC_DIR)get_maps.c \
-			$(SRC_DIR)game.c 
+			$(SRC_DIR)game.c \
+			$(SRC_DIR)ft_move_q1.c \
+			$(SRC_DIR)ft_move_q1.c \
+			$(SRC_DIR)ft_move_q1.c \
+			$(SRC_DIR)ft_move_q1.c \
+			$(SRC_DIR)move.c \
+			$(SRC_DIR)screen.c \
+			$(SRC_DIR)walk.c 
+
+
 			
 SRC_DIR	=			src/
 OBJS	= 	$(SRCS:.c=.o)
