@@ -5,7 +5,6 @@ CC			= gcc
 CFLAGS		= -Wall -Werror -Wextra -g3 #-fsanitize=address -g3 #-llsan #-fsanitize=leak 
 LMLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
 RM			= rm -rf
-LIB			= Libft
 MLX			= mlx
 
 SRCS	=	$(SRC_DIR)main.c \
@@ -33,19 +32,16 @@ all:		$(NAME)
 		$(CC) $(CFLAGS)  -c $< -o $@
 
 $(NAME):	$(OBJS) 
-			make -C $(LIB)
 			$(MAKE) -C mlx 2> logs
 			make  -C $(MLX)
-			$(CC) $(CFLAGS) $(LMLX) $(MLX)/libmlx.a $(LIB)/libft.a -o $@ $^
+			$(CC) $(CFLAGS) $(LMLX) $(MLX)/libmlx.a -o $@ $^
 
 clean:
-			@make -C $(LIB) clean
 			@make -C $(MLX) clean
 			@$(RM) $(OBJS) 
 
 
 fclean:		clean
-			@make -C $(LIB) fclean
 			@$(RM) $(NAME)  logs
 
 re:			fclean all
