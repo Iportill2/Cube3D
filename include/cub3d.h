@@ -65,7 +65,6 @@ typedef struct s_list
 
 /*MAIN X*/
 void	toito(t_list *s);////
-int		main(int argc, char **argv);
 int		ft_read_map(char **argv, t_list *s);
 int		ft_get_playable_map_strlen_arraylen(t_list *s);
 /*UTILS_ONE (5) X*/

@@ -20,6 +20,8 @@ void	ft_parshing_map_args(t_list *s)
 			s->floor = s->map_date;
 		else if (ft_strcmp(s->map_date[0], "C") == 0)
 			s->celling = s->map_date;
+		else
+			ft_free_array(&s->map_date);
 		i++;
 	}
 	return ;
