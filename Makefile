@@ -5,9 +5,6 @@ SRC_FILES = main.c \
 			ft_strlen.c \
 			ft_split.c \
 			ft_screen.c \
-			ft_enredando_1.c \
-			ft_enredando_4.c \
-			ft_enredando_torcido.c \
 			ft_move.c \
 			ft_move_q1.c \
 			ft_move_q2.c \

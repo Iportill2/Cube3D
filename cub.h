@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:06:51 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/09 14:11:49 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/12 14:15:29 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,16 @@
 	int		line_length;
 	int		endian;
 }				t_img; */
+typedef struct s_img
+{
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+	int		x;
+	int		y;
+}			t_img;
 
 typedef struct s_data
 {
@@ -68,6 +78,9 @@ typedef struct s_data
 	double	closer;
 
 	int		contact;
+
+	t_img	n;
+	void	*norte;
 }				t_data;
 
 

@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:53:13 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/09 16:23:52 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/12 17:38:58 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,25 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+/* void	ft_create_line(t_data *d, int x)
+{
+	int	j;
+	int	y;
+	int k;
+
+	j = (int)(480 / d->dist);
+	if (j > 480)
+		j = 480;
+	y = 0;
+	 while (y < (480 - j) / 2)
+		my_mlx_pixel_put(d, x, y++, 0x00000099);
+	k = y + j;
+	while (y < k)
+		my_mlx_pixel_put(d, x, y++, d->color);
+	while (y < 480)
+		my_mlx_pixel_put(d, x, y++, 0x00000000);
+} */
+
 void	ft_create_line(t_data *d, int x)
 {
 	int	j;
@@ -54,13 +73,14 @@ void	ft_create_line(t_data *d, int x)
 		j = 480;
 	y = 0;
 	 while (y < (480 - j) / 2)
-		my_mlx_pixel_put(d, x, y++, 0x000000BB);
+		my_mlx_pixel_put(d, x, y++, 0x00000099);
 	k = y + j;
 	while (y < k)
 		my_mlx_pixel_put(d, x, y++, d->color);
 	while (y < 480)
 		my_mlx_pixel_put(d, x, y++, 0x00000000);
 }
+
 int	ft_key_hook(int keycode, t_data *d)
 {
 	if (keycode == 124)
@@ -78,6 +98,24 @@ int	ft_key_hook(int keycode, t_data *d)
 	return (0);
 }
 
+void	ft_charge_image(t_data *d)
+{
+	int	x;
+	int	y;
+
+	x = 300;
+	y = 300;
+	d->n.img  = mlx_xpm_file_to_image(d->mlx, "textures/Iker.xpm", &x, &y);
+	d->n.addr = (int *) mlx_get_data_addr(d->n.img, &d->n.bits_per_pixel,
+			&d->n.line_length, &d->n.endian);
+	d->n.line_length = d->n.line_length / 4;
+	//printf("line lenght:%i\n", d->n.line_length);
+	int i = 0;
+	while (i < 1000)
+		printf("%i\n", d->n.addr[i++]);
+}
+
+
 void	ft_screen(t_data *d)
 {
 	ft_set_player_coord(d);
@@ -85,6 +123,7 @@ void	ft_screen(t_data *d)
 	d->rotate_step = 5;
 	d->angle_ini = 180;
 	d->mlx = mlx_init();
+	ft_charge_image(d);
 	d->mlx_win = mlx_new_window(d->mlx, 750, 480, "cube3D");
 	d->img = mlx_new_image(d->mlx, 750, 480);
 	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
