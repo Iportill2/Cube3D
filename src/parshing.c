@@ -1,48 +1,48 @@
 #include "../include/cub3d.h"
 
-void	ft_parshing_map_args(t_list *s)
+void	ft_parshing_map_args(t_data *d)
 {
 	int	i;
 
 	i = 0;
-	while (s->map_settings[i] && i < 6)
+	while (d->map_settings[i] && i < 6)
 	{
-		s->map_date = ft_dual_split(s->map_settings[i], ' ', ',');
-		if (ft_strcmp(s->map_date[0], "NO") == 0)
-			s->no_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "SO") == 0)
-			s->so_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "WE") == 0)
-			s->we_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "EA") == 0)
-			s->ea_arr = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "F") == 0)
-			s->floor = s->map_date;
-		else if (ft_strcmp(s->map_date[0], "C") == 0)
-			s->celling = s->map_date;
+		d->map_date = ft_dual_split(d->map_settings[i], ' ', ',');
+		if (ft_strcmp(d->map_date[0], "NO") == 0)
+			d->no_arr = d->map_date;
+		else if (ft_strcmp(d->map_date[0], "SO") == 0)
+			d->so_arr = d->map_date;
+		else if (ft_strcmp(d->map_date[0], "WE") == 0)
+			d->we_arr = d->map_date;
+		else if (ft_strcmp(d->map_date[0], "EA") == 0)
+			d->ea_arr = d->map_date;
+		else if (ft_strcmp(d->map_date[0], "F") == 0)
+			d->floor = d->map_date;
+		else if (ft_strcmp(d->map_date[0], "C") == 0)
+			d->celling = d->map_date;
 		else
-			ft_free_array(&s->map_date);
+			ft_free_array(&d->map_date);
 		i++;
 	}
 	return ;
 }
 
-int	ft_clean_map3d_split_bis(t_list *s, int i, int count)
+int	ft_clean_map3d_split_bis(t_data *d, int i, int count)
 {
-	while (s->map3d[i])
+	while (d->map3d[i])
 	{
-		count = count + ft_array_check(s->map3d[i]);
+		count = count + ft_array_check(d->map3d[i]);
 		i++;
 	}
 	if (count != 6)
 		return (printf("Too many arguments in map_settings\n"), 1);
-	s->map_settings = ft_calloc(sizeof(char *), count + 1);
-	if (s->map_settings == NULL)
+	d->map_settings = ft_calloc(sizeof(char *), count + 1);
+	if (d->map_settings == NULL)
 		return (1);
 	return (0);
 }
 
-int	ft_clean_map3d_split(t_list *s)
+int	ft_clean_map3d_split(t_data *d)
 {
 	int	i;
 	int	e;
@@ -51,16 +51,16 @@ int	ft_clean_map3d_split(t_list *s)
 	i = 0;
 	e = 0;
 	count = 0;
-	if (ft_clean_map3d_split_bis(s, i, count) == 1)
+	if (ft_clean_map3d_split_bis(d, i, count) == 1)
 		return (printf("Error in ft_clean_map3d_split_bis\n"), 1);
-	if (s->map_settings == NULL)
+	if (d->map_settings == NULL)
 		return (1);
 	i = 0;
-	while (s->map3d[i])
+	while (d->map3d[i])
 	{
-		if (ft_array_check(s->map3d[i]) == 1)
+		if (ft_array_check(d->map3d[i]) == 1)
 		{
-			s->map_settings[e] = ft_strdup(s->map3d[i]);
+			d->map_settings[e] = ft_strdup(d->map3d[i]);
 			e++;
 			i++;
 		}
@@ -70,49 +70,49 @@ int	ft_clean_map3d_split(t_list *s)
 	return (0);
 }
 
-int	ft_create_new_playable_map(t_list *s)
+int	ft_create_new_playable_map(t_data *d)
 {
 	int	i;
 	int	e;
 
 	i = 0;
 	e = 0;
-	s->new_playable_map = ft_calloc(sizeof(char *), \
-	(s->playable_array_len + 1));
-	if (s->new_playable_map == NULL)
+	d->new_playable_map = ft_calloc(sizeof(char *), \
+	(d->playable_array_len + 1));
+	if (d->new_playable_map == NULL)
 		return (1);
-	while (s->playable_map[i])
+	while (d->playable_map[i])
 	{
-		s->new_playable_map[i] = ft_calloc(sizeof(char), \
-		(s->playable_str_len + 1));
-		if (s->new_playable_map[i] == NULL)
+		d->new_playable_map[i] = ft_calloc(sizeof(char), \
+		(d->playable_str_len + 1));
+		if (d->new_playable_map[i] == NULL)
 			return (1);
 		i++;
 	}
-	if (ft_calloc_for_new_playable_map(s, e) == 1)
+	if (ft_calloc_for_new_playable_map(d, e) == 1)
 		return (1);
 	return (0);
 }
 
-int	ft_calloc_for_new_playable_map(t_list *s, int e)
+int	ft_calloc_for_new_playable_map(t_data *d, int e)
 {
 	int	i;
 
 	i = 0;
-	while (s->playable_map[i])
+	while (d->playable_map[i])
 	{
 		e = 0;
-		while (s->playable_map[i][e])
+		while (d->playable_map[i][e])
 		{
-			if (s->playable_map[i][e] == ' ')
-				s->new_playable_map[i][e] = '-';
+			if (d->playable_map[i][e] == ' ')
+				d->new_playable_map[i][e] = '-';
 			else
-				s->new_playable_map[i][e] = s->playable_map[i][e];
+				d->new_playable_map[i][e] = d->playable_map[i][e];
 			e++;
 		}
-		while (e < s->playable_str_len)
+		while (e < d->playable_str_len)
 		{
-			s->new_playable_map[i][e] = '-';
+			d->new_playable_map[i][e] = '-';
 			e++;
 		}
 		i++;

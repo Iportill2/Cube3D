@@ -1,15 +1,15 @@
 
-    NO textures/N.xpm    
- SO textures/S.xpm   
- EA textures/E.xpm  
-  WE textures/W.xpm    
+    NO textures/NO.xpm    
+ SO textures/SO.xpm   
+ EA textures/EA.xpm  
+  WE textures/WE.xpm    
  F 222,222,2   
  
  
 C 222,32,2
 
- 1111
+111111
 100001   
+10N001   
 100001   
-100001   
- 1111   
+111111  

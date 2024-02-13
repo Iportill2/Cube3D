@@ -1,20 +1,20 @@
 #include "../include/cub3d.h"
 
-void	ft_walk_colision(t_list *s, double x, double y)
+void	ft_walk_colision(t_data *d, double x, double y)
 {
 	/* int	xx;
 	int	yy;
 
 	xx = x;
 	yy = y;  */
-	if (s->pam[(int)x][(int)y] != '1')//OJO con '-'
+	if (d->pam[(int)x][(int)y] != '1')//OJO con '-'
 	{
-		s->px = x;
-		s->py = y;
+		d->px = x;
+		d->py = y;
 	}
 }
 
-void	ft_walk_left(t_list *s)
+void	ft_walk_left(t_data *d)
 {
 	double	x;
 	double	y;
@@ -22,88 +22,88 @@ void	ft_walk_left(t_list *s)
 	y = 0.0;
 	x = 0.0;
 
-	if (s->angle_ini <= 90)
+	if (d->angle_ini <= 90)
 	{
-		x = s->px - (s->walk_step * sin (s->angle_ini * M_PI / 180.0));
-		y = s->py + (s->walk_step *	cos (s->angle_ini * M_PI / 180.0));
+		x = d->px - (WALK_STEP * sin (d->angle_ini * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	cos (d->angle_ini * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 180)
+	else if (d->angle_ini <= 180)
 	{
-		x = s->px - (s->walk_step * cos ((s->angle_ini - 90) * M_PI / 180.0));
-		y = s->py - (s->walk_step *	sin ((s->angle_ini - 90) * M_PI / 180.0));
+		x = d->px - (WALK_STEP * cos ((d->angle_ini - 90) * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	sin ((d->angle_ini - 90) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 270)
+	else if (d->angle_ini <= 270)
 	{
-		x = s->px + (s->walk_step * sin ((s->angle_ini - 180) * M_PI / 180.0));
-		y = s->py - (s->walk_step *	cos ((s->angle_ini - 180) * M_PI / 180.0));
+		x = d->px + (WALK_STEP * sin ((d->angle_ini - 180) * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	cos ((d->angle_ini - 180) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 360)
+	else if (d->angle_ini <= 360)
 	{
-		x = s->px + (s->walk_step * cos ((s->angle_ini - 270) * M_PI / 180.0));
-		y = s->py + (s->walk_step *	sin ((s->angle_ini - 270) * M_PI / 180.0));
+		x = d->px + (WALK_STEP * cos ((d->angle_ini - 270) * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	sin ((d->angle_ini - 270) * M_PI / 180.0));
 	}
-	ft_walk_colision(s, x, y);
+	ft_walk_colision(d, x, y);
 }
-void	ft_walk_right(t_list *s)
+void	ft_walk_right(t_data *d)
 {
 	double	x;
 	double	y;
 
 	y = 0.0;
 	x = 0.0;
-		if (s->angle_ini <= 90)
+		if (d->angle_ini <= 90)
 	{
-		x = s->px + (s->walk_step * sin (s->angle_ini * M_PI / 180.0));
-		y = s->py - s->walk_step *	cos (s->angle_ini * M_PI / 180.0);
+		x = d->px + (WALK_STEP * sin (d->angle_ini * M_PI / 180.0));
+		y = d->py - WALK_STEP *	cos (d->angle_ini * M_PI / 180.0);
 	}
-	else if (s->angle_ini <= 180)
+	else if (d->angle_ini <= 180)
 	{
-		x = s->px +  (s->walk_step * cos ((s->angle_ini - 90) * M_PI / 180.0));
-		y = s->py + (s->walk_step *	sin ((s->angle_ini - 90) * M_PI / 180.0));
+		x = d->px +  (WALK_STEP * cos ((d->angle_ini - 90) * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	sin ((d->angle_ini - 90) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 270)
+	else if (d->angle_ini <= 270)
 	{
-		x = s->px - (s->walk_step * sin ((s->angle_ini - 180) * M_PI / 180.0));
-		y = s->py + (s->walk_step *	cos ((s->angle_ini - 180) * M_PI / 180.0));
+		x = d->px - (WALK_STEP * sin ((d->angle_ini - 180) * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	cos ((d->angle_ini - 180) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 360)
+	else if (d->angle_ini <= 360)
 	{
-		x = s->px - (s->walk_step * cos ((s->angle_ini - 270) * M_PI / 180.0));
-		y = s->py - (s->walk_step *	sin ((s->angle_ini - 270) * M_PI / 180.0));
+		x = d->px - (WALK_STEP * cos ((d->angle_ini - 270) * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	sin ((d->angle_ini - 270) * M_PI / 180.0));
 	}
-	ft_walk_colision(s, x, y);
+	ft_walk_colision(d, x, y);
 }
-void	ft_walk_forward(t_list *s)
+void	ft_walk_forward(t_data *d)
 {
 	double	x;
 	double	y;
 
 	y = 0.0;
 	x = 0.0;
-	if (s->angle_ini <= 90)
+	if (d->angle_ini <= 90)
 	{
-		x = s->px + (s->walk_step * cos (s->angle_ini * M_PI / 180.0));
-		y = s->py + (s->walk_step *	sin (s->angle_ini * M_PI / 180.0));
+		x = d->px + (WALK_STEP * cos (d->angle_ini * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	sin (d->angle_ini * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 180)
+	else if (d->angle_ini <= 180)
 	{
-		x = s->px - (s->walk_step * sin ((s->angle_ini - 90) * M_PI / 180.0));
-		y = s->py + (s->walk_step *	cos ((s->angle_ini - 90) * M_PI / 180.0));
+		x = d->px - (WALK_STEP * sin ((d->angle_ini - 90) * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	cos ((d->angle_ini - 90) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 270)
+	else if (d->angle_ini <= 270)
 	{
-		x = s->px - (s->walk_step * cos ((s->angle_ini - 180) * M_PI / 180.0));
-		y = s->py - (s->walk_step *	sin ((s->angle_ini - 180) * M_PI / 180.0));
+		x = d->px - (WALK_STEP * cos ((d->angle_ini - 180) * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	sin ((d->angle_ini - 180) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 360)
+	else if (d->angle_ini <= 360)
 	{
-		x = s->px + (s->walk_step * sin ((s->angle_ini - 270) * M_PI / 180.0));
-		y = s->py - (s->walk_step *	cos ((s->angle_ini - 270) * M_PI / 180.0));
+		x = d->px + (WALK_STEP * sin ((d->angle_ini - 270) * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	cos ((d->angle_ini - 270) * M_PI / 180.0));
 	}
-	ft_walk_colision(s, x, y);
+	ft_walk_colision(d, x, y);
 }
 
-void	ft_walk_backward(t_list *s)
+void	ft_walk_backward(t_data *d)
 {
 	
 	double	x;
@@ -111,25 +111,25 @@ void	ft_walk_backward(t_list *s)
 
 	y = 0.0;
 	x = 0.0;
-	if (s->angle_ini <= 90)
+	if (d->angle_ini <= 90)
 	{
-		x = s->px - (s->walk_step * cos (s->angle_ini * M_PI / 180.0));
-		y = s->py - (s->walk_step *	sin (s->angle_ini * M_PI / 180.0));
+		x = d->px - (WALK_STEP * cos (d->angle_ini * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	sin (d->angle_ini * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 180)
+	else if (d->angle_ini <= 180)
 	{
-		x = s->px + (s->walk_step * sin ((s->angle_ini - 90) * M_PI / 180.0));
-		y = s->py - (s->walk_step *	cos ((s->angle_ini - 90) * M_PI / 180.0));
+		x = d->px + (WALK_STEP * sin ((d->angle_ini - 90) * M_PI / 180.0));
+		y = d->py - (WALK_STEP *	cos ((d->angle_ini - 90) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 270)
+	else if (d->angle_ini <= 270)
 	{
-		x = s->px + (s->walk_step * cos ((s->angle_ini - 180) * M_PI / 180.0));
-		y = s->py + (s->walk_step *	sin ((s->angle_ini - 180) * M_PI / 180.0));
+		x = d->px + (WALK_STEP * cos ((d->angle_ini - 180) * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	sin ((d->angle_ini - 180) * M_PI / 180.0));
 	}
-	else if (s->angle_ini <= 360)
+	else if (d->angle_ini <= 360)
 	{
-		x = s->px - (s->walk_step * sin ((s->angle_ini - 270) * M_PI / 180.0));
-		y = s->py + (s->walk_step *	cos ((s->angle_ini - 270) * M_PI / 180.0));
+		x = d->px - (WALK_STEP * sin ((d->angle_ini - 270) * M_PI / 180.0));
+		y = d->py + (WALK_STEP *	cos ((d->angle_ini - 270) * M_PI / 180.0));
 	}
-	ft_walk_colision(s, x, y);
+	ft_walk_colision(d, x, y);
 }

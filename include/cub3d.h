@@ -27,7 +27,12 @@
 //MAC
 */
 
+# define X_SIZE_SCREEN 750
+# define Y_SIZE_SCREEN 480
+# define WALK_STEP 0.07
+# define ROTATE_STEP 5
 
+#define WALL_COLOR 16777215 //white
 
 # define LEFTKEY 123
 # define RIGHTKEY 124
@@ -51,7 +56,7 @@ typedef struct s_img
 	int		y;
 }			t_img;
 
-typedef struct s_list
+typedef struct s_data
 {
 	void	*window;
 
@@ -65,10 +70,10 @@ typedef struct s_list
 	char	**map3d;
 	char	pj_init_nsew;
 	int		invalid_char;
-	int		n;
-	int		s;
-	int		e;
-	int		w;
+	int		nx;
+	int		sx;
+	int		ex;
+	int		wx;
 
 	char	**map_date;
 
@@ -102,8 +107,8 @@ typedef struct s_list
 	double	rx;
 	double	ry;
 	
-	double	walk_step;
-	double	rotate_step;
+	//double	walk_step;
+	//double	rotate_step;
 	
 	double	dis_x;
 	double	dis_y;
@@ -132,43 +137,48 @@ typedef struct s_list
 
 	int		contact;
 
-	t_img	nx;
+	char	texture;
+	t_img	active;
+	t_img	s;
+	t_img	e;
+	t_img	w;
+	t_img	n;
 	void	*norte;
 
 
 
-}	t_list;
+}	t_data;
 
 /*MAIN X*/
 char	**ft_pam(char **map);
 int		ft_maplen(char *s);
 
-void	toito(t_list *s);////
-int		ft_read_map(char **argv, t_list *s);
-int		ft_get_playable_map_strlen_arraylen(t_list *s);
+void	toito(t_data *d);////
+int		ft_read_map(char **argv, t_data *d);
+int		ft_get_playable_map_strlen_arraylen(t_data *d);
 /*MOVE_Q1*/
-int		ft_move_q1(t_list *s, int i);
+int		ft_move_q1(t_data *d, int i);
 /*MOVE_Q2*/
-int		ft_move_q2(t_list *s, int i);
+int		ft_move_q2(t_data *d, int i);
 /*MOVE_Q3*/
-int		ft_move_q3(t_list *s, int i);
+int		ft_move_q3(t_data *d, int i);
 /*MOVE_Q4*/
-int		ft_move_q4(t_list *s, int i);
+int		ft_move_q4(t_data *d, int i);
 /*MOVE*/
-int		ft_move(t_list *s);
+int		ft_move(t_data *d);
 /*SCREEN*/
-void	my_mlx_pixel_put(t_list *s, int x, int y, int color);
-void	ft_create_line(t_list *s, int x);
-int		ft_key_hook(int keycode, t_list *s);
-int		ft_key_hook_release(int keycode, t_list *s);
-void	ft_charge_image(t_list *s);
-void	ft_screen(t_list *s);
+void	my_mlx_pixel_put(t_data *d, int x, int y, int color);
+void	ft_create_line(t_data *d, int x);
+int		ft_key_hook(int keycode, t_data *d);
+int		ft_key_hook_release(int keycode, t_data *d);
+void	ft_charge_image(t_data *d);
+void	ft_screen(t_data *d);
 /*WALK*/
-void	ft_walk_colision(t_list *s, double x, double y);
-void	ft_walk_left(t_list *s);
-void	ft_walk_right(t_list *s);
-void	ft_walk_forward(t_list *s);
-void	ft_walk_backward(t_list *s);
+void	ft_walk_colision(t_data *d, double x, double y);
+void	ft_walk_left(t_data *d);
+void	ft_walk_right(t_data *d);
+void	ft_walk_forward(t_data *d);
+void	ft_walk_backward(t_data *d);
 /*UTILS_ONE (5) X*/
 size_t	ft_strlen(const char *s);
 size_t	ft_arraylen(char **arr);
@@ -196,50 +206,50 @@ char	*ft_dual_word_dupe(char *s, char c, char d);
 int		ft_dual_fill_words(char **array, char *s, char c, char d);
 char	**ft_dual_split(char *s, char c, char d);
 /*CHECK_ONE (5) X*/
-int		ft_check_chars_in_playable_map(t_list *s);
-int		ft_check_textures(t_list *s);
-int		ft_check_map_args(t_list *s);
-int		ft_check_map_double_jump_line_bis(t_list *s, int n, int e, int w);
-int		ft_check_map_double_jump_line(t_list *s);
+int		ft_check_chars_in_playable_map(t_data *d);
+int		ft_check_textures(t_data *d);
+int		ft_check_map_args(t_data *d);
+int		ft_check_map_double_jump_line_bis(t_data *d, int n, int e, int w);
+int		ft_check_map_double_jump_line(t_data *d);
 /*CHECK_TWO (5) X*/
-int		ft_check_initial_position(t_list *s);
-int		ft_check_new_playable_map_bis(t_list *s, char c, int i, int e);
-int		ft_check_new_playable_map_its_playable(t_list *s, char c);
-int		ft_check_player_in_new_map(t_list *s);
-int		ft_checks(t_list *s);
+int		ft_check_initial_position(t_data *d);
+int		ft_check_new_playable_map_bis(t_data *d, char c, int i, int e);
+int		ft_check_new_playable_map_its_playable(t_data *d, char c);
+int		ft_check_player_in_new_map(t_data *d);
+int		ft_checks(t_data *d);
 /*GAME (5) X*/
-void	ft_destroy(t_list *s);
-int		ft_close_window(t_list *s);
-int		ft_key_press(int keycode, t_list *s);
-void	ft_hook(t_list *s);
-void	ft_star_game(t_list *s);
+void	ft_destroy(t_data *d);
+int		ft_close_window(t_data *d);
+int		ft_key_press(int keycode, t_data *d);
+void	ft_hook(t_data *d);
+void	ft_star_game(t_data *d);
 /*GET_MAPS () X */
-int		ft_get_playable_map_bis(t_list *s, int i, int u);
-int		ft_get_playable_map(t_list *s);
-int		ft_get_maps(t_list *s, char **argv);
-int		ft_get_pj_init_position_bis(t_list *s, int i, int e);
-int		ft_get_pj_init_position(t_list *s);
+int		ft_get_playable_map_bis(t_data *d, int i, int u);
+int		ft_get_playable_map(t_data *d);
+int		ft_get_maps(t_data *d, char **argv);
+int		ft_get_pj_init_position_bis(t_data *d, int i, int e);
+int		ft_get_pj_init_position(t_data *d);
 
 /*CELL_AND_RGB (5) X*/
 int		ft_array_check(char *s);
-int		ft_cell_atoi_array(t_list *s);
-int		check_celling_numbers(t_list *s, int n);
-int		ft_clean_celling(t_list *s);
+int		ft_cell_atoi_array(t_data *d);
+int		check_celling_numbers(t_data *d, int n);
+int		ft_clean_celling(t_data *d);
 int		ft_transf_rgb(int r, int g, int b);
 /*FLOOR (5) X*/
-int		ft_check_floor_cellig_values(t_list *s);
-int		ft_floor_atoi_array(t_list *s);
-int		ft_clean_floor(t_list *s);
-int		ft_floor_cell(t_list *s);
-int		ft_check_floor_arr_int_numbers(t_list *s, int n);
+int		ft_check_floor_cellig_values(t_data *d);
+int		ft_floor_atoi_array(t_data *d);
+int		ft_clean_floor(t_data *d);
+int		ft_floor_cell(t_data *d);
+int		ft_check_floor_arr_int_numbers(t_data *d, int n);
 /*PARSHING (5) X*/
-void	ft_parshing_map_args(t_list *s);
-int		ft_clean_map3d_split_bis(t_list *s, int i, int count);
-int		ft_clean_map3d_split(t_list *s);
-int		ft_create_new_playable_map(t_list *s);
-int		ft_calloc_for_new_playable_map(t_list *s, int e);
+void	ft_parshing_map_args(t_data *d);
+int		ft_clean_map3d_split_bis(t_data *d, int i, int count);
+int		ft_clean_map3d_split(t_data *d);
+int		ft_create_new_playable_map(t_data *d);
+int		ft_calloc_for_new_playable_map(t_data *d, int e);
 
 /*ERRORS_AND_FREES X*/
 void	ft_free_array(char ***s);
-void	ft_free_struc(t_list *s);
+void	ft_free_struc(t_data *d);
 #endif

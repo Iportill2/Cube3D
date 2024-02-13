@@ -1,20 +1,20 @@
 #include "../include/cub3d.h"
 
-static void	ft_set_player_coord(t_list *s)
+static void	ft_set_player_coord(t_data *d)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (s->pam[i])
+	while (d->pam[i])
 	{
 		j = 0;
-		while(s->pam[i][j])
+		while(d->pam[i][j])
 		{
-			if (s->pam[i][j] == 'N')
+			if (d->pam[i][j] == 'N')
 			{
-				s->px = i + 0.5;
-				s->py = j + 0.5;
+				d->px = i + 0.5;
+				d->py = j + 0.5;
 				return;
 			}
 			j++;
@@ -23,11 +23,11 @@ static void	ft_set_player_coord(t_list *s)
 	}
 }
 
-void	my_mlx_pixel_put(t_list *s, int x, int y, int color)
+void	my_mlx_pixel_put(t_data *d, int x, int y, int color)
 {
 	char	*dst;
 
-	dst = s->addr + (y * s->line_length + x * (s->bits_per_pixel / 8));
+	dst = d->addr + (y * d->line_length + x * (d->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
 
@@ -50,109 +50,120 @@ void	my_mlx_pixel_put(t_list *s, int x, int y, int color)
 		my_mlx_pixel_put(d, x, y++, 0x00000000);
 } */
 
-void	ft_create_line(t_list *s, int x)
+void	ft_create_line(t_data *d, int x)
 {
 	int	j;
 	int	y;
 	int k;
 
-	j = (int)(480 / s->dist);
+	j = (int)(480 / d->dist);
 	if (j > 480)
 		j = 480;
 	y = 0;
 	 while (y < (480 - j) / 2)
-		my_mlx_pixel_put(s, x, y++, 0x00000099);
+		my_mlx_pixel_put(d, x, y++, d->cell_rgb);
 	k = y + j;
 	while (y < k)
-		my_mlx_pixel_put(s, x, y++, s->color);
+		my_mlx_pixel_put(d, x, y++, d->color);
 	while (y < 480)
-		my_mlx_pixel_put(s, x, y++, 0x00000000);
+		my_mlx_pixel_put(d, x, y++, d->floor_rgb);
 }
 
-int	ft_key_hook(int keycode, t_list *s)
+int	ft_key_hook(int keycode, t_data *d)
 {
 	if (keycode == Q || keycode == ESC)
 	{
-		ft_destroy(s);
+		ft_destroy(d);
 		printf("You close the window\n");
 		exit(0);
 	}
 	if (keycode == LEFTKEY)
-		s->angle_ini += s->rotate_step;
+		d->angle_ini += ROTATE_STEP;
 	if (keycode == RIGHTKEY)
-		s->angle_ini -= s->rotate_step;
+		d->angle_ini -= ROTATE_STEP;
 	if (keycode == DOWNKEY || keycode == S)
-		ft_walk_backward(s);
+		ft_walk_backward(d);
 	if (keycode == UPKEY || keycode == W)
-		ft_walk_forward(s);
+		ft_walk_forward(d);
 	if (keycode == A)
-		ft_walk_left(s);
+		ft_walk_left(d);
 	if (keycode == D)
-		ft_walk_right(s);
+		ft_walk_right(d);
 	return (0);
 }
-int	ft_key_hook_release(int keycode, t_list *s)
+int	ft_key_hook_release(int keycode, t_data *d)
 {
 	if (keycode == Q || keycode == ESC)
 	{
-		ft_destroy(s);
+		ft_destroy(d);
 		printf("You close the window\n");
 		exit(0);
 	}
 	if (keycode == LEFTKEY)
-		s->angle_ini = s->angle_ini;
+		d->angle_ini = d->angle_ini;
 	if (keycode == RIGHTKEY)
-		s->angle_ini = s->angle_ini;
+		d->angle_ini = d->angle_ini;
 	if (keycode == DOWNKEY || keycode == S)
-		ft_walk_backward(s);
+		ft_walk_backward(d);
 	if (keycode == UPKEY || keycode == W)
-		ft_walk_forward(s);
+		ft_walk_forward(d);
 	if (keycode == A)
-		ft_walk_left(s);
+		ft_walk_left(d);
 	if (keycode == D)
-		ft_walk_right(s);
+		ft_walk_right(d);
 	return (0);
 }
 
-void	ft_charge_image(t_list *s)
+void	ft_charge_image(t_data *d)
 {
 	int	x;
-	int	y;
 
 	x = 300;
-	y = 300;
-	s->nx.img  = mlx_xpm_file_to_image(s->mlx, "textures/Iker.xpm", &x, &y);
-	if(!s->nx.img)
-	{
-		printf("ERROR cargando texturas!!\n");
-		exit(1);
-	}
-	s->nx.addr = (int *) mlx_get_data_addr(s->nx.img, &s->nx.bits_per_pixel,
-			&s->nx.line_length, &s->nx.endian);
-	s->nx.line_length = s->nx.line_length / 4;
-	//printf("line lenght:%i\n", d->n.line_length);
-	int i = 0;
-	while (i < 1000)
-		printf("%i\n", s->nx.addr[i++]);
-}
+	d->n.img  = mlx_xpm_file_to_image(d->mlx, "textures/iker.xpm", &x, &x);
+	d->n.addr = (int *) mlx_get_data_addr(d->n.img, &d->n.bits_per_pixel,
+			&d->n.line_length, &d->n.endian);
+	d->n.line_length = d->n.line_length / 4;
+	
+	d->s.img  = mlx_xpm_file_to_image(d->mlx, "textures/goiko.xpm", &x, &x);
+	d->s.addr = (int *) mlx_get_data_addr(d->s.img, &d->s.bits_per_pixel,
+			&d->s.line_length, &d->s.endian);
+	d->s.line_length = d->s.line_length / 4;
+	
+	d->e.img  = mlx_xpm_file_to_image(d->mlx, "textures/canita.xpm", &x, &x);
+	d->e.addr = (int *) mlx_get_data_addr(d->e.img, &d->e.bits_per_pixel,
+			&d->e.line_length, &d->e.endian);
+	d->e.line_length = d->e.line_length / 4;
+
+	d->w.img  = mlx_xpm_file_to_image(d->mlx, "textures/fary.xpm", &x, &x);
+	d->w.addr = (int *) mlx_get_data_addr(d->w.img, &d->w.bits_per_pixel,
+			&d->w.line_length, &d->w.endian);
+	d->w.line_length = d->w.line_length / 4;
+}		
 
 
-void	ft_screen(t_list *s)
+
+void	ft_screen(t_data *d)
 {
-	ft_set_player_coord(s);
- 	s->walk_step = 0.07;
-	s->rotate_step = 5;
-	s->angle_ini = 180;
-	s->mlx = mlx_init();
-	ft_charge_image(s);
-	s->mlx_win = mlx_new_window(s->mlx, 750, 480, "cube3D");
-	s->img = mlx_new_image(s->mlx, 750, 480);
-	s->addr = mlx_get_data_addr(s->img, &s->bits_per_pixel, &s->line_length, &s->endian);
-	mlx_loop_hook(s->mlx, ft_move, s);
-	//mlx_key_hook(s->mlx_win, ft_key_hook, s);//
-	mlx_hook(s->mlx_win, 2, (1L << 0), ft_key_hook, s);//
-	mlx_hook(s->mlx_win, 3, (1L << 1), ft_key_hook_release, s);///
-	mlx_loop(s->mlx);
+	ft_set_player_coord(d);
+/* 	if (d->pj_init_nsew == 'N')
+		d->angle_ini = 180;
+	else if (d->pj_init_nsew == 'W')
+		d->angle_ini = 90;
+	else if (d->pj_init_nsew == 'S')
+		d->angle_ini = 360;
+	else if (d->pj_init_nsew == 'E')
+		d->angle_ini = 270;	 */
+	d->angle_ini = 90;/////
+	d->mlx = mlx_init();
+	ft_charge_image(d);
+	d->mlx_win = mlx_new_window(d->mlx, X_SIZE_SCREEN, Y_SIZE_SCREEN, "cube3D");
+	d->img = mlx_new_image(d->mlx, X_SIZE_SCREEN, Y_SIZE_SCREEN);
+	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
+	mlx_loop_hook(d->mlx, ft_move, d);
+	//mlx_key_hook(d->mlx_win, ft_key_hook, s);//
+	mlx_hook(d->mlx_win, 2, (1L << 0), ft_key_hook, d);//
+	mlx_hook(d->mlx_win, 3, (1L << 1), ft_key_hook_release, d);///
+	mlx_loop(d->mlx);
 }
 
 /* int	ft_press_key(int key, void *param)
