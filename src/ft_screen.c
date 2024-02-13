@@ -96,7 +96,7 @@ void	ft_charge_image(t_list *s)
 	s->nx.img  = mlx_xpm_file_to_image(s->mlx, "textures/Iker.xpm", &x, &y);
 	s->nx.addr = (int *) mlx_get_data_addr(s->nx.img, &s->nx.bits_per_pixel,
 			&s->nx.line_length, &s->nx.endian);
-	s->n.line_length = s->nx.line_length / 4;
+	s->nx.line_length = s->nx.line_length / 4;
 	//printf("line lenght:%i\n", d->n.line_length);
 	int i = 0;
 	while (i < 1000)

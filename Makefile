@@ -21,12 +21,12 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)get_maps.c \
 			$(SRC_DIR)game.c \
 			$(SRC_DIR)ft_move_q1.c \
-			$(SRC_DIR)ft_move_q1.c \
-			$(SRC_DIR)ft_move_q1.c \
-			$(SRC_DIR)ft_move_q1.c \
-			$(SRC_DIR)move.c \
-			$(SRC_DIR)screen.c \
-			$(SRC_DIR)walk.c 
+			$(SRC_DIR)ft_move_q2.c \
+			$(SRC_DIR)ft_move_q3.c \
+			$(SRC_DIR)ft_move_q4.c \
+			$(SRC_DIR)ft_move.c \
+			$(SRC_DIR)ft_screen.c \
+			$(SRC_DIR)ft_walk.c 
 
 
 			

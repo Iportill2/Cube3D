@@ -19,6 +19,9 @@ void	ft_walk_left(t_list *s)
 	double	x;
 	double	y;
 
+	y = 0.0;
+	x = 0.0;
+
 	if (s->angle_ini <= 90)
 	{
 		x = s->px - (s->walk_step * sin (s->angle_ini * M_PI / 180.0));
@@ -46,6 +49,8 @@ void	ft_walk_right(t_list *s)
 	double	x;
 	double	y;
 
+	y = 0.0;
+	x = 0.0;
 		if (s->angle_ini <= 90)
 	{
 		x = s->px + (s->walk_step * sin (s->angle_ini * M_PI / 180.0));
@@ -73,6 +78,8 @@ void	ft_walk_forward(t_list *s)
 	double	x;
 	double	y;
 
+	y = 0.0;
+	x = 0.0;
 	if (s->angle_ini <= 90)
 	{
 		x = s->px + (s->walk_step * cos (s->angle_ini * M_PI / 180.0));
@@ -102,6 +109,8 @@ void	ft_walk_backward(t_list *s)
 	double	x;
 	double	y;
 
+	y = 0.0;
+	x = 0.0;
 	if (s->angle_ini <= 90)
 	{
 		x = s->px - (s->walk_step * cos (s->angle_ini * M_PI / 180.0));

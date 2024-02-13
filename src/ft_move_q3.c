@@ -31,8 +31,8 @@ static void	ft_ray_y(t_list *s)
 
 static void	ft_check_contact_x(t_list *s)
 {
-	if (d->pam[(int)floor(d->rx - 1)][(int)floor(d->ry)] == '1')
-		d->contact = 1;
+	if (s->pam[(int)floor(s->rx - 1)][(int)floor(s->ry)] == '1')
+		s->contact = 1;
 }
 
 static void	ft_check_contact_y(t_list *s)
