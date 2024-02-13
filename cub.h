@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:06:51 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/12 14:15:29 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:45:38 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,16 @@ typedef struct s_data
 
 	int		contact;
 
+	char	texture;
+
 	t_img	n;
+	t_img	s;
+	t_img	e;
+	t_img	w;
+	t_img	active;
 	void	*norte;
+
+	int 	correct;
 }				t_data;
 
 

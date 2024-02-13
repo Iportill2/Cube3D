@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:32 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/08 19:30:46 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:11:14 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static void	ft_ray_x(t_data *d)
 		d->dis_y = d->ry - floor(d->ry);
 	d->dis_x = 1;
 	d->color = 0x0000AA00;
+	d->texture = 'x';
 }
 
 static void	ft_ray_y(t_data *d)
@@ -38,18 +39,25 @@ static void	ft_ray_y(t_data *d)
 		d->dis_x = ceil(d->rx) - d->rx;
 	d->dis_y = 1;
 	d->color = 0x00004400;
+	d->texture = 'y';
 }
 
 static void	ft_check_contact_x(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx)][(int)floor(d->ry)] == '1')
+	{
 		d->contact = 1;
+		d->active  = d->w;
+	}
 }
 
 static void	ft_check_contact_y(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx)][(int)floor(d->ry - 1)] == '1')
+	{
 		d->contact = 1;
+		d->active  = d->n;
+	}
 }
 
 int ft_move_q4(t_data *d, int i)

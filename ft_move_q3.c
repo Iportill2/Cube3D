@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:29 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/09 16:21:31 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/13 14:10:56 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_ray_x(t_data *d)
 		d->dis_y = d->ry - floor(d->ry);
 	d->dis_x = 1;
 	d->color = 0x0000AA00;
+	d->texture = 'x';
 	//d->color = 0x00AA0000;
 	//printf("d->rx: %f\n", d->rx);
 }
@@ -38,19 +39,26 @@ static void	ft_ray_y(t_data *d)
 		d->dis_x = d->rx - floor(d->rx);
 	d->dis_y = 1;
 	d->color = 0x00004400;
+	d->texture = 'y';
 	//printf("d->ry: %f\n", d->ry);
 }
 
 static void	ft_check_contact_x(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx - 1)][(int)floor(d->ry)] == '1')
+	{
 		d->contact = 1;
+		d->active  = d->e;
+	}
 }
 
 static void	ft_check_contact_y(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx)][(int)floor(d->ry - 1)] == '1')
+	{
 		d->contact = 1;
+		d->active  = d->n;
+	}
 }
 
 int ft_move_q3(t_data *d, int i)
@@ -92,6 +100,6 @@ int ft_move_q3(t_data *d, int i)
 		i--;
 	}
 	if (d->angle < 0)
-		d->angle = 270 + (-d->angle);
+		d->angle = 270.1 + (-d->angle);
 	return (i);
 }

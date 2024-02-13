@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:27 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/09 16:22:57 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:30:23 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_ray_x(t_data *d)
 		d->dis_y = ceil(d->ry) - d->ry;
 	d->dis_x = 1;
 	d->color = 0x0000AA00;
+	d->texture = 'x';
 	//d->color = 0x00AA0000;
 }
 
@@ -37,18 +38,25 @@ static void	ft_ray_y(t_data *d)
 		d->dis_x = d->rx - floor(d->rx);
 	d->dis_y = 1;
 	d->color = 0x0000DD00;
+	d->texture = 'y';
 }
 
 static void	ft_check_contact_x(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx - 1)][(int)floor(d->ry)] == '1')
+	{
+		d->active  = d->e;
 		d->contact = 1;
+	}
 }
 
 static void	ft_check_contact_y(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx)][(int)floor(d->ry)] == '1')
+	{
+		d->active  = d->s;
 		d->contact = 1;
+	}
 }
 
 int ft_move_q2(t_data *d, int i)
@@ -88,6 +96,6 @@ int ft_move_q2(t_data *d, int i)
 	}
 	//printf("D->ANGLE en puto Q2: %f\n", d->angle);
 	if (d->angle < 0)
-		d->angle = 181 + (-d->angle);//OJO con el 181 en vez de 180;
+		d->angle = 180.1 + (-d->angle);//OJO con el 181 en vez de 180;
 	return (i);
 }

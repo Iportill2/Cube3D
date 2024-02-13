@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:09:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/09 13:40:58 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:47:27 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	ft_move(t_data *d)
 		else if (d->angle_ini > 360)
 			d->angle_ini -= 360;
 	}
-	printf("d->angle_ini: %f\n", d->angle_ini);
-	printf("x = %f, y = %f\n", d->px, d->py);
+	//printf("d->angle_ini: %f\n", d->angle_ini);
+	//printf("x = %f, y = %f\n", d->px, d->py);
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img, 0, 0);
 	return (0);
 }

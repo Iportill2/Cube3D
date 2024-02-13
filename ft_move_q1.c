@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:22 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/08 19:31:37 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/13 17:29:00 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ static void	ft_ray_x(t_data *d)
 		d->dis_y = ceil(d->ry) - d->ry;
 	d->dis_x = 1;
 	d->color = 0x0000AA00;
+	d->texture = 'x';
+	d->active  = d->w;
 }
 
 static void	ft_ray_y(t_data *d)
@@ -36,6 +38,8 @@ static void	ft_ray_y(t_data *d)
 		d->dis_x = ceil(d->rx) - d->rx;
 	d->dis_y = 1;
 	d->color = 0x0000DD00;
+	d->texture = 'y';
+	d->active  = d->s;
 }
 
 static void	ft_check_contact(t_data *d)
