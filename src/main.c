@@ -98,6 +98,10 @@ void	toito(t_list *s)
 		printf("%s\n", s->new_playable_map[i]);
 		i++;
 	}
+	i = 0;
+	printf("******s->pam******\n");
+	while (s->pam[i])
+		printf("%s\n", s->pam[i++]);
 	printf("s->floor_rgb =%i\n", s->floor_rgb);
 	printf("s->celling_rgb =%i\n", s->cell_rgb);
 	printf("----------------\n");
@@ -254,8 +258,8 @@ int	main( int argc, char **argv)
 			return (printf("Error in ft_floor_cell\n"), 1);
 		if (ft_checks(s) == 1)
 			return (printf("Error in ft_check\n"), 1);
-		toito(s);
-		//ft_star_game(s);
+		//toito(s);
+		ft_star_game(s);
 		ft_free_struc(s);
 	}
 	else

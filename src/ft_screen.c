@@ -94,6 +94,11 @@ void	ft_charge_image(t_list *s)
 	x = 300;
 	y = 300;
 	s->nx.img  = mlx_xpm_file_to_image(s->mlx, "textures/Iker.xpm", &x, &y);
+	if(!s->nx.img)
+	{
+		printf("ERROR cargando texturas!!\n");
+		exit(1);
+	}
 	s->nx.addr = (int *) mlx_get_data_addr(s->nx.img, &s->nx.bits_per_pixel,
 			&s->nx.line_length, &s->nx.endian);
 	s->nx.line_length = s->nx.line_length / 4;
@@ -107,7 +112,7 @@ void	ft_charge_image(t_list *s)
 void	ft_screen(t_list *s)
 {
 	ft_set_player_coord(s);
-	s->walk_step = 0.07;
+ 	s->walk_step = 0.07;
 	s->rotate_step = 5;
 	s->angle_ini = 180;
 	s->mlx = mlx_init();
