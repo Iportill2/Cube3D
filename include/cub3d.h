@@ -8,6 +8,31 @@
 # include <string.h>
 # include <math.h>
 
+/*
+# define SCREENWIDTH 640
+# define SCREENHEIGHT 640
+# define MAPWIDTH 24
+# define MAPHEIGHT 24
+# define TEXWIDTH 128
+# define TEXHEIGHT 128
+
+# define MOV_SPEED 0.05
+# define ROT_SPEED 0.03
+
+//LINUX
+#define UPKEY 65362
+#define DOWNKEY 65364
+#define RIGHTKEY 65363
+#define LEFTKEY 65361
+//MAC
+*/
+
+
+
+# define LEFTKEY 123
+# define RIGHTKEY 124
+# define DOWNKEY 125
+# define UPKEY 126
 # define Q 12
 # define W 13
 # define A 0

@@ -71,17 +71,23 @@ void	ft_create_line(t_list *s, int x)
 
 int	ft_key_hook(int keycode, t_list *s)
 {
-	if (keycode == 124)
-		s->angle_ini -= s->rotate_step;
-	if (keycode == 123)
+	if (keycode == Q || keycode == ESC)
+	{
+		ft_destroy(s);
+		printf("You close the window\n");
+		exit(0);
+	}
+	if (keycode == LEFTKEY)
 		s->angle_ini += s->rotate_step;
-	if (keycode == 126 || keycode == 13)
-		ft_walk_forward(s);
-	if (keycode == 125 || keycode == 1)
+	if (keycode == RIGHTKEY)
+		s->angle_ini -= s->rotate_step;
+	if (keycode == DOWNKEY || keycode == S)
 		ft_walk_backward(s);
-	if (keycode == 0)
+	if (keycode == UPKEY || keycode == W)
+		ft_walk_forward(s);
+	if (keycode == A)
 		ft_walk_left(s);
-	if (keycode == 2)
+	if (keycode == D)
 		ft_walk_right(s);
 	return (0);
 }
@@ -121,9 +127,68 @@ void	ft_screen(t_list *s)
 	s->img = mlx_new_image(s->mlx, 750, 480);
 	s->addr = mlx_get_data_addr(s->img, &s->bits_per_pixel, &s->line_length, &s->endian);
 	mlx_loop_hook(s->mlx, ft_move, s);
-	//mlx_loop_hook(d->mlx, ft_enredando_torcido, d);
-	mlx_key_hook(s->mlx_win, ft_key_hook, s);
-	//ft_enredando_torcido(d);
-	//mlx_hook(d->mlx_win, 17, 0, ft_free, &d);
+	//mlx_key_hook(s->mlx_win, ft_key_hook, s);//
+	mlx_hook(s->mlx_win, 2, (1L << 0), ft_key_hook, s);//
 	mlx_loop(s->mlx);
 }
+
+/* int	ft_press_key(int key, void *param)
+{
+	t_data	*dt;
+
+	dt = (t_data *)param;
+	if (key == RIGHTKEY)
+		dt->move.rright = 1;
+	else if (key == LEFTKEY)
+		dt->move.rleft = 1;
+	else if ((key == DOWNKEY || key == 1))
+		dt->move.mback = 1;
+	else if ((key == UPKEY || key == 13))
+		dt->move.mfor = 1;
+	else if (key == 2)
+		dt->move.mright = 1;
+	else if (key == 0)
+		dt->move.mleft = 1;
+	else if (key == 53)
+		ft_close(param);
+	return (0);
+}
+
+int	ft_release_key(int key, void *param)
+{
+	t_data	*dt;
+
+	dt = (t_data *)param;
+	if (key == RIGHTKEY)
+		dt->move.rright = 0;
+	else if (key == LEFTKEY)
+		dt->move.rleft = 0;
+	else if ((key == DOWNKEY || key == 1))
+		dt->move.mback = 0;
+	else if ((key == UPKEY || key == 13))
+		dt->move.mfor = 0;
+	else if (key == 2)
+		dt->move.mright = 0;
+	else if (key == 0)
+		dt->move.mleft = 0;
+	return (0);
+} */
+
+/*
+int	ft_key_hook(int keycode, t_data *d)
+{
+	if (keycode == 124)
+		d->angle_ini -= d->rotate_step;
+	if (keycode == 123)
+		d->angle_ini += d->rotate_step;
+	if (keycode == 126 || keycode == 13)
+		ft_walk_forward(d);
+	if (keycode == 125 || keycode == 1)
+		ft_walk_backward(d);
+	if (keycode == 0)
+		ft_walk_left(d);
+	if (keycode == 2)
+		ft_walk_right(d);
+	return (0);
+}
+*/

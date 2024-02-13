@@ -1,6 +1,6 @@
 #include "../include/cub3d.h"
 
-/* void	ft_destroy(t_list *s)
+ void	ft_destroy(t_list *s)
 {
 	mlx_clear_window(s->mlx, s->window);
 	mlx_destroy_window(s->mlx, s->window);
@@ -13,7 +13,7 @@ int	ft_close_window(t_list *s)
 	return (0);
 }
 
-int	ft_key_press(int keycode, t_list *s)
+/* int	ft_key_press(int keycode, t_list *s)
 {
 	(void)s;
 	if (keycode == Q || keycode == ESC)
@@ -31,14 +31,14 @@ int	ft_key_press(int keycode, t_list *s)
 	else if (keycode == S)
 		printf("");
 	return (0);
-}
+} */
 
 void	ft_hook(t_list *s)
 {
 	mlx_hook(s->window, 17, 1, ft_close_window, s);
-	mlx_hook(s->window, 2, 1, ft_key_press, s);
+	mlx_hook(s->window, 2, 1, ft_key_hook, s);
 }
-*/
+
 void	ft_star_game(t_list *s)
 {
 	/* s->mlx = mlx_init();
