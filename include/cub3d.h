@@ -160,6 +160,7 @@ int		ft_move(t_list *s);
 void	my_mlx_pixel_put(t_list *s, int x, int y, int color);
 void	ft_create_line(t_list *s, int x);
 int		ft_key_hook(int keycode, t_list *s);
+int		ft_key_hook_release(int keycode, t_list *s);
 void	ft_charge_image(t_list *s);
 void	ft_screen(t_list *s);
 /*WALK*/

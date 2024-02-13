@@ -91,6 +91,28 @@ int	ft_key_hook(int keycode, t_list *s)
 		ft_walk_right(s);
 	return (0);
 }
+int	ft_key_hook_release(int keycode, t_list *s)
+{
+	if (keycode == Q || keycode == ESC)
+	{
+		ft_destroy(s);
+		printf("You close the window\n");
+		exit(0);
+	}
+	if (keycode == LEFTKEY)
+		s->angle_ini = s->angle_ini;
+	if (keycode == RIGHTKEY)
+		s->angle_ini = s->angle_ini;
+	if (keycode == DOWNKEY || keycode == S)
+		ft_walk_backward(s);
+	if (keycode == UPKEY || keycode == W)
+		ft_walk_forward(s);
+	if (keycode == A)
+		ft_walk_left(s);
+	if (keycode == D)
+		ft_walk_right(s);
+	return (0);
+}
 
 void	ft_charge_image(t_list *s)
 {
@@ -129,6 +151,7 @@ void	ft_screen(t_list *s)
 	mlx_loop_hook(s->mlx, ft_move, s);
 	//mlx_key_hook(s->mlx_win, ft_key_hook, s);//
 	mlx_hook(s->mlx_win, 2, (1L << 0), ft_key_hook, s);//
+	mlx_hook(s->mlx_win, 3, (1L << 1), ft_key_hook_release, s);///
 	mlx_loop(s->mlx);
 }
 
