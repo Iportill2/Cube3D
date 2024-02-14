@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:53:13 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/13 18:36:17 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 12:56:00 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 		my_mlx_pixel_put(d, x, y++, 0x00000000);
 } */
 
-int	ft_set_texture_color(t_data *d, int	j, int p)
+/* int	ft_set_texture_color(t_data *d, int	j, int p)
 {
 	double	x;
 	int		y;
@@ -71,11 +71,11 @@ int	ft_set_texture_color(t_data *d, int	j, int p)
 	{
 		x = 300 * (d->ry - floor(d->ry));
 		//y = (300 * p) / j;
-		//y = (300 * p) / j;
-		y = ((300 - (d->correct / 2)) * (p + (d->correct / 2))) / j;
+		y = (300 * p) / j;
+		//y = ((300 - (d->correct / 2)) * (p + (d->correct / 2))) / j;
 		//printf("d->ry = %f,   x = %f,   y = %i\n",d->ry, x, y);
-		/* if((300 * y) + (int)x < 3500)
-			printf("x = %i\n", (300 * y) + (int)x); */
+		//if((300 * y) + (int)x < 3500)
+		//	printf("x = %i\n", (300 * y) + (int)x);
 		return(d->active.addr[(300 * y) + (int)x]);
 		
 	}
@@ -83,7 +83,59 @@ int	ft_set_texture_color(t_data *d, int	j, int p)
 	{
 		x = 300 * (d->rx - floor(d->rx));
 		y = (300 * p) / j;
-		//y = ((300 - (d->correct / 2)) * (p + (d->correct / 2))) / j;
+		//y = ((300 - d->correct) * (p)) / j;
+		return(d->active.addr[(300 * y) + (int)x]);	
+	}
+	return (20);
+} */
+
+/* void	ft_create_line(t_data *d, int x)
+{
+	int	j;
+	int	y;
+	int k;
+	int	p;
+
+	j = (int)(480 / d->dist);
+	d->correct = j - 480;
+	if (d->correct < 0)
+		d->correct = 0;
+	//if (j > 480)
+	//{
+	//	j = 480;
+	//}
+	//if (d->correct > 0)
+	//	printf("d->correct: %i\n", d->correct);
+	if (j > 300)
+		printf("j: %i\n", j);
+	y = 0;
+	 while (y < (480 - j) / 2)
+		my_mlx_pixel_put(d, x, y++, 0x000000FF);
+	k = y + j;
+	p = 0;
+	while (y < 480 && y < k)
+	{
+		my_mlx_pixel_put(d, x, y++, ft_set_texture_color(d, j, p++ + (d->correct / 2)));
+	}
+	while (y < 480)
+		my_mlx_pixel_put(d, x, y++, 0x00000000);
+} */
+
+int	ft_set_texture_color(t_data *d, int	j, int p)
+{
+	double	x;
+	int		y;
+
+	if (d->texture == 'x')
+	{
+		x = 300 * (d->ry - floor(d->ry));
+		y = (300 * p) / j;
+		return(d->active.addr[(300 * y) + (int)x]);
+	}
+	else if (d->texture == 'y')
+	{
+		x = 300 * (d->rx - floor(d->rx));
+		y = (300 * p) / j;
 		return(d->active.addr[(300 * y) + (int)x]);	
 	}
 	return (20);
@@ -96,24 +148,21 @@ void	ft_create_line(t_data *d, int x)
 	int k;
 	int	p;
 
-	d->correct = 0;
 	j = (int)(480 / d->dist);
-	if (j > 480)
-	{
-		d->correct = j - 480;
-		j = 480;
-	}
+	d->correct = j - 480;
+	if (d->correct < 0)
+		d->correct = 0;
 	y = 0;
 	 while (y < (480 - j) / 2)
 		my_mlx_pixel_put(d, x, y++, 0x000000FF);
 	k = y + j;
 	p = 0;
-	while (y < k)
+	while (y < 480 && y < k)
 	{
-		my_mlx_pixel_put(d, x, y++, ft_set_texture_color(d, j, p++));
+		my_mlx_pixel_put(d, x, y++, ft_set_texture_color(d, j, p++ + (d->correct / 2)));
 	}
 	while (y < 480)
-		my_mlx_pixel_put(d, x, y++, 0x00666666);
+		my_mlx_pixel_put(d, x, y++, 0x001CE507);
 }
 
 int	ft_key_hook(int keycode, t_data *d)
@@ -164,7 +213,7 @@ void	ft_charge_image(t_data *d)
 void	ft_screen(t_data *d)
 {
 	ft_set_player_coord(d);
-	d->walk_step = 0.05;
+	d->walk_step = 0.07;
 	d->rotate_step = 5;
 	d->angle_ini = 90;
 	d->mlx = mlx_init();
