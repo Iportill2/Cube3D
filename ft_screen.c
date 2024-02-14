@@ -6,11 +6,19 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/31 19:53:13 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 12:56:00 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 13:52:45 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
+
+int	ft_free(t_data *d)
+{
+	printf("-----------------GAME OVER-----------------\n\n");
+	mlx_destroy_window(d->mlx, d->mlx_win);
+	exit(0);
+	return (0);
+}
 
 static void	ft_set_player_coord(t_data *d)
 {
@@ -42,84 +50,6 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
 	*(unsigned int*)dst = color;
 }
-
-/* void	ft_create_line(t_data *d, int x)
-{
-	int	j;
-	int	y;
-	int k;
-
-	j = (int)(480 / d->dist);
-	if (j > 480)
-		j = 480;
-	y = 0;
-	 while (y < (480 - j) / 2)
-		my_mlx_pixel_put(d, x, y++, 0x00000099);
-	k = y + j;
-	while (y < k)
-		my_mlx_pixel_put(d, x, y++, d->color);
-	while (y < 480)
-		my_mlx_pixel_put(d, x, y++, 0x00000000);
-} */
-
-/* int	ft_set_texture_color(t_data *d, int	j, int p)
-{
-	double	x;
-	int		y;
-
-	if (d->texture == 'x')
-	{
-		x = 300 * (d->ry - floor(d->ry));
-		//y = (300 * p) / j;
-		y = (300 * p) / j;
-		//y = ((300 - (d->correct / 2)) * (p + (d->correct / 2))) / j;
-		//printf("d->ry = %f,   x = %f,   y = %i\n",d->ry, x, y);
-		//if((300 * y) + (int)x < 3500)
-		//	printf("x = %i\n", (300 * y) + (int)x);
-		return(d->active.addr[(300 * y) + (int)x]);
-		
-	}
-	else if (d->texture == 'y')
-	{
-		x = 300 * (d->rx - floor(d->rx));
-		y = (300 * p) / j;
-		//y = ((300 - d->correct) * (p)) / j;
-		return(d->active.addr[(300 * y) + (int)x]);	
-	}
-	return (20);
-} */
-
-/* void	ft_create_line(t_data *d, int x)
-{
-	int	j;
-	int	y;
-	int k;
-	int	p;
-
-	j = (int)(480 / d->dist);
-	d->correct = j - 480;
-	if (d->correct < 0)
-		d->correct = 0;
-	//if (j > 480)
-	//{
-	//	j = 480;
-	//}
-	//if (d->correct > 0)
-	//	printf("d->correct: %i\n", d->correct);
-	if (j > 300)
-		printf("j: %i\n", j);
-	y = 0;
-	 while (y < (480 - j) / 2)
-		my_mlx_pixel_put(d, x, y++, 0x000000FF);
-	k = y + j;
-	p = 0;
-	while (y < 480 && y < k)
-	{
-		my_mlx_pixel_put(d, x, y++, ft_set_texture_color(d, j, p++ + (d->correct / 2)));
-	}
-	while (y < 480)
-		my_mlx_pixel_put(d, x, y++, 0x00000000);
-} */
 
 int	ft_set_texture_color(t_data *d, int	j, int p)
 {
@@ -167,6 +97,8 @@ void	ft_create_line(t_data *d, int x)
 
 int	ft_key_hook(int keycode, t_data *d)
 {
+	if (keycode == 53)
+		ft_free(d);
 	if (keycode == 124)
 		d->angle_ini -= d->rotate_step;
 	if (keycode == 123)
@@ -215,16 +147,14 @@ void	ft_screen(t_data *d)
 	ft_set_player_coord(d);
 	d->walk_step = 0.07;
 	d->rotate_step = 5;
-	d->angle_ini = 90;
+	d->angle_ini = 270;
 	d->mlx = mlx_init();
 	ft_charge_image(d);
 	d->mlx_win = mlx_new_window(d->mlx, 750, 480, "cube3D");
 	d->img = mlx_new_image(d->mlx, 750, 480);
 	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
 	mlx_loop_hook(d->mlx, ft_move, d);
-	//mlx_loop_hook(d->mlx, ft_enredando_torcido, d);
 	mlx_key_hook(d->mlx_win, ft_key_hook, d);
-	//ft_enredando_torcido(d);
-	//mlx_hook(d->mlx_win, 17, 0, ft_free, &d);
+	mlx_hook(d->mlx_win, 17, 0, ft_free, &d);
 	mlx_loop(d->mlx);
 }
