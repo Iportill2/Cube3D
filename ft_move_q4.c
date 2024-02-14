@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:32 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 16:47:21 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:21:12 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	ft_check_contact_y(t_data *d)
 static void	ft_ray_x(t_data *d)
 {
 	d->rx += d->dis_x;
-	d->ry -= (d->hypo_x * sin(d->angle_rad));
+	d->ry -= ((d->dis_x / cos(d->angle_rad)) * sin(d->angle_rad));
 	if (floor(d->ry) == d->ry)
 		d->dis_y = 1;
 	else
@@ -48,7 +48,7 @@ static void	ft_ray_x(t_data *d)
 static void	ft_ray_y(t_data *d)
 {
 	d->ry -= d->dis_y;
-	d->rx += (d->hypo_y * cos(d->angle_rad));
+	d->rx += ((d->dis_y / sin(d->angle_rad)) * cos(d->angle_rad));
 	if (ceil(d->rx) == d->rx)
 		d->dis_x = 1;
 	else
@@ -71,15 +71,13 @@ int	ft_move_q4(t_data *d, int i)
 		d->contact = 0;
 		while (d->contact == 0)
 		{
-			d->hypo_x = d->dis_x / cos(d->angle_rad);
-			d->hypo_y = d->dis_y / sin(d->angle_rad);
-			if (d->hypo_x < d->hypo_y)
+			if (d->dis_x / cos(d->angle_rad) < d->dis_y / sin(d->angle_rad))
 				ft_ray_x(d);
 			else
 				ft_ray_y(d);
 		}
-		d->angle_dist_rad = ((d->angle) - (270 - d->angle_ini)) * M_PI / 180;
-		d->dist = ((d->rx - d->px) / cos(d->angle_rad)) * sin (d->angle_dist_rad);
+		d->ang_dist_rad = ((d->angle) - (270 - d->angle_ini)) * M_PI / 180;
+		d->dist = ((d->rx - d->px) / cos(d->angle_rad)) * sin (d->ang_dist_rad);
 		ft_create_line(d, i);
 		d->angle -= 0.088;
 		i--;

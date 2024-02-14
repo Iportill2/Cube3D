@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 16:06:51 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 16:18:47 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:39:09 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,10 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		x;
-	int		y;
 }			t_img;
 
 typedef struct s_data
 {
-	int		color;
 	char	**map;
 	char	**pam;
 	double	px;
@@ -47,7 +44,7 @@ typedef struct s_data
 	double	dis_x;
 	double	dis_y;
 	double	angle_ini;
-	double	angle_dist_rad;
+	double	ang_dist_rad;
 	double	angle;
 	double	angle_rad;
 
@@ -59,19 +56,10 @@ typedef struct s_data
 	int		line_length;
 	int		endian;
 
-	double	adyacent;
-	double	opposit;
-	double	hypo_x;
-	double	hypo_y;
-
-	double	dist_ini;
-	double	dist;
-
-	double	closer;
-
 	int		contact;
-
+	int		correct;
 	char	texture;
+	double	dist;
 
 	t_img	n;
 	t_img	s;
@@ -79,13 +67,19 @@ typedef struct s_data
 	t_img	w;
 	t_img	active;
 
-	int		correct;
+	//int		color;
+	//double	adyacent;
+	//double	opposit;
+	//double	hypo_x;
+	//double	hypo_y;
+	//double	dist_ini;
+	//double	closer;
 }				t_data;
 
 /*MAIN*/
 int		main(int argc, char **argv);
 int		ft_maplen(char *s);
-char	**ft_pam(char **map);
+void	**ft_pam(t_data *d, char **map);
 
 /*FT_WALK*/
 void	ft_walk_backward(t_data *d);
@@ -105,14 +99,14 @@ char	**ft_split(char const *s, char c);
 void	ft_screen(t_data *d);
 void	ft_charge_image(t_data *d);
 int		ft_key_hook(int keycode, t_data *d);
-void	ft_create_line(t_data *d, int x);
-int		ft_set_texture_color(t_data *d, int j, int p);
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 void	ft_set_player_coord(t_data *d);
 int		ft_free(t_data *d);
 
 /*FT_MOVE*/
 int		ft_move(t_data *d);
+void	ft_create_line(t_data *d, int x);
+int		ft_set_texture_color(t_data *d, int j, int p);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 
 /*FT_MOVE_Q1*/
 int		ft_move_q1(t_data *d, int i);

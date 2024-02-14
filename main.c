@@ -6,44 +6,11 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:24:27 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 16:45:47 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 17:41:03 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub.h"
-
-char	**ft_pam(char **map)
-{
-	int		len;
-	int		slen;
-	char	**pam;
-	int		i;
-	int		j;
-	int		k;
-
-	len = 0;
-	while (map[0][len])
-		len++;
-	slen = 0;
-	while (map[slen])
-		slen++;
-	pam = malloc (sizeof(char *) * (len + 1));
-	pam[len] = NULL;
-	i = 0;
-	while (i < len)
-	{
-		k = 0;
-		j = slen - 1;
-		pam[i] = malloc (sizeof(char) * (slen + 1));
-		while (j >= 0)
-		{
-			pam[i][k++] = map[j--][i];
-		}
-		pam[i][k] = '\0';
-		i++;
-	}
-	return (pam);
-}
 
 int	ft_maplen(char *s)
 {
@@ -81,18 +48,18 @@ int	main(int argc, char **argv)
 	read (fd, s, i);
 	s[i] = '\0';
 	map = ft_split(s, '\n');
-	pam = ft_pam(map);
+	ft_pam(d, map);
 	i = 0;
 	while (map[i])
 		printf("%s\n", map[i++]);
 	printf("\n");
 	i = 0;
-	while (pam[i])
-		printf("%s\n", pam[i++]);
+	/* while (pam[i])
+		printf("%s\n", pam[i++]); */
 	printf("\n");
 	//printf("x[%i]y[%i] = %c\n", x, y, pam[x][y]);
 	d->map = map;
-	d->pam = pam;
+	//d->pam = pam;
 	ft_screen(d);
 	return (0);
 }
