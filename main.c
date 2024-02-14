@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:24:27 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/08 15:25:37 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:45:47 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	**ft_pam(char **map)
 	while (map[0][len])
 		len++;
 	slen = 0;
-	while(map[slen])
+	while (map[slen])
 		slen++;
 	pam = malloc (sizeof(char *) * (len + 1));
 	pam[len] = NULL;
@@ -45,7 +45,7 @@ char	**ft_pam(char **map)
 	return (pam);
 }
 
-int	ft_maplen(char * s)
+int	ft_maplen(char *s)
 {
 	int		fd;
 	int		i;

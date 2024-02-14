@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 20:02:59 by manue             #+#    #+#             */
-/*   Updated: 2024/01/30 16:08:14 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 15:41:56 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,24 +97,3 @@ char	**ft_split(char const *s, char c)
 	array[j] = NULL;
 	return (array);
 }
-
-/* int	main(void)
-{
-	//char	s[] = "-zapato-gato----julio-agosto-mosto";
-	//char	s[] = "Hleo!e";
-	char	c;
-	char	**res;
-	int		i;
-
-	i = 0;
-	c = '\n';
-	//res = (char **) malloc (sizeof(char *) * 100);
-	res = ft_split("", c);
-	printf ("%s\n", res[0]);
-	while (res && res[i])
-	{
-		printf ("%s\n", res[i]);
-		i++;
-	}
-	return (0);
-} */

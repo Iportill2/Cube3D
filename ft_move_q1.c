@@ -6,7 +6,7 @@
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:53:22 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/13 17:29:00 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/14 16:35:54 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	ft_ray_x(t_data *d)
 {
-	//printf("---------Hola X------------\n");
 	d->rx += d->dis_x;
 	d->ry += (d->hypo_x * sin(d->angle_rad));
 	if (ceil(d->ry) == d->ry)
@@ -22,14 +21,12 @@ static void	ft_ray_x(t_data *d)
 	else
 		d->dis_y = ceil(d->ry) - d->ry;
 	d->dis_x = 1;
-	d->color = 0x0000AA00;
 	d->texture = 'x';
-	d->active  = d->w;
+	d->active = d->w;
 }
 
 static void	ft_ray_y(t_data *d)
 {
-	//printf("------------Hola Y------------\n");
 	d->ry += d->dis_y;
 	d->rx += (d->hypo_y * cos(d->angle_rad));
 	if (ceil(d->rx) == d->rx)
@@ -37,30 +34,26 @@ static void	ft_ray_y(t_data *d)
 	else
 		d->dis_x = ceil(d->rx) - d->rx;
 	d->dis_y = 1;
-	d->color = 0x0000DD00;
 	d->texture = 'y';
-	d->active  = d->s;
+	d->active = d->s;
 }
 
 static void	ft_check_contact(t_data *d)
 {
 	if (d->pam[(int)floor(d->rx)][(int)floor(d->ry)] == '1')
 		d->contact = 1;
-	//printf("contact = %d\n", d->contact);
-	
-	//printf("contenido = %s\n", d->pam[(int)floor(d->px)][(int)floor(d->py)]);
 }
 
-int ft_move_q1(t_data *d, int i)
+int	ft_move_q1(t_data *d, int i)
 {
 	while (i >= 0 && d-> angle <= 90)
 	{
 		d->rx = d->px;
 		d->ry = d->py;
-		d->contact = 0;
 		d->angle_rad = d->angle * M_PI / 180.0;
 		d->dis_x = ceil(d->rx) - d->rx;
 		d->dis_y = ceil(d->ry) - d->ry;
+		d->contact = 0;
 		while (d->contact == 0)
 		{
 			d->hypo_x = d->dis_x / cos(d->angle_rad);
@@ -73,11 +66,9 @@ int ft_move_q1(t_data *d, int i)
 		}
 		d->angle_dist_rad = (90 - d->angle_ini + d->angle) * M_PI / 180;
 		d->dist = ((d->rx - d->px) / cos(d->angle_rad)) * sin (d->angle_dist_rad);
-		//printf("angle rad = %f - d->dist: %f\n",d->angle_rad, d->dist);
 		ft_create_line(d, i);
 		d->angle += 0.088;
 		i--;
 	}
-	//printf("Q1   d->angle_ini = %f\n", d->angle_ini);
 	return (i);
 }
