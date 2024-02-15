@@ -53,53 +53,44 @@ int	ft_check_map_args(t_list *s)
 	return (0);
 }
 
-int	ft_check_map_double_jump_line_bis(t_list *s, int n, int e, int w)
+int	ft_check_map_double_jump_line_bis(t_list *s, int i)
 {
-	if (s->map2d[s->i] == 'N')
-		n++;
-	else if (s->map2d[s->i] == 'S')
-		s->s_c++;
-	else if (s->map2d[s->i] == 'E')
-		e++;
-	else if (s->map2d[s->i] == 'W')
-		w++;
-	else if (s->map2d[s->i] == 'F')
-		s->f++;
-	else if (s->map2d[s->i] == 'C')
-		s->c++;
-	if ((n == 2 || n == 3) && (s->s_c == 2 || s->s_c == 3) && \
-	(e == 3 || e == 4) && (w == 2 || w == 3) && s->f == 1 && \
-	s->c == 1 && (s->stop == 0) && s->map2d[s->i] == '\n')
-		s->stop = 1;
-	else if ((s->stop == 1) && s->map2d[s->i] == '\n')
-		s->stop = 1;
-	else if (s->stop != 0 && (s->map2d[s->i] == '1'))
-		s->stop = 2;
-	else if ((s->stop == 2) && s->map2d[s->i] == '\n')
-		s->stop = 3;
-	else if ((s->stop == 3) && s->map2d[s->i] == '\n')
-		return (1);
-	return (0);
+	while (s->map2d[i])
+	{
+		if (s->map2d[i] == '\n')
+		{
+			i++;
+			while(s->map2d[i] == ' ' || s->map2d[i] == '\t')
+				i++;
+			if (s->map2d[i] == '\n')
+				return(printf("Error\nNo playable map\n"), -1);
+		}
+		i++;
+	}
+	return (i);
 }
 
 int	ft_check_map_double_jump_line(t_list *s)
 {
-	int	n;
-	int	s1;
-	int	w;
-	int	e;
+	int i;
 
-	n = 0;
-	s1 = 0;
-	w = 0;
-	e = 0;
-	if (s->map2d == NULL)
-		return (1);
-	while (s->map2d[s->i])
+	i = 0;
+	while (s->map2d && s->map2d[i])
 	{
-		if (ft_check_map_double_jump_line_bis(s, n, e, w) == 1)
-			return (printf("Error in ft_check_map_double_jump_line\n"), 1);
-		s->i++;
+		while(s->map2d[i] == ' ' || s->map2d[i] == '\t')
+			i++;
+		if (s->map2d[i] != '1')
+		{
+			while (s->map2d[i] != '\n')
+				i++;
+			i++;
+		}
+		else
+		{
+			i = ft_check_map_double_jump_line_bis(s, i);
+			if (i == -1)
+				return (1);
+		}
 	}
-	return (0);
+	return(0);
 }
