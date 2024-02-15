@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_screen.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/15 18:09:58 by iportill          #+#    #+#             */
+/*   Updated: 2024/02/15 18:16:56 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
@@ -10,14 +21,14 @@ static void	ft_set_player_coord(t_data *d)
 	while (d->pam[i])
 	{
 		j = 0;
-		while(d->pam[i][j])
+		while (d->pam[i][j])
 		{
-			if (d->pam[i][j] == 'N' ||d->pam[i][j] == 'W' || \
-			d->pam[i][j] == 'E' ||d->pam[i][j] == 'S')
+			if (d->pam[i][j] == 'N' || d->pam[i][j] == 'W' || \
+			d->pam[i][j] == 'E' || d->pam[i][j] == 'S')
 			{
 				d->px = i + 0.5;
 				d->py = j + 0.5;
-				return;
+				return ;
 			}
 			j++;
 		}
@@ -87,7 +98,8 @@ void	ft_screen(t_data *d)
 	ft_charge_image(d);
 	d->mlx_win = mlx_new_window(d->mlx, X_SIZE_SCREEN, Y_SIZE_SCREEN, "cube3D");
 	d->img = mlx_new_image(d->mlx, X_SIZE_SCREEN, Y_SIZE_SCREEN);
-	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
+	d->addr = mlx_get_data_addr \
+		(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
 	mlx_loop_hook(d->mlx, ft_move, d);
 	mlx_hook(d->mlx_win, 2, (1L << 0), ft_key_press, d);
 	mlx_hook(d->mlx_win, 3, (1L << 1), ft_key_hook_release, d);

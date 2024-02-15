@@ -3,43 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:09:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/15 12:12:16 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:13:31 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-void	ft_pam(t_data *d, char **map)
-{
-	int		len;
-	int		slen;
-	int		i;
-	int		j;
-	int		k;
-
-	len = 0;
-	while (map[0][len])
-		len++;
-	slen = 0;
-	while (map[slen])
-		slen++;
-	d->pam = malloc (sizeof(char *) * (len + 1));
-	d->pam[len] = NULL;
-	i = 0;
-	while (i < len)
-	{
-		k = 0;
-		j = slen - 1;
-		d->pam[i] = malloc (sizeof(char) * (slen + 1));
-		while (j >= 0)
-			d->pam[i][k++] = map[j--][i];
-		d->pam[i][k] = '\0';
-		i++;
-	}
-}
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
@@ -104,7 +75,7 @@ void	ft_walk(t_data *d)
 		ft_walk_left(d);
 	if (d->walk_right == 1)
 		ft_walk_right(d);
-	ft_rotate (d);	
+	ft_rotate (d);
 }
 
 int	ft_move(t_data *d)

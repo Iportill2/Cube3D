@@ -2,7 +2,7 @@
 NAME		= cub3D
 
 CC			= gcc
-CFLAGS		= -Wall -Werror -Wextra -g3 #-fsanitize=address -g3 #-llsan #-fsanitize=leak 
+CFLAGS		= -Wall -Werror -Wextra 
 LMLX		= -Lmlx -lmlx -framework OpenGL -framework AppKit -Imlx
 RM			= rm -rf
 MLX			= mlx
@@ -19,7 +19,6 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)utils_one.c \
 			$(SRC_DIR)utils_two.c \
 			$(SRC_DIR)get_maps.c \
-			$(SRC_DIR)game.c \
 			$(SRC_DIR)ft_move_q1.c \
 			$(SRC_DIR)ft_move_q2.c \
 			$(SRC_DIR)ft_move_q3.c \

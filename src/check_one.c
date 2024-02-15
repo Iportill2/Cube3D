@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_one.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/15 18:09:31 by iportill          #+#    #+#             */
+/*   Updated: 2024/02/15 18:12:44 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 int	ft_check_chars_in_playable_map(t_list *s)
@@ -60,10 +72,10 @@ int	ft_check_map_double_jump_line_bis(t_list *s, int i)
 		if (s->map2d[i] == '\n')
 		{
 			i++;
-			while(s->map2d[i] == ' ' || s->map2d[i] == '\t')
+			while (s->map2d[i] == ' ' || s->map2d[i] == '\t')
 				i++;
 			if (s->map2d[i] == '\n')
-				return(printf("Error\nNo playable map\n"), -1);
+				return (printf("Error\nNo playable map\n"), -1);
 		}
 		i++;
 	}
@@ -72,12 +84,12 @@ int	ft_check_map_double_jump_line_bis(t_list *s, int i)
 
 int	ft_check_map_double_jump_line(t_list *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (s->map2d && s->map2d[i])
 	{
-		while(s->map2d[i] == ' ' || s->map2d[i] == '\t')
+		while (s->map2d[i] == ' ' || s->map2d[i] == '\t')
 			i++;
 		if (s->map2d[i] != '1')
 		{
@@ -92,5 +104,5 @@ int	ft_check_map_double_jump_line(t_list *s)
 				return (1);
 		}
 	}
-	return(0);
+	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/15 18:13:42 by iportill          #+#    #+#             */
+/*   Updated: 2024/02/15 18:21:29 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 # include "../mlx/mlx.h"
@@ -54,7 +66,6 @@ typedef struct s_img
 	int		endian;
 }			t_img;
 
-
 typedef struct s_list
 {
 	void	*window;
@@ -98,9 +109,7 @@ typedef struct s_list
 	int		n_c;
 	int		s_c;
 
-
 }			t_list;
-
 
 typedef struct s_data
 {
@@ -151,20 +160,15 @@ typedef struct s_data
 	int		walk_left;
 	int		walk_right;
 	int		rotate;
-	//int		color;
-	//double	adyacent;
-	//double	opposit;
-	//double	hypo_x;
-	//double	hypo_y;
-	//double	dist_ini;
-	//double	closer;
+
+	double	x;
+	double	y;
 }				t_data;
 
 /*MAIN X*/
 int		ft_read_map(char **argv, t_list *s);
 int		ft_maplen(char *s);
-void	ft_s_to_d(t_list *s,t_data *d);
-void	toito(t_list *s,t_data *d);////
+void	ft_s_to_d(t_list *s, t_data *d);
 int		ft_read_map(char **argv, t_list *s);
 int		ft_get_playable_map_strlen_arraylen(t_list *s);
 /*MOVE_Q1*/
@@ -176,13 +180,13 @@ int		ft_move_q3(t_data *d, int i);
 /*MOVE_Q4*/
 int		ft_move_q4(t_data *d, int i);
 /*MOVE*/
-void	ft_pam(t_data *d, char **map);
+
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		ft_set_texture_color(t_data *d, int j, int p);
 void	ft_create_line(t_data *d, int x);
 int		ft_move(t_data *d);
 /*SCREEN*/
-//int		ft_key_hook(int keycode, t_data *d);
+int		ft_key_press(int keycode, t_data *d);
 int		ft_key_hook_release(int keycode, t_data *d);
 void	ft_charge_image(t_data *d);
 void	ft_screen(t_data *d);
@@ -230,11 +234,7 @@ int		ft_check_new_playable_map_bis(t_list *s, char c, int i, int e);
 int		ft_check_new_playable_map_its_playable(t_list *s, char c);
 int		ft_check_player_in_new_map(t_list *s);
 int		ft_checks(t_list *s);
-/*GAME (5) X*/
-void	ft_destroy(t_data *d);
-int		ft_close_window(t_data *d);
-int		ft_key_press(int keycode, t_data *d);
-void	ft_hook(t_data *d);
+
 /*GET_MAPS () X */
 int		ft_get_playable_map_bis(t_list *s, int i, int u);
 int		ft_get_playable_map(t_list *s);
@@ -269,5 +269,6 @@ int		ft_free_struc_d(t_data *d);
 
 /*ROTATE*/
 void	ft_rotate(t_data *d);
+void	ft_pam(t_data *d, char **map);
 
 #endif
