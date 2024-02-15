@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_and_rgb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:20 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:11:55 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:48:24 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ int	check_celling_numbers(t_list *s, int n)
 int	ft_clean_celling(t_list *s)
 {
 	if (check_celling_numbers(s, 1) == 1)
-		return (printf("Error in check_celling_numbers 1\n"), 1);
+		return (printf("Error\nincorrect ceiling first number\n"), 1);
 	if (check_celling_numbers(s, 2) == 1)
-		return (printf("Error in check_celling_numbers 2\n"), 1);
+		return (printf("Error\nincorrect ceiling second number\n"), 1);
 	if (check_celling_numbers(s, 3) == 1)
-		return (printf("Error in check_celling_numbers 3\n"), 1);
+		return (printf("Error\nincorrect ceiling third number\n"), 1);
 	return (0);
 }
 

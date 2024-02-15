@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_and_frees.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:27:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/15 18:36:28 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:56:24 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

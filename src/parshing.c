@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parshing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:13 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:35:29 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:01:07 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

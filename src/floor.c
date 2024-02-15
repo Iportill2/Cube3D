@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:46 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:09:47 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 19:36:40 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ int	ft_check_floor_cellig_values(t_list *s)
 		if (s->celling_int_arr[i] > -1 && s->celling_int_arr[i] < 256)
 			i++;
 		else
-			return (1);
+			return (printf("Error\n%i is an incorrect number", \
+			s->celling_int_arr[i]), 1);
 	}
 	i = 0;
 	while (i < s->floor_size)
@@ -30,7 +31,8 @@ int	ft_check_floor_cellig_values(t_list *s)
 		if (s->floor_int_arr[i] > -1 && s->floor_int_arr[i] < 256)
 			i++;
 		else
-			return (1);
+			return (printf("Error\n%i is an incorrect number", \
+			s->floor_int_arr[i]), 1);
 	}
 	return (0);
 }
@@ -76,11 +78,11 @@ int	ft_check_floor_arr_int_numbers(t_list *s, int n)
 int	ft_clean_floor(t_list *s)
 {
 	if (ft_check_floor_arr_int_numbers(s, 1) == 1)
-		return (printf("Error in ft_check_floor_arr_int_numbers 1\n"), 1);
+		return (printf("Error\nincorrect floor first number\n"), 1);
 	if (ft_check_floor_arr_int_numbers(s, 2) == 1)
-		return (printf("Error in ft_check_floor_arr_int_numbers 2\n"), 1);
+		return (printf("Error\nincorrect floor second number\n"), 1);
 	if (ft_check_floor_arr_int_numbers(s, 3) == 1)
-		return (printf("Error in ft_check_floor_arr_int_numbers 2\n"), 1);
+		return (printf("Error\nincorrect floor third number\n"), 1);
 	return (0);
 }
 
@@ -90,9 +92,9 @@ int	ft_floor_cell(t_list *s)
 		return (printf("Error in ft_get_pj_init_position\n"), 1);
 	ft_parshing_map_args(s);
 	if (ft_clean_floor(s) == 1)
-		return (printf("Error en ft_clean_floor\n"), 1);
+		return (1);
 	if (ft_clean_celling(s) == 1)
-		return (printf("Error en ft_clean_celling\n"), 1);
+		return (1);
 	if (ft_floor_atoi_array(s) == 1)
 		return (printf("Error reserving memory for d->floor_int_arr\n"), 1);
 	if (ft_cell_atoi_array(s) == 1)

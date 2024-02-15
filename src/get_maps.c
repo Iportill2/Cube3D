@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:08 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:34:57 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:59:13 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
