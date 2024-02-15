@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:08 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:10:09 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:34:57 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	ft_get_maps(t_list *s, char **argv)
 	if (s->map3d == NULL)
 		return (printf("Error in ft_split: d->map3d == NULL\n"), 1);
 	if (ft_clean_map3d_split(s) == 1)
-		return (printf("Error clean_map3d_split"), 1);
+		return (1);
 	ft_get_playable_map(s);
 	ft_get_playable_map_strlen_arraylen(s);
 	ft_create_new_playable_map(s);

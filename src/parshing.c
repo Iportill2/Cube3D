@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:13 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:10:14 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 18:35:29 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ int	ft_clean_map3d_split_bis(t_list *s, int i, int count)
 		i++;
 	}
 	if (count != 6)
-		return (printf("Too many arguments in map_settings\n"), 1);
+		return \
+		(printf("Error\nIncorrect number of arguments in map_settings\n"), 1);
 	s->map_settings = ft_calloc(sizeof(char *), count + 1);
 	if (s->map_settings == NULL)
 		return (1);
@@ -64,7 +65,7 @@ int	ft_clean_map3d_split(t_list *s)
 	e = 0;
 	count = 0;
 	if (ft_clean_map3d_split_bis(s, i, count) == 1)
-		return (printf("Error in ft_clean_map3d_split_bis\n"), 1);
+		return (1);
 	if (s->map_settings == NULL)
 		return (1);
 	i = 0;
