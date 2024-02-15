@@ -1,21 +1,21 @@
 #include "../include/cub3d.h"
 
-int	ft_check_floor_cellig_values(t_data *d)
+int	ft_check_floor_cellig_values(t_list *s)
 {
 	int	i;
 
 	i = 0;
-	while (i < d->cell_size)
+	while (i < s->cell_size)
 	{
-		if (d->celling_int_arr[i] > -1 && d->celling_int_arr[i] < 256)
+		if (s->celling_int_arr[i] > -1 && s->celling_int_arr[i] < 256)
 			i++;
 		else
 			return (1);
 	}
 	i = 0;
-	while (i < d->floor_size)
+	while (i < s->floor_size)
 	{
-		if (d->floor_int_arr[i] > -1 && d->floor_int_arr[i] < 256)
+		if (s->floor_int_arr[i] > -1 && s->floor_int_arr[i] < 256)
 			i++;
 		else
 			return (1);
@@ -23,37 +23,37 @@ int	ft_check_floor_cellig_values(t_data *d)
 	return (0);
 }
 
-int	ft_floor_atoi_array(t_data *d)
+int	ft_floor_atoi_array(t_list *s)
 {
 	int	i;
 	int	e;
 
 	i = 0;
 	e = 0;
-	while (d->floor[i])
+	while (s->floor[i])
 		i++;
-	d->floor_size = i -1;
-	d->floor_int_arr = ft_calloc(sizeof(int *), (d->floor_size));
-	if (d->floor_int_arr == NULL)
+	s->floor_size = i -1;
+	s->floor_int_arr = ft_calloc(sizeof(int *), (s->floor_size));
+	if (s->floor_int_arr == NULL)
 		return (1);
 	i = 1;
-	while (d->floor[i])
+	while (s->floor[i])
 	{
-		d->floor_int_arr[e] = ft_atoi(d->floor[i]);
+		s->floor_int_arr[e] = ft_atoi(s->floor[i]);
 		e++;
 		i++;
 	}
 	return (0);
 }
 
-int	ft_check_floor_arr_int_numbers(t_data *d, int n)
+int	ft_check_floor_arr_int_numbers(t_list *s, int n)
 {
 	int	i;
 
 	i = 0;
-	while (d->floor[n][i])
+	while (s->floor[n][i])
 	{
-		if (d->floor[n][i] >= '0' && d->floor[n][i] <= '9')
+		if (s->floor[n][i] >= '0' && s->floor[n][i] <= '9')
 			i++;
 		else
 			return (1);
@@ -61,33 +61,33 @@ int	ft_check_floor_arr_int_numbers(t_data *d, int n)
 	return (0);
 }
 
-int	ft_clean_floor(t_data *d)
+int	ft_clean_floor(t_list *s)
 {
-	if (ft_check_floor_arr_int_numbers(d, 1) == 1)
+	if (ft_check_floor_arr_int_numbers(s, 1) == 1)
 		return (printf("Error in ft_check_floor_arr_int_numbers 1\n"), 1);
-	if (ft_check_floor_arr_int_numbers(d, 2) == 1)
+	if (ft_check_floor_arr_int_numbers(s, 2) == 1)
 		return (printf("Error in ft_check_floor_arr_int_numbers 2\n"), 1);
-	if (ft_check_floor_arr_int_numbers(d, 3) == 1)
+	if (ft_check_floor_arr_int_numbers(s, 3) == 1)
 		return (printf("Error in ft_check_floor_arr_int_numbers 2\n"), 1);
 	return (0);
 }
 
-int	ft_floor_cell(t_data *d)
+int	ft_floor_cell(t_list *s)
 {
-	if (ft_get_pj_init_position(d) == 1)
+	if (ft_get_pj_init_position(s) == 1)
 		return (printf("Error in ft_get_pj_init_position\n"), 1);
-	ft_parshing_map_args(d);
-	if (ft_clean_floor(d) == 1)
+	ft_parshing_map_args(s);
+	if (ft_clean_floor(s) == 1)
 		return (printf("Error en ft_clean_floor\n"), 1);
-	if (ft_clean_celling(d) == 1)
+	if (ft_clean_celling(s) == 1)
 		return (printf("Error en ft_clean_celling\n"), 1);
-	if (ft_floor_atoi_array(d) == 1)
+	if (ft_floor_atoi_array(s) == 1)
 		return (printf("Error reserving memory for d->floor_int_arr\n"), 1);
-	if (ft_cell_atoi_array(d) == 1)
+	if (ft_cell_atoi_array(s) == 1)
 		return (printf("Error reserving memory for d->cell_int_arr\n"), 1);
-	d->floor_rgb = ft_transf_rgb(d->floor_int_arr[0], \
-	d->floor_int_arr[1], d->floor_int_arr[2]);
-	d->cell_rgb = ft_transf_rgb(d->celling_int_arr[0], \
-	d->celling_int_arr[1], d->celling_int_arr[2]);
+	s->floor_rgb = ft_transf_rgb(s->floor_int_arr[0], \
+	s->floor_int_arr[1], s->floor_int_arr[2]);
+	s->cell_rgb = ft_transf_rgb(s->celling_int_arr[0], \
+	s->celling_int_arr[1], s->celling_int_arr[2]);
 	return (0);
 }

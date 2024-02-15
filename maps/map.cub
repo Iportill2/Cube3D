@@ -1,15 +1,19 @@
 
-    NO textures/NO.xpm    
- SO textures/SO.xpm   
- EA textures/EA.xpm  
-  WE textures/WE.xpm    
- F 222,222,2   
- 
- 
-C 222,32,2
+NO textures/Goiko.xpm
 
-111111
-100001   
-10N001   
-100001   
-111111  
+SO              textures/Iker.xpm
+WE       textures/canita.xpm
+EA    textures/fary.xpm
+
+C   0,0, 255
+F 28, 229, 7  
+
+111111111
+100010001   
+100000001 
+100000001  
+1100E0011  
+100000001
+100000001 
+100010001 
+111111111 

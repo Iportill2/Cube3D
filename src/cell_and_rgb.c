@@ -17,37 +17,37 @@ int	ft_array_check(char *s)
 	return (0);
 }
 
-int	ft_cell_atoi_array(t_data *d)
+int	ft_cell_atoi_array(t_list *s)
 {
 	int	i;
 	int	e;
 
 	i = 1;
 	e = 0;
-	while (d->floor[i])
+	while (s->floor[i])
 		i++;
-	d->cell_size = i -1;
-	d->celling_int_arr = ft_calloc(sizeof(int *), (d->cell_size));
-	if (d->celling_int_arr == NULL)
+	s->cell_size = i -1;
+	s->celling_int_arr = ft_calloc(sizeof(int *), (s->cell_size));
+	if (s->celling_int_arr == NULL)
 		return (1);
 	i = 1;
-	while (d->floor[i])
+	while (s->floor[i])
 	{
-		d->celling_int_arr[e] = ft_atoi(d->celling[i]);
+		s->celling_int_arr[e] = ft_atoi(s->celling[i]);
 		e++;
 		i++;
 	}
 	return (0);
 }
 
-int	check_celling_numbers(t_data *d, int n)
+int	check_celling_numbers(t_list *s, int n)
 {
 	int	i;
 
 	i = 0;
-	while (d->celling[n][i])
+	while (s->celling[n][i])
 	{
-		if (d->celling[n][i] >= '0' && d->celling[n][i] <= '9')
+		if (s->celling[n][i] >= '0' && s->celling[n][i] <= '9')
 			i++;
 		else
 			return (1);
@@ -55,13 +55,13 @@ int	check_celling_numbers(t_data *d, int n)
 	return (0);
 }
 
-int	ft_clean_celling(t_data *d)
+int	ft_clean_celling(t_list *s)
 {
-	if (check_celling_numbers(d, 1) == 1)
+	if (check_celling_numbers(s, 1) == 1)
 		return (printf("Error in check_celling_numbers 1\n"), 1);
-	if (check_celling_numbers(d, 2) == 1)
+	if (check_celling_numbers(s, 2) == 1)
 		return (printf("Error in check_celling_numbers 2\n"), 1);
-	if (check_celling_numbers(d, 3) == 1)
+	if (check_celling_numbers(s, 3) == 1)
 		return (printf("Error in check_celling_numbers 3\n"), 1);
 	return (0);
 }

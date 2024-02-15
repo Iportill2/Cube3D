@@ -1,3 +1,4 @@
+
 #include "../include/cub3d.h"
 
 static void	ft_set_player_coord(t_data *d)
@@ -11,7 +12,8 @@ static void	ft_set_player_coord(t_data *d)
 		j = 0;
 		while(d->pam[i][j])
 		{
-			if (d->pam[i][j] == 'N')
+			if (d->pam[i][j] == 'N' ||d->pam[i][j] == 'W' || \
+			d->pam[i][j] == 'E' ||d->pam[i][j] == 'S')
 			{
 				d->px = i + 0.5;
 				d->py = j + 0.5;
@@ -23,94 +25,49 @@ static void	ft_set_player_coord(t_data *d)
 	}
 }
 
-void	my_mlx_pixel_put(t_data *d, int x, int y, int color)
+int	ft_key_hook_release(int keycode, t_data *d)//quitar seguramente
 {
-	char	*dst;
-
-	dst = d->addr + (y * d->line_length + x * (d->bits_per_pixel / 8));
-	*(unsigned int*)dst = color;
-}
-
-/* void	ft_create_line(t_data *d, int x)
-{
-	int	j;
-	int	y;
-	int k;
-
-	j = (int)(480 / d->dist);
-	if (j > 480)
-		j = 480;
-	y = 0;
-	 while (y < (480 - j) / 2)
-		my_mlx_pixel_put(d, x, y++, 0x00000099);
-	k = y + j;
-	while (y < k)
-		my_mlx_pixel_put(d, x, y++, d->color);
-	while (y < 480)
-		my_mlx_pixel_put(d, x, y++, 0x00000000);
-} */
-
-void	ft_create_line(t_data *d, int x)
-{
-	int	j;
-	int	y;
-	int k;
-
-	j = (int)(480 / d->dist);
-	if (j > 480)
-		j = 480;
-	y = 0;
-	 while (y < (480 - j) / 2)
-		my_mlx_pixel_put(d, x, y++, d->cell_rgb);
-	k = y + j;
-	while (y < k)
-		my_mlx_pixel_put(d, x, y++, d->color);
-	while (y < 480)
-		my_mlx_pixel_put(d, x, y++, d->floor_rgb);
+	if (keycode == RIGHTKEY)
+		d->angle_ini -= ROTATE_STEP;
+	if (keycode == LEFTKEY)
+		d->angle_ini += ROTATE_STEP;
+	if (keycode == UPKEY || keycode == W)
+		ft_walk_forward(d);
+	if (keycode == DOWNKEY || keycode == S)
+		ft_walk_backward(d);
+	if (keycode == A)
+		ft_walk_left(d);
+	if (keycode == D)
+		ft_walk_right(d);
+	if (keycode == Q || keycode == ESC)
+	{
+		ft_destroy(d);
+		printf("You close the window\n");
+		exit(0);
+	}
+	return (0);
 }
 
 int	ft_key_hook(int keycode, t_data *d)
 {
-	if (keycode == Q || keycode == ESC)
-	{
-		ft_destroy(d);
-		printf("You close the window\n");
-		exit(0);
-	}
-	if (keycode == LEFTKEY)
-		d->angle_ini += ROTATE_STEP;
 	if (keycode == RIGHTKEY)
 		d->angle_ini -= ROTATE_STEP;
-	if (keycode == DOWNKEY || keycode == S)
-		ft_walk_backward(d);
+	if (keycode == LEFTKEY)
+		d->angle_ini += ROTATE_STEP;
 	if (keycode == UPKEY || keycode == W)
 		ft_walk_forward(d);
+	if (keycode == DOWNKEY || keycode == S)
+		ft_walk_backward(d);
 	if (keycode == A)
 		ft_walk_left(d);
 	if (keycode == D)
 		ft_walk_right(d);
-	return (0);
-}
-int	ft_key_hook_release(int keycode, t_data *d)
-{
 	if (keycode == Q || keycode == ESC)
 	{
 		ft_destroy(d);
 		printf("You close the window\n");
 		exit(0);
 	}
-	if (keycode == LEFTKEY)
-		d->angle_ini = d->angle_ini;
-	if (keycode == RIGHTKEY)
-		d->angle_ini = d->angle_ini;
-	if (keycode == DOWNKEY || keycode == S)
-		ft_walk_backward(d);
-	if (keycode == UPKEY || keycode == W)
-		ft_walk_forward(d);
-	if (keycode == A)
-		ft_walk_left(d);
-	if (keycode == D)
-		ft_walk_right(d);
 	return (0);
 }
 
@@ -119,110 +76,35 @@ void	ft_charge_image(t_data *d)
 	int	x;
 
 	x = 300;
-	d->n.img  = mlx_xpm_file_to_image(d->mlx, "textures/iker.xpm", &x, &x);
+	d->n.img  = mlx_xpm_file_to_image(d->mlx, d->texture_s, &x, &x);//iker
 	d->n.addr = (int *) mlx_get_data_addr(d->n.img, &d->n.bits_per_pixel,
 			&d->n.line_length, &d->n.endian);
-	d->n.line_length = d->n.line_length / 4;
-	
-	d->s.img  = mlx_xpm_file_to_image(d->mlx, "textures/goiko.xpm", &x, &x);
+	d->s.img  = mlx_xpm_file_to_image(d->mlx, d->texture_n, &x, &x);//goiko
 	d->s.addr = (int *) mlx_get_data_addr(d->s.img, &d->s.bits_per_pixel,
 			&d->s.line_length, &d->s.endian);
-	d->s.line_length = d->s.line_length / 4;
-	
-	d->e.img  = mlx_xpm_file_to_image(d->mlx, "textures/canita.xpm", &x, &x);
+	d->e.img  = mlx_xpm_file_to_image(d->mlx, d->texture_w, &x, &x);//canita
 	d->e.addr = (int *) mlx_get_data_addr(d->e.img, &d->e.bits_per_pixel,
 			&d->e.line_length, &d->e.endian);
-	d->e.line_length = d->e.line_length / 4;
-
-	d->w.img  = mlx_xpm_file_to_image(d->mlx, "textures/fary.xpm", &x, &x);
+	d->w.img  = mlx_xpm_file_to_image(d->mlx, d->texture_e, &x, &x);//fary
 	d->w.addr = (int *) mlx_get_data_addr(d->w.img, &d->w.bits_per_pixel,
 			&d->w.line_length, &d->w.endian);
-	d->w.line_length = d->w.line_length / 4;
-}		
-
+}
 
 
 void	ft_screen(t_data *d)
 {
 	ft_set_player_coord(d);
-/* 	if (d->pj_init_nsew == 'N')
-		d->angle_ini = 180;
-	else if (d->pj_init_nsew == 'W')
-		d->angle_ini = 90;
-	else if (d->pj_init_nsew == 'S')
-		d->angle_ini = 360;
-	else if (d->pj_init_nsew == 'E')
-		d->angle_ini = 270;	 */
-	d->angle_ini = 90;/////
 	d->mlx = mlx_init();
 	ft_charge_image(d);
 	d->mlx_win = mlx_new_window(d->mlx, X_SIZE_SCREEN, Y_SIZE_SCREEN, "cube3D");
 	d->img = mlx_new_image(d->mlx, X_SIZE_SCREEN, Y_SIZE_SCREEN);
 	d->addr = mlx_get_data_addr(d->img, &d->bits_per_pixel, &d->line_length, &d->endian);
-	mlx_loop_hook(d->mlx, ft_move, d);
-	//mlx_key_hook(d->mlx_win, ft_key_hook, s);//
 	mlx_hook(d->mlx_win, 2, (1L << 0), ft_key_hook, d);//
-	mlx_hook(d->mlx_win, 3, (1L << 1), ft_key_hook_release, d);///
+	mlx_loop_hook(d->mlx, ft_move, d);
+	//mlx_hook(d->mlx_win, 3, (1L << 1), ft_key_hook_release, d);//
+	//mlx_key_hook(d->mlx_win, ft_key_hook, d);
+	mlx_hook(d->mlx_win, 17, 0, ft_free, &d);
 	mlx_loop(d->mlx);
 }
 
-/* int	ft_press_key(int key, void *param)
-{
-	t_data	*dt;
 
-	dt = (t_data *)param;
-	if (key == RIGHTKEY)
-		dt->move.rright = 1;
-	else if (key == LEFTKEY)
-		dt->move.rleft = 1;
-	else if ((key == DOWNKEY || key == 1))
-		dt->move.mback = 1;
-	else if ((key == UPKEY || key == 13))
-		dt->move.mfor = 1;
-	else if (key == 2)
-		dt->move.mright = 1;
-	else if (key == 0)
-		dt->move.mleft = 1;
-	else if (key == 53)
-		ft_close(param);
-	return (0);
-}
-
-int	ft_release_key(int key, void *param)
-{
-	t_data	*dt;
-
-	dt = (t_data *)param;
-	if (key == RIGHTKEY)
-		dt->move.rright = 0;
-	else if (key == LEFTKEY)
-		dt->move.rleft = 0;
-	else if ((key == DOWNKEY || key == 1))
-		dt->move.mback = 0;
-	else if ((key == UPKEY || key == 13))
-		dt->move.mfor = 0;
-	else if (key == 2)
-		dt->move.mright = 0;
-	else if (key == 0)
-		dt->move.mleft = 0;
-	return (0);
-} */
-
-/*
-int	ft_key_hook(int keycode, t_data *d)
-{
-	if (keycode == 124)
-		d->angle_ini -= d->rotate_step;
-	if (keycode == 123)
-		d->angle_ini += d->rotate_step;
-	if (keycode == 126 || keycode == 13)
-		ft_walk_forward(d);
-	if (keycode == 125 || keycode == 1)
-		ft_walk_backward(d);
-	if (keycode == 0)
-		ft_walk_left(d);
-	if (keycode == 2)
-		ft_walk_right(d);
-	return (0);
-}
-*/

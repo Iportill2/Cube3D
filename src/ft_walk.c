@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_walk.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/09 11:45:24 by jgoikoet          #+#    #+#             */
+/*   Updated: 2024/02/14 19:20:58 by iportill         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 void	ft_walk_colision(t_data *d, double x, double y)
@@ -19,9 +31,8 @@ void	ft_walk_left(t_data *d)
 	double	x;
 	double	y;
 
-	y = 0.0;
 	x = 0.0;
-
+	y = 0.0;
 	if (d->angle_ini <= 90)
 	{
 		x = d->px - (WALK_STEP * sin (d->angle_ini * M_PI / 180.0));
@@ -48,9 +59,8 @@ void	ft_walk_right(t_data *d)
 {
 	double	x;
 	double	y;
-
-	y = 0.0;
 	x = 0.0;
+	y = 0.0;
 		if (d->angle_ini <= 90)
 	{
 		x = d->px + (WALK_STEP * sin (d->angle_ini * M_PI / 180.0));
@@ -77,9 +87,8 @@ void	ft_walk_forward(t_data *d)
 {
 	double	x;
 	double	y;
-
-	y = 0.0;
 	x = 0.0;
+	y = 0.0;
 	if (d->angle_ini <= 90)
 	{
 		x = d->px + (WALK_STEP * cos (d->angle_ini * M_PI / 180.0));
@@ -108,9 +117,8 @@ void	ft_walk_backward(t_data *d)
 	
 	double	x;
 	double	y;
-
-	y = 0.0;
 	x = 0.0;
+	y = 0.0;
 	if (d->angle_ini <= 90)
 	{
 		x = d->px - (WALK_STEP * cos (d->angle_ini * M_PI / 180.0));

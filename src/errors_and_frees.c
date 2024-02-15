@@ -1,4 +1,11 @@
 #include "../include/cub3d.h"
+int	ft_free(t_data *d)
+{
+	printf("-----------------GAME OVER-----------------\n\n");
+	mlx_destroy_window(d->mlx, d->mlx_win);
+	exit(0);
+	return (0);
+}
 
 void	ft_free_array(char ***s)
 {
@@ -14,21 +21,21 @@ void	ft_free_array(char ***s)
 	*s = NULL;
 }
 
-void	ft_free_struc(t_data *d)
+void	ft_free_struc(t_list *s)
 {
-	ft_free_array(&d->new_playable_map);
-	ft_free_array(&d->map_settings);
-	free(d->map2d);
-	free(d->playable_map);
+	ft_free_array(&s->new_playable_map);
+	ft_free_array(&s->map_settings);
+	free(s->map2d);
+	free(s->playable_map);
 	//ft_free_array(&d->map_date);
-	free(d->floor_int_arr);
-	free(d->celling_int_arr);
-	ft_free_array(&d->so_arr);
-	ft_free_array(&d->no_arr);
-	ft_free_array(&d->map3d);
-	ft_free_array(&d->we_arr);
-	ft_free_array(&d->ea_arr);
-	ft_free_array(&d->floor);
-	ft_free_array(&d->celling);
-	free(d);
+	free(s->floor_int_arr);
+	free(s->celling_int_arr);
+	ft_free_array(&s->so_arr);
+	ft_free_array(&s->no_arr);
+	ft_free_array(&s->map3d);
+	ft_free_array(&s->we_arr);
+	ft_free_array(&s->ea_arr);
+	ft_free_array(&s->floor);
+	ft_free_array(&s->celling);
+	free(s);
 }

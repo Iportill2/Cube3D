@@ -43,7 +43,7 @@
 # define A 0
 # define S 1
 # define D 2
-# define ESC 0x35
+# define ESC 53
 
 typedef struct s_img
 {
@@ -52,11 +52,10 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	int		x;
-	int		y;
 }			t_img;
 
-typedef struct s_data
+
+typedef struct s_list
 {
 	void	*window;
 
@@ -70,10 +69,10 @@ typedef struct s_data
 	char	**map3d;
 	char	pj_init_nsew;
 	int		invalid_char;
-	int		nx;
-	int		sx;
-	int		ex;
-	int		wx;
+	int		n;
+	int		s;
+	int		e;
+	int		w;
 
 	char	**map_date;
 
@@ -98,25 +97,32 @@ typedef struct s_data
 	int		i;
 	int		n_c;
 	int		s_c;
-///////////////////
-	int		color;
+
+
+}			t_list;
+
+
+typedef struct s_data
+{
+	int		floor_rgb;
+	int		cell_rgb;
 	char	**map;
 	char	**pam;
 	double	px;
 	double	py;
 	double	rx;
 	double	ry;
-	
-	//double	walk_step;
-	//double	rotate_step;
-	
+
+	double	walk_step;
+	double	rotate_step;
+
 	double	dis_x;
 	double	dis_y;
 	double	angle_ini;
-	double	angle_dist_rad;
+	double	ang_dist_rad;
 	double	angle;
 	double	angle_rad;
-	
+
 	void	*mlx;
 	void	*mlx_win;
 	void	*img;
@@ -124,38 +130,39 @@ typedef struct s_data
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-	
-	double	adyacent;
-	double	opposit;
-	double	hypo_x;
-	double	hypo_y;
-
-	double	dist_ini;
-	double	dist;
-	
-	double	closer;
 
 	int		contact;
-
+	int		correct;
 	char	texture;
-	t_img	active;
+	double	dist;
+	char	*texture_n;
+	char	*texture_s;
+	char	*texture_w;
+	char	*texture_e;
+
+	t_img	n;
 	t_img	s;
 	t_img	e;
 	t_img	w;
-	t_img	n;
-	void	*norte;
+	t_img	active;
 
-
-
-}	t_data;
+	//int		color;
+	//double	adyacent;
+	//double	opposit;
+	//double	hypo_x;
+	//double	hypo_y;
+	//double	dist_ini;
+	//double	closer;
+}				t_data;
 
 /*MAIN X*/
-char	**ft_pam(char **map);
+int		ft_read_map(char **argv, t_list *s);
+void	ft_nsew_to_angle_ini(t_list *s,t_data *d);
 int		ft_maplen(char *s);
-
-void	toito(t_data *d);////
-int		ft_read_map(char **argv, t_data *d);
-int		ft_get_playable_map_strlen_arraylen(t_data *d);
+void	ft_s_to_d(t_list *s,t_data *d);
+void	toito(t_list *s,t_data *d);////
+int		ft_read_map(char **argv, t_list *s);
+int		ft_get_playable_map_strlen_arraylen(t_list *s);
 /*MOVE_Q1*/
 int		ft_move_q1(t_data *d, int i);
 /*MOVE_Q2*/
@@ -165,10 +172,12 @@ int		ft_move_q3(t_data *d, int i);
 /*MOVE_Q4*/
 int		ft_move_q4(t_data *d, int i);
 /*MOVE*/
+void	ft_pam(t_data *d, char **map);
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		ft_set_texture_color(t_data *d, int j, int p);
+void	ft_create_line(t_data *d, int x);
 int		ft_move(t_data *d);
 /*SCREEN*/
-void	my_mlx_pixel_put(t_data *d, int x, int y, int color);
-void	ft_create_line(t_data *d, int x);
 int		ft_key_hook(int keycode, t_data *d);
 int		ft_key_hook_release(int keycode, t_data *d);
 void	ft_charge_image(t_data *d);
@@ -206,50 +215,50 @@ char	*ft_dual_word_dupe(char *s, char c, char d);
 int		ft_dual_fill_words(char **array, char *s, char c, char d);
 char	**ft_dual_split(char *s, char c, char d);
 /*CHECK_ONE (5) X*/
-int		ft_check_chars_in_playable_map(t_data *d);
-int		ft_check_textures(t_data *d);
-int		ft_check_map_args(t_data *d);
-int		ft_check_map_double_jump_line_bis(t_data *d, int n, int e, int w);
-int		ft_check_map_double_jump_line(t_data *d);
+int		ft_check_chars_in_playable_map(t_list *s);
+int		ft_check_textures(t_list *s);
+int		ft_check_map_args(t_list *s);
+int		ft_check_map_double_jump_line_bis(t_list *s, int n, int e, int w);
+int		ft_check_map_double_jump_line(t_list *s);
 /*CHECK_TWO (5) X*/
-int		ft_check_initial_position(t_data *d);
-int		ft_check_new_playable_map_bis(t_data *d, char c, int i, int e);
-int		ft_check_new_playable_map_its_playable(t_data *d, char c);
-int		ft_check_player_in_new_map(t_data *d);
-int		ft_checks(t_data *d);
+int		ft_check_initial_position(t_list *s);
+int		ft_check_new_playable_map_bis(t_list *s, char c, int i, int e);
+int		ft_check_new_playable_map_its_playable(t_list *s, char c);
+int		ft_check_player_in_new_map(t_list *s);
+int		ft_checks(t_list *s);
 /*GAME (5) X*/
 void	ft_destroy(t_data *d);
 int		ft_close_window(t_data *d);
-int		ft_key_press(int keycode, t_data *d);
+int		ft_key_press(int keycode,t_data *d);
 void	ft_hook(t_data *d);
-void	ft_star_game(t_data *d);
 /*GET_MAPS () X */
-int		ft_get_playable_map_bis(t_data *d, int i, int u);
-int		ft_get_playable_map(t_data *d);
-int		ft_get_maps(t_data *d, char **argv);
-int		ft_get_pj_init_position_bis(t_data *d, int i, int e);
-int		ft_get_pj_init_position(t_data *d);
+int		ft_get_playable_map_bis(t_list *s, int i, int u);
+int		ft_get_playable_map(t_list *s);
+int		ft_get_maps(t_data *d,t_list *s,char **argv);
+int		ft_get_pj_init_position_bis(t_list *s, int i, int e);
+int		ft_get_pj_init_position(t_list *s);
 
 /*CELL_AND_RGB (5) X*/
 int		ft_array_check(char *s);
-int		ft_cell_atoi_array(t_data *d);
-int		check_celling_numbers(t_data *d, int n);
-int		ft_clean_celling(t_data *d);
+int		ft_cell_atoi_array(t_list *s);
+int		check_celling_numbers(t_list *s, int n);
+int		ft_clean_celling(t_list *s);
 int		ft_transf_rgb(int r, int g, int b);
 /*FLOOR (5) X*/
-int		ft_check_floor_cellig_values(t_data *d);
-int		ft_floor_atoi_array(t_data *d);
-int		ft_clean_floor(t_data *d);
-int		ft_floor_cell(t_data *d);
-int		ft_check_floor_arr_int_numbers(t_data *d, int n);
+int		ft_check_floor_cellig_values(t_list *s);
+int		ft_floor_atoi_array(t_list *s);
+int		ft_clean_floor(t_list *s);
+int		ft_floor_cell(t_list *s);
+int		ft_check_floor_arr_int_numbers(t_list *s, int n);
 /*PARSHING (5) X*/
-void	ft_parshing_map_args(t_data *d);
-int		ft_clean_map3d_split_bis(t_data *d, int i, int count);
-int		ft_clean_map3d_split(t_data *d);
-int		ft_create_new_playable_map(t_data *d);
-int		ft_calloc_for_new_playable_map(t_data *d, int e);
+void	ft_parshing_map_args(t_list *s);
+int		ft_clean_map3d_split_bis(t_list *s, int i, int count);
+int		ft_clean_map3d_split(t_list *s);
+int		ft_create_new_playable_map(t_list *s);
+int		ft_calloc_for_new_playable_map(t_list *s, int e);
 
 /*ERRORS_AND_FREES X*/
+int		ft_free(t_data *d);
 void	ft_free_array(char ***s);
-void	ft_free_struc(t_data *d);
+void	ft_free_struc(t_list *s);
 #endif
