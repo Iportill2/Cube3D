@@ -67,21 +67,18 @@ int	ft_check_player_in_new_map(t_list *s)
 int	ft_checks(t_list *s)
 {
 	if (ft_check_map_args(s) == 1)
-		return (printf("Error in ft_check_map_args\n"), 1);
-	if (ft_check_chars_in_playable_map(s) == 1)
-		return (printf("error en ft_check_chars_in_playable_map\n"), 1);
-	if (ft_check_map_double_jump_line(s) == 1)
-		return (printf("error in ft_check_map_double_jump_line\n"), 1);
-	if (ft_check_new_playable_map_its_playable(s, '0') == 1)
-	{
-		printf("Error in ft_check_new_playable_map_its_playable 0\n");
 		return (1);
-	}
+	if (ft_check_chars_in_playable_map(s) == 1)
+		return (1);
+	if (ft_check_map_double_jump_line(s) == 1)
+		return (1);
+	if (ft_check_new_playable_map_its_playable(s, '0') == 1)
+		return (1);
 	if (ft_check_player_in_new_map(s) == 1)
-		return (printf("Error in ft_check_player_in_new_map\n"), 1);
+		return (1);
 	if (ft_check_textures(s) == 1)
-		return (printf("Error in check_textures\n"), 1);
+		return (1);
 	if (ft_check_floor_cellig_values(s) == 1)
-		return (printf("Error in check_floor_cellig_values\n"), 1);
+		return (1);
 	return (0);
 }

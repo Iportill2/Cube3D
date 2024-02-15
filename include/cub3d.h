@@ -30,9 +30,9 @@
 # define X_SIZE_SCREEN 750
 # define Y_SIZE_SCREEN 480
 # define WALK_STEP 0.07
-# define ROTATE_STEP 5
+# define ROTATE_STEP 3
 
-#define WALL_COLOR 16777215 //white
+# define WALL_COLOR 16777215 //white
 
 # define LEFTKEY 123
 # define RIGHTKEY 124
@@ -146,6 +146,11 @@ typedef struct s_data
 	t_img	w;
 	t_img	active;
 
+	int		walk_forw;
+	int		walk_back;
+	int		walk_left;
+	int		walk_right;
+	int		rotate;
 	//int		color;
 	//double	adyacent;
 	//double	opposit;
@@ -157,7 +162,6 @@ typedef struct s_data
 
 /*MAIN X*/
 int		ft_read_map(char **argv, t_list *s);
-void	ft_nsew_to_angle_ini(t_list *s,t_data *d);
 int		ft_maplen(char *s);
 void	ft_s_to_d(t_list *s,t_data *d);
 void	toito(t_list *s,t_data *d);////
@@ -178,7 +182,7 @@ int		ft_set_texture_color(t_data *d, int j, int p);
 void	ft_create_line(t_data *d, int x);
 int		ft_move(t_data *d);
 /*SCREEN*/
-int		ft_key_hook(int keycode, t_data *d);
+//int		ft_key_hook(int keycode, t_data *d);
 int		ft_key_hook_release(int keycode, t_data *d);
 void	ft_charge_image(t_data *d);
 void	ft_screen(t_data *d);
@@ -229,12 +233,12 @@ int		ft_checks(t_list *s);
 /*GAME (5) X*/
 void	ft_destroy(t_data *d);
 int		ft_close_window(t_data *d);
-int		ft_key_press(int keycode,t_data *d);
+int		ft_key_press(int keycode, t_data *d);
 void	ft_hook(t_data *d);
 /*GET_MAPS () X */
 int		ft_get_playable_map_bis(t_list *s, int i, int u);
 int		ft_get_playable_map(t_list *s);
-int		ft_get_maps(t_data *d,t_list *s,char **argv);
+int		ft_get_maps(t_list *s, char **argv);
 int		ft_get_pj_init_position_bis(t_list *s, int i, int e);
 int		ft_get_pj_init_position(t_list *s);
 
@@ -258,7 +262,12 @@ int		ft_create_new_playable_map(t_list *s);
 int		ft_calloc_for_new_playable_map(t_list *s, int e);
 
 /*ERRORS_AND_FREES X*/
-int		ft_free(t_data *d);
+int		ft_error(t_list *s, char **argv);
 void	ft_free_array(char ***s);
-void	ft_free_struc(t_list *s);
+void	ft_free_struc_s(t_list *s);
+int		ft_free_struc_d(t_data *d);
+
+/*ROTATE*/
+void	ft_rotate(t_data *d);
+
 #endif

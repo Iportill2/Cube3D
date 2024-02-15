@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:24:27 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 19:03:21 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 13:23:23 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-void	toito(t_list *s,t_data *d)
+
+/* void	toito(t_list *s,t_data *d)
 {
 	int	i;
 
@@ -123,7 +124,7 @@ void	toito(t_list *s,t_data *d)
 	printf("s->w=%i\n", s->w);
 	printf("s->pj_init_nsew=%c\n", s->pj_init_nsew);
 	printf("---TOITO-----\n");
-}
+} */
 
 int	ft_get_playable_map_strlen_arraylen(t_list *s)
 {
@@ -139,18 +140,6 @@ int	ft_get_playable_map_strlen_arraylen(t_list *s)
 	}
 	return (0);
 }
-void ft_nsew_to_angle_ini(t_list *s,t_data *d)
-{
-	if(s->pj_init_nsew == 'N')
-		d->angle_ini = 90;
-	if(s->pj_init_nsew == 'S')
-		d->angle_ini = 270;
-	if(s->pj_init_nsew == 'E')
-		d->angle_ini = 0;	
-	if(s->pj_init_nsew == 'W')
-		d->angle_ini = 180;
-	printf("d->angle_ini = %f\n",d->angle_ini);
-}
 
 int	ft_read_map(char **argv, t_list *s)
 {
@@ -162,7 +151,7 @@ int	ft_read_map(char **argv, t_list *s)
 	fd = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf("fd=%i\n", fd), printf("mal\n"), free((void *)s), 1);
+		return (printf("fd=%i\n", fd), printf("mal\n"), 1);
 	while (1)
 	{
 		temp = ft_calloc(sizeof(char), 2);
@@ -176,7 +165,8 @@ int	ft_read_map(char **argv, t_list *s)
 	close(fd);
 	return (0);
 }
-int	ft_maplen(char * s)
+
+int	ft_maplen(char *s)
 {
 	int		fd;
 	int		i;
@@ -192,44 +182,42 @@ int	ft_maplen(char * s)
 		return (close(fd), printf("Error\nMapa vacio.\n"), 0);
 	return (close(fd), i);
 }
-void ft_s_to_d(t_list *s,t_data *d)
+
+void	ft_s_to_d(t_list *s, t_data *d)
 {
 	d->cell_rgb = s->cell_rgb;
 	d->floor_rgb = s->floor_rgb;
-	d->texture_n = s->no_arr[1];
-	d->texture_s = s->so_arr[1];
-	d->texture_w = s->we_arr[1];
-	d->texture_e = s->ea_arr[1];
-	
+	d->texture_n = ft_strdup(s->no_arr[1]);
+	d->texture_s = ft_strdup(s->so_arr[1]);
+	d->texture_w = ft_strdup(s->we_arr[1]);
+	d->texture_e = ft_strdup(s->ea_arr[1]);
+	ft_pam(d, s->new_playable_map);
+	if (s->pj_init_nsew == 'N')
+		d->angle_ini = 90;
+	if (s->pj_init_nsew == 'S')
+		d->angle_ini = 270;
+	if (s->pj_init_nsew == 'E')
+		d->angle_ini = 0;
+	if (s->pj_init_nsew == 'W')
+		d->angle_ini = 180;
 }
+
 int	main(int argc, char **argv)
 {
-	int len;
 	t_data	*d;
 	t_list	*s;
-	
+
 	if (argc == 2)
 	{
-		len = ft_strlen(argv[1]);
-		if ((argv[1][len - 1] != 'b') && (argv[1][len - 2] != 'u') \
-		&& (argv[1][len - 3] != 'c') && (argv[1][len - 4] != '.'))
-			return (printf("Wrong file extension\n"), 1);
 		s = ft_calloc(sizeof(t_list), 1);
-		d = ft_calloc (sizeof(t_data),1);
-
-		if (ft_get_maps(d,s,argv) == 1)
-			return (printf("Error in get_maps\n"), 1);
-		if (ft_floor_cell(s) == 1)
-			return (printf("Error in ft_floor_cell\n"), 1);
-		if (ft_checks(s) == 1)
-			return (printf("Error in ft_check\n"), 1);
-		//toito(s,d);
-		ft_s_to_d(s,d);
-		ft_nsew_to_angle_ini(s,d);
+		d = ft_calloc (sizeof(t_data), 1);
+		if (ft_error(s, argv) == 1)
+			return (free(d), 1);
+		ft_s_to_d(s, d);
+		ft_free_struc_s(s);
 		ft_screen(d);
-		ft_free_struc(s);
 	}
 	else
 		printf("Invalid num of arguments\n");
-	return (0);	
+	return (0);
 }

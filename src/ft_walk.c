@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_walk.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/09 11:45:24 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 19:20:58 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 11:56:53 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ void	ft_walk_right(t_data *d)
 {
 	double	x;
 	double	y;
+	 
 	x = 0.0;
 	y = 0.0;
 		if (d->angle_ini <= 90)
@@ -92,22 +93,22 @@ void	ft_walk_forward(t_data *d)
 	if (d->angle_ini <= 90)
 	{
 		x = d->px + (WALK_STEP * cos (d->angle_ini * M_PI / 180.0));
-		y = d->py + (WALK_STEP *	sin (d->angle_ini * M_PI / 180.0));
+		y = d->py + (WALK_STEP * sin (d->angle_ini * M_PI / 180.0));
 	}
 	else if (d->angle_ini <= 180)
 	{
 		x = d->px - (WALK_STEP * sin ((d->angle_ini - 90) * M_PI / 180.0));
-		y = d->py + (WALK_STEP *	cos ((d->angle_ini - 90) * M_PI / 180.0));
+		y = d->py + (WALK_STEP * cos ((d->angle_ini - 90) * M_PI / 180.0));
 	}
 	else if (d->angle_ini <= 270)
 	{
 		x = d->px - (WALK_STEP * cos ((d->angle_ini - 180) * M_PI / 180.0));
-		y = d->py - (WALK_STEP *	sin ((d->angle_ini - 180) * M_PI / 180.0));
+		y = d->py - (WALK_STEP * sin ((d->angle_ini - 180) * M_PI / 180.0));
 	}
 	else if (d->angle_ini <= 360)
 	{
 		x = d->px + (WALK_STEP * sin ((d->angle_ini - 270) * M_PI / 180.0));
-		y = d->py - (WALK_STEP *	cos ((d->angle_ini - 270) * M_PI / 180.0));
+		y = d->py - (WALK_STEP * cos ((d->angle_ini - 270) * M_PI / 180.0));
 	}
 	ft_walk_colision(d, x, y);
 }

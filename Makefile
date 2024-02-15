@@ -26,14 +26,15 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)ft_move_q4.c \
 			$(SRC_DIR)ft_move.c \
 			$(SRC_DIR)ft_screen.c \
-			$(SRC_DIR)ft_walk.c 
+			$(SRC_DIR)ft_walk.c \
+			$(SRC_DIR)ft_rotate.c
 
 
 			
 SRC_DIR	=			src/
 OBJS	= 	$(SRCS:.c=.o)
 
-.SILENT:
+#.SILENT:
 
 all:		$(NAME)
 

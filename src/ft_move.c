@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_move.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/06 12:09:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/14 18:20:36 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/15 12:12:16 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	ft_create_line(t_data *d, int x)
 		d->correct = 0;
 	y = 0;
 	while (y < (480 - j) / 2)
-		my_mlx_pixel_put(d, x, y++, d->cell_rgb); //cielo 0x000000FF
+		my_mlx_pixel_put(d, x, y++, d->cell_rgb);
 	k = y + j;
 	p = 0;
 	while (y < 480 && y < k)
@@ -91,7 +91,20 @@ void	ft_create_line(t_data *d, int x)
 		ft_set_texture_color(d, j, p++ + (d->correct / 2)));
 	}
 	while (y < 480)
-		my_mlx_pixel_put(d, x, y++, d->floor_rgb); //floor 0x001CE507
+		my_mlx_pixel_put(d, x, y++, d->floor_rgb);
+}
+
+void	ft_walk(t_data *d)
+{
+	if (d->walk_forw == 1)
+		ft_walk_forward(d);
+	if (d->walk_back == 1)
+		ft_walk_backward(d);
+	if (d->walk_left == 1)
+		ft_walk_left(d);
+	if (d->walk_right == 1)
+		ft_walk_right(d);
+	ft_rotate (d);	
 }
 
 int	ft_move(t_data *d)
@@ -118,5 +131,6 @@ int	ft_move(t_data *d)
 			d->angle_ini -= 360;
 	}
 	mlx_put_image_to_window(d->mlx, d->mlx_win, d->img, 0, 0);
+	ft_walk(d);
 	return (0);
 }

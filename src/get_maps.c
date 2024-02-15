@@ -45,7 +45,7 @@ int	ft_get_playable_map(t_list *s)
 	return (0);
 }
 
-int	ft_get_maps(t_data *d,t_list *s,char **argv)
+int	ft_get_maps(t_list *s, char **argv)
 {
 	if (ft_read_map(argv, s) == 1)
 		return (1);
@@ -57,7 +57,6 @@ int	ft_get_maps(t_data *d,t_list *s,char **argv)
 	ft_get_playable_map(s);
 	ft_get_playable_map_strlen_arraylen(s);
 	ft_create_new_playable_map(s);
-	ft_pam(d,s->new_playable_map);
 	return (0);
 }
 
