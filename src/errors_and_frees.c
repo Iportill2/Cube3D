@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:27:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/19 15:41:41 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:09:25 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ int	ft_error(t_list *s, char **argv)
 	int		len;
 
 	len = ft_strlen(argv[1]);
+	if (len <= 9)
+		return (printf("Error\nNot valid file\n"), 1);
 	if ((argv[1][len - 1] != 'b') || (argv[1][len - 2] != 'u') \
 	|| (argv[1][len - 3] != 'c') || (argv[1][len - 4] != '.'))
 		return (free(s), printf("Error\nWrong file extension\n"), 1);
