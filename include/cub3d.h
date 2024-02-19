@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:13:42 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 15:00:58 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:46:21 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ typedef struct s_list
 	int		ea_check;
 	int		f_check;
 	int		c_check;
-	char	***ar_sets;
 
 }			t_list;
 
@@ -278,9 +277,6 @@ void	ft_pam(t_data *d, char **map);
 /*TOOLBOX*/
 int		ft_check_no_so_we_ea_f_c_check(t_list *s);
 /*GOIKO*/
-void	ft_set_game(t_list *s, char **ar);
-int		ft_check_settings(t_list *s);
 int		ft_check_line7(char *s);
-int		ft_error_goiko(t_list *s);
-
+void	ft_parshing_map_args_tools(t_list *s);
 #endif

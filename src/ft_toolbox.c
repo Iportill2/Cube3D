@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 12:44:33 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 12:52:41 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:35:39 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,3 +28,31 @@ int	ft_check_no_so_we_ea_f_c_check(t_list *s)
 		return (1);
 	return (0);
 }
+
+void	ft_parshing_map_args_tools(t_list *s)
+{
+	if (ft_strcmp(s->map_date[0], "WE") == 0 && s->we_check == 0)
+	{
+		s->we_arr = s->map_date;
+		s->we_check++;
+	}
+	else if (ft_strcmp(s->map_date[0], "EA") == 0 && s->ea_check == 0)
+	{
+		s->ea_arr = s->map_date;
+		s->ea_check++;
+	}
+	else if (ft_strcmp(s->map_date[0], "F") == 0 && s->f_check == 0)
+	{
+		s->floor = s->map_date;
+		s->f_check++;
+	}
+	else if (ft_strcmp(s->map_date[0], "C") == 0 && s->c_check == 0)
+	{
+		s->celling = s->map_date;
+		s->c_check++;
+	}
+}
+
+/*
+
+*/

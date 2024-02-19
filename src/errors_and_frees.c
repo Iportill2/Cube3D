@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:27:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/19 14:56:55 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:41:41 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ int	ft_error(t_list *s, char **argv)
 		return (free(s), printf("Error\nWrong file extension\n"), 1);
 	if (ft_get_maps(s, argv) == 1)
 		return (ft_free_struc_s(s), 1);
-/* 	if(ft_error_goiko(s) == 1)
-		return (ft_free_struc_s(s), 1); */
 	if (ft_floor_cell(s) == 1)
 		return (ft_free_struc_s(s), 1);
 	if (ft_checks(s) == 1)
