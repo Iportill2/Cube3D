@@ -26,6 +26,8 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)ft_move.c \
 			$(SRC_DIR)ft_screen.c \
 			$(SRC_DIR)ft_walk.c \
+			$(SRC_DIR)ft_toolbox.c \
+			$(SRC_DIR)ft_goiko.c \
 			$(SRC_DIR)ft_rotate.c
 
 

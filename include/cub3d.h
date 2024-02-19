@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:13:42 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:21:29 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:38:05 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,13 @@ typedef struct s_list
 	int		i;
 	int		n_c;
 	int		s_c;
+	int		no_check;
+	int		so_check;
+	int		we_check;
+	int		ea_check;
+	int		f_check;
+	int		c_check;
+	char	***ar_sets;
 
 }			t_list;
 
@@ -160,7 +167,7 @@ typedef struct s_data
 	int		walk_left;
 	int		walk_right;
 	int		rotate;
-
+	
 	double	x;
 	double	y;
 }				t_data;
@@ -270,5 +277,12 @@ int		ft_free_struc_d(t_data *d);
 /*ROTATE*/
 void	ft_rotate(t_data *d);
 void	ft_pam(t_data *d, char **map);
+/*TOOLBOX*/
+int		ft_check_no_so_we_ea_f_c_check(t_list *s);
+/*GOIKO*/
+void	ft_set_game(t_list *s, char **ar);
+int		ft_check_settings(t_list *s);
+int		ft_check_line7(char *s);
+int		ft_error_goiko(t_list *s);
 
 #endif

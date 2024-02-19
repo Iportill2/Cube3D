@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/30 15:24:27 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/15 17:54:45 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:21:23 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	ft_read_map(char **argv, t_list *s)
 	fd = 0;
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		return (printf("fd=%i\n", fd), printf("mal\n"), 1);
+		return (printf("Error\nCant open file\n"), 1);
 	while (1)
 	{
 		temp = ft_calloc(sizeof(char), 2);

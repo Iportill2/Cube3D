@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_maps.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:08 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:59:13 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:24:17 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	ft_get_maps(t_list *s, char **argv)
 	s->map3d = ft_split(s->map2d, '\n');
 	if (s->map3d == NULL)
 		return (printf("Error in ft_split: d->map3d == NULL\n"), 1);
+	if (ft_arraylen(s->map3d) < 9)
+		return (printf("Error\nNot playable map\n"));
 	if (ft_clean_map3d_split(s) == 1)
 		return (1);
 	ft_get_playable_map(s);

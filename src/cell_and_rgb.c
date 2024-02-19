@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cell_and_rgb.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:20 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 19:48:24 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:18:56 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,14 @@ int	ft_cell_atoi_array(t_list *s)
 
 	i = 1;
 	e = 0;
-	while (s->floor[i])
+	while (s->celling[i])
 		i++;
 	s->cell_size = i -1;
 	s->celling_int_arr = ft_calloc(sizeof(int *), (s->cell_size));
 	if (s->celling_int_arr == NULL)
 		return (1);
 	i = 1;
-	while (s->floor[i])
+	while (s->celling[i])
 	{
 		s->celling_int_arr[e] = ft_atoi(s->celling[i]);
 		e++;

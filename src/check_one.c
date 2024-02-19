@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_one.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:31 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 20:02:29 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 12:25:49 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	ft_check_chars_in_playable_map(t_list *s)
 {
-	printf("N: %i\nS: %i\nE: %i\nW: %i\n", s->n, s->s, s->e, s->w);
 	if (s->n == 1 && (s->s > 0 || s->e > 0 || s->w > 0))
 		return (printf("Error\n11Initial position set multiple times\n"), 1);
 	if (s->s == 1 && (s->n > 0 || s->e > 0 || s->w > 0))

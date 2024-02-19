@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors_and_frees.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 12:27:02 by jgoikoet          #+#    #+#             */
-/*   Updated: 2024/02/15 18:56:24 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:45:53 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int	ft_error(t_list *s, char **argv)
 	|| (argv[1][len - 3] != 'c') || (argv[1][len - 4] != '.'))
 		return (free(s), printf("Error\nWrong file extension\n"), 1);
 	if (ft_get_maps(s, argv) == 1)
+		return (ft_free_struc_s(s), 1);
+	if(ft_error_goiko(s) == 1)
 		return (ft_free_struc_s(s), 1);
 	if (ft_floor_cell(s) == 1)
 		return (ft_free_struc_s(s), 1);

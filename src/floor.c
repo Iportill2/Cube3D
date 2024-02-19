@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:46 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 19:36:40 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 13:16:33 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_check_floor_cellig_values(t_list *s)
 		if (s->celling_int_arr[i] > -1 && s->celling_int_arr[i] < 256)
 			i++;
 		else
-			return (printf("Error\n%i is an incorrect number", \
+			return (printf("Error\n%i is an incorrect number in cell", \
 			s->celling_int_arr[i]), 1);
 	}
 	i = 0;
@@ -31,7 +31,7 @@ int	ft_check_floor_cellig_values(t_list *s)
 		if (s->floor_int_arr[i] > -1 && s->floor_int_arr[i] < 256)
 			i++;
 		else
-			return (printf("Error\n%i is an incorrect number", \
+			return (printf("Error\n%i is an incorrect number in floor", \
 			s->floor_int_arr[i]), 1);
 	}
 	return (0);
@@ -91,6 +91,8 @@ int	ft_floor_cell(t_list *s)
 	if (ft_get_pj_init_position(s) == 1)
 		return (printf("Error in ft_get_pj_init_position\n"), 1);
 	ft_parshing_map_args(s);
+	if (ft_check_no_so_we_ea_f_c_check(s) == 1)
+		return (printf("Error\nMore than 1 times, value set\n"), 1);
 	if (ft_clean_floor(s) == 1)
 		return (1);
 	if (ft_clean_celling(s) == 1)
