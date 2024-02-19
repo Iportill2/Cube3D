@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   parshing.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:13 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 15:35:28 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:12:00 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-void	ft_parshing_map_args(t_list *s)
+/* void	ft_parshing_map_args(t_list *s)
 {
 	int	i;
 
@@ -50,6 +50,33 @@ void	ft_parshing_map_args(t_list *s)
 			s->celling = s->map_date;
 			s->c_check++;
 		}
+		else
+			ft_free_array(&s->map_date);
+		i++;
+	}
+	return ;
+} */
+
+void	ft_parshing_map_args(t_list *s)
+{
+	int	i;
+
+	i = 0;
+	while (s->map_settings[i] && i < 6)
+	{
+		s->map_date = ft_dual_split(s->map_settings[i], ' ', ',');
+		if (ft_strcmp(s->map_date[0], "NO") == 0)
+			s->no_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "SO") == 0)
+			s->so_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "WE") == 0)
+			s->we_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "EA") == 0)
+			s->ea_arr = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "F") == 0)
+			s->floor = s->map_date;
+		else if (ft_strcmp(s->map_date[0], "C") == 0)
+			s->celling = s->map_date;
 		else
 			ft_free_array(&s->map_date);
 		i++;

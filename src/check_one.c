@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_one.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:31 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 12:25:49 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:46:20 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,16 @@ int	ft_check_textures(t_list *s)
 int	ft_check_map_args(t_list *s)
 {
 	if (ft_arraylen(s->no_arr) != 2 || ft_arraylen(s->so_arr) != 2 || \
-	ft_arraylen(s->we_arr) != 2 || ft_arraylen(s->ea_arr) != 2 || \
-	ft_arraylen(s->floor) != 4 || ft_arraylen(s->celling) != 4)
+	ft_arraylen(s->we_arr) != 2 || ft_arraylen(s->ea_arr) != 2)
 		return (printf("Error\nIncorrect arguments in texture path\n"), 1);
+	if (ft_arraylen(s->floor) != 4 || ft_arraylen(s->celling) != 4)
+		return (printf("Error\nIncorrect arguments in c/f path\n"), 1);
 	return (0);
 }
 
 int	ft_check_map_double_jump_line_bis(t_list *s, int i)
 {
-	while (s->map2d[i])
+	while (s->map2d && s->map2d[i])
 	{
 		if (s->map2d[i] == '\n')
 		{
@@ -77,7 +78,8 @@ int	ft_check_map_double_jump_line_bis(t_list *s, int i)
 			if (s->map2d[i] == '\n')
 				return (printf("Error\nNo playable map\n"), -1);
 		}
-		i++;
+		if (s->map2d[i] != '\0')
+			i++;
 	}
 	return (i);
 }
@@ -93,7 +95,7 @@ int	ft_check_map_double_jump_line(t_list *s)
 			i++;
 		if (s->map2d[i] != '1')
 		{
-			while (s->map2d[i] != '\n')
+			while (s->map2d[i] != '\n' && s->map2d[i] != '\0')
 				i++;
 			i++;
 		}

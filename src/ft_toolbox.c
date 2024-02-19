@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_toolbox.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 12:44:33 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 15:35:39 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:13:00 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
 
-int	ft_check_no_so_we_ea_f_c_check(t_list *s)
+/* int	ft_check_no_so_we_ea_f_c_check(t_list *s)
 {
 	if (s->no_check != 1)
 		return (1);
@@ -27,8 +27,16 @@ int	ft_check_no_so_we_ea_f_c_check(t_list *s)
 	if (s->c_check != 1)
 		return (1);
 	return (0);
-}
+} */
 
+int	ft_check_no_so_we_ea_f_c_check(t_list *s)
+{
+	if (!s->no_arr || !s->so_arr || !s->we_arr || \
+		!s->ea_arr || !s->floor || !s->celling)
+		return (1);
+	return (0);
+}
+/* 
 void	ft_parshing_map_args_tools(t_list *s)
 {
 	if (ft_strcmp(s->map_date[0], "WE") == 0 && s->we_check == 0)
@@ -51,7 +59,7 @@ void	ft_parshing_map_args_tools(t_list *s)
 		s->celling = s->map_date;
 		s->c_check++;
 	}
-}
+} */
 
 /*
 
