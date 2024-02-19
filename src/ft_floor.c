@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   floor.c                                            :+:      :+:    :+:   */
+/*   ft_floor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:46 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 17:59:41 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:36:34 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_check_floor_cellig_values(t_list *s)
 		if (s->celling_int_arr[i] > -1 && s->celling_int_arr[i] < 256)
 			i++;
 		else
-			return (printf("Error\n%i is an incorrect number in cell", \
+			return (printf("Error\n%i is an incorrect number in ceiling", \
 			s->celling_int_arr[i]), 1);
 	}
 	i = 0;
