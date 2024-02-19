@@ -1,61 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parshing.c                                         :+:      :+:    :+:   */
+/*   ft_parshing.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:10:13 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 17:12:00 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:22:50 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-/* void	ft_parshing_map_args(t_list *s)
-{
-	int	i;
-
-	i = 0;
-	while (s->map_settings[i] && i < 6)
-	{
-		s->map_date = ft_dual_split(s->map_settings[i], ' ', ',');
-		if (ft_strcmp(s->map_date[0], "NO") == 0 && s->no_check == 0)
-		{
-			s->no_arr = s->map_date;
-			s->no_check++;
-		}
-		else if (ft_strcmp(s->map_date[0], "SO") == 0 && s->so_check == 0)
-		{
-			s->so_arr = s->map_date;
-			s->so_check++;
-		}
-		else if (ft_strcmp(s->map_date[0], "WE") == 0 && s->we_check == 0)
-		{
-			s->we_arr = s->map_date;
-			s->we_check++;
-		}
-		else if (ft_strcmp(s->map_date[0], "EA") == 0 && s->ea_check == 0)
-		{
-			s->ea_arr = s->map_date;
-			s->ea_check++;
-		}
-		else if (ft_strcmp(s->map_date[0], "F") == 0 && s->f_check == 0)
-		{
-			s->floor = s->map_date;
-			s->f_check++;
-		}
-		else if (ft_strcmp(s->map_date[0], "C") == 0 && s->c_check == 0)
-		{
-			s->celling = s->map_date;
-			s->c_check++;
-		}
-		else
-			ft_free_array(&s->map_date);
-		i++;
-	}
-	return ;
-} */
 
 void	ft_parshing_map_args(t_list *s)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:13:42 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 15:46:21 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:23:02 by jgoikoet         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,25 +19,6 @@
 # include <stdlib.h>
 # include <string.h>
 # include <math.h>
-
-/*
-# define SCREENWIDTH 640
-# define SCREENHEIGHT 640
-# define MAPWIDTH 24
-# define MAPHEIGHT 24
-# define TEXWIDTH 128
-# define TEXHEIGHT 128
-
-# define MOV_SPEED 0.05
-# define ROT_SPEED 0.03
-
-//LINUX
-#define UPKEY 65362
-#define DOWNKEY 65364
-#define RIGHTKEY 65363
-#define LEFTKEY 65361
-//MAC
-*/
 
 # define X_SIZE_SCREEN 750
 # define Y_SIZE_SCREEN 480
@@ -107,13 +88,6 @@ typedef struct s_list
 	int		i;
 	int		n_c;
 	int		s_c;
-	int		no_check;
-	int		so_check;
-	int		we_check;
-	int		ea_check;
-	int		f_check;
-	int		c_check;
-
 }			t_list;
 
 typedef struct s_data
@@ -189,17 +163,20 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		ft_set_texture_color(t_data *d, int j, int p);
 void	ft_create_line(t_data *d, int x);
 int		ft_move(t_data *d);
+
 /*SCREEN*/
 int		ft_key_press(int keycode, t_data *d);
 int		ft_key_hook_release(int keycode, t_data *d);
 void	ft_charge_image(t_data *d);
 void	ft_screen(t_data *d);
+
 /*WALK*/
 void	ft_walk_colision(t_data *d, double x, double y);
 void	ft_walk_left(t_data *d);
 void	ft_walk_right(t_data *d);
 void	ft_walk_forward(t_data *d);
 void	ft_walk_backward(t_data *d);
+
 /*UTILS_ONE (5) X*/
 size_t	ft_strlen(const char *s);
 size_t	ft_arraylen(char **arr);
@@ -274,9 +251,9 @@ int		ft_free_struc_d(t_data *d);
 /*ROTATE*/
 void	ft_rotate(t_data *d);
 void	ft_pam(t_data *d, char **map);
+
 /*TOOLBOX*/
 int		ft_check_no_so_we_ea_f_c_check(t_list *s);
-/*GOIKO*/
 int		ft_check_line7(char *s);
-void	ft_parshing_map_args_tools(t_list *s);
+
 #endif

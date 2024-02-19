@@ -8,17 +8,17 @@ RM			= rm -rf
 MLX			= mlx
 
 SRCS	=	$(SRC_DIR)main.c \
-			$(SRC_DIR)check_one.c \
-			$(SRC_DIR)check_two.c \
-			$(SRC_DIR)errors_and_frees.c \
-			$(SRC_DIR)parshing.c \
-			$(SRC_DIR)cell_and_rgb.c \
-			$(SRC_DIR)split.c \
-			$(SRC_DIR)floor.c \
-			$(SRC_DIR)dual_split.c \
-			$(SRC_DIR)utils_one.c \
-			$(SRC_DIR)utils_two.c \
-			$(SRC_DIR)get_maps.c \
+			$(SRC_DIR)ft_check_one.c \
+			$(SRC_DIR)ft_check_two.c \
+			$(SRC_DIR)ft_errors_and_frees.c \
+			$(SRC_DIR)ft_parshing.c \
+			$(SRC_DIR)ft_cell_and_rgb.c \
+			$(SRC_DIR)ft_split.c \
+			$(SRC_DIR)ft_floor.c \
+			$(SRC_DIR)ft_dual_split.c \
+			$(SRC_DIR)ft_utils_one.c \
+			$(SRC_DIR)ft_utils_two.c \
+			$(SRC_DIR)ft_get_maps.c \
 			$(SRC_DIR)ft_move_q1.c \
 			$(SRC_DIR)ft_move_q2.c \
 			$(SRC_DIR)ft_move_q3.c \
@@ -27,7 +27,6 @@ SRCS	=	$(SRC_DIR)main.c \
 			$(SRC_DIR)ft_screen.c \
 			$(SRC_DIR)ft_walk.c \
 			$(SRC_DIR)ft_toolbox.c \
-			$(SRC_DIR)ft_goiko.c \
 			$(SRC_DIR)ft_rotate.c
 
 
