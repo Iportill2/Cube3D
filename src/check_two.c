@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:34 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/15 18:09:35 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 18:02:57 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	ft_check_new_playable_map_its_playable(t_list *s, char c)
 		{
 			if (ft_check_new_playable_map_bis(s, c, i, e) == 1)
 			{
-				printf("Error in ft_check_new_playable_map_bis\n");
+				printf("Error\nNo playable maps\n");
 				return (1);
 			}
 			e++;
@@ -87,6 +87,8 @@ int	ft_checks(t_list *s)
 	if (ft_check_map_double_jump_line(s) == 1)
 		return (1);
 	if (ft_check_new_playable_map_its_playable(s, '0') == 1)
+		return (1);
+	if (ft_check_line7(s->map3d[6]) == 1)
 		return (1);
 	if (ft_check_player_in_new_map(s) == 1)
 		return (1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   floor.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jgoikoet <jgoikoet@student.42urduliz.co    +#+  +:+       +#+        */
+/*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:09:46 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 17:16:38 by jgoikoet         ###   ########.fr       */
+/*   Updated: 2024/02/19 17:59:41 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,8 +93,6 @@ int	ft_floor_cell(t_list *s)
 	ft_parshing_map_args(s);
 	if (ft_check_no_so_we_ea_f_c_check(s) == 1)
 		return (printf("Error\nIncorrect value set\n"), 1);
-	if (ft_check_line7(s->map3d[6]) == 1)
-		return (1);
 	if (ft_clean_floor(s) == 1)
 		return (1);
 	if (ft_clean_celling(s) == 1)
