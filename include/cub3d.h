@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/15 18:13:42 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 13:38:05 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 15:00:58 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ typedef struct s_img
 	int		line_length;
 	int		endian;
 }			t_img;
-
 typedef struct s_list
 {
 	void	*window;
@@ -167,7 +166,6 @@ typedef struct s_data
 	int		walk_left;
 	int		walk_right;
 	int		rotate;
-	
 	double	x;
 	double	y;
 }				t_data;

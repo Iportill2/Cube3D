@@ -6,7 +6,7 @@
 /*   By: iportill <iportill@student.42urduliz.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/19 13:34:32 by iportill          #+#    #+#             */
-/*   Updated: 2024/02/19 13:58:28 by iportill         ###   ########.fr       */
+/*   Updated: 2024/02/19 14:58:23 by iportill         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,45 +61,12 @@ int	ft_check_line7(char *s)
 	return(0);
 }
 
-int	ft_error_goiko(t_list *s)
+int	ft_error_goiko(t_list *s)////
 {
-	int		i;
-	char	**ar;
+	(void)s;
+	//char	**ar;
 
-	i = 0;
-/* 	printf("\nPLAYABLE MAP\n\n");
-	while (s->playable_map[i])
-		printf("%s\n", s->playable_map[i++]);
-
-	i = 0;
-	printf("\nNEW PLAYABLE MAP\n\n");
-	while (s->new_playable_map[i])
-		printf("%s\n", s->new_playable_map[i++]);
 	
-	i = 0;
-	printf("\nMAP SETTINGS\n\n");
-	while (s->map_settings[i])
-		printf("%s\n", s->map_settings[i++]);
 	
-	i = 0;
-	printf("\nMAP2D\n\n");
-	while (s->map2d[i])
-		printf("%c", s->map2d[i++]);
-
-	i = 0;
-	printf("\nMAP3D\n\n");
-	while (s->map3d[i])
-		printf("%s\n", s->map3d[i++]);
-	 */
-	
-	ar = ft_split(s->map2d, '\n');
-	if (ft_arraylen(ar) < 9)
-		printf("\nArray muy corto\n\n");
-	
-	ft_set_game(s, ar);
-	/* if(ft_check_settings(s) == 1)
-		return (1); */
-	if(ft_check_line7(ar[6]) == 1)
-		return (1);
 	return (0);
 }
